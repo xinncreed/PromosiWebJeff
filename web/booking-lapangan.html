@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Jeff – Jasa Pembuatan Website Booking Lapangan. Sistem reservasi online otomatis untuk futsal, badminton, tenis, dan olahraga lainnya.">
+    <title>Web Booking Lapangan – Jeff</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1A6BFF;
+            --primary-dark: #1355CC;
+            --primary-light: #1a6bff1a;
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --card-bg2: #1c1c1c;
+            --card-bg3: #222222;
+            --text: #f0f0f0;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --white: #FFFFFF;
+            --border: rgba(255,255,255,0.1);
+            --border2: rgba(255,255,255,0.18);
+            --border3: rgba(255,255,255,0.06);
+            --green: #10B981;
+            --gold: #facc15;
+            --red: #f87171;
+            --orange: #F59E0B;
+            --teal: #06b6d4;
+            --header-h: 68px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-md: 0 4px 20px rgba(26,107,255,0.15);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+            --transition-fast: all .15s cubic-bezier(0.2,0.9,0.4,1.1);
+            --transition-base: all .25s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Nunito', sans-serif; background: var(--dark-bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        h1,h2,h3,h4 { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--white); }
+        p { color: var(--text-muted); line-height: 1.7; }
+        a { text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== HEADER ===== */
+        header { position: sticky; top: 0; z-index: 100; background: rgba(8,8,8,0.96); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); height: var(--header-h); }
+        .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 100%; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; background: var(--card-bg2); border: 1px solid var(--border2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text strong { display: block; font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 1.5px; }
+        .logo-text span { font-size: 10px; color: var(--text-muted); }
+        nav { display: flex; align-items: center; gap: 4px; }
+        nav a { padding: 8px 16px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; color: var(--text-muted); transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .header-ctas { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .btn-wa { display: flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: var(--radius-sm); background: #25d366; color: #fff; font-size: 13px; font-weight: 700; transition: var(--transition-fast); white-space: nowrap; }
+        .btn-wa:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-wa svg { width: 15px; height: 15px; flex-shrink: 0; }
+        .hamburger { width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 5px; background: rgba(255,255,255,0.04); flex-shrink: 0; }
+        .hamburger:hover { background: rgba(255, 255, 255, 0.09); }
+        .hamburger span { display: block; width: 18px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.28s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease, width 0.2s ease; transform-origin: center; }
+        .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.is-open span:nth-child(2) { opacity: 0; width: 0; }
+        .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile nav: smooth slide + fade open/close instead of an abrupt toggle */
+        .mobile-nav {
+            display: flex; flex-direction: column; position: fixed; top: var(--header-h); left: 0; right: 0;
+            background: var(--dark-bg); border-bottom: 1px solid var(--border); padding: 8px 0 20px; z-index: 99;
+            max-height: calc(100vh - var(--header-h)); overflow-y: auto; box-shadow: var(--shadow-lg);
+
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-12px) scale(0.99);
+            transform-origin: top center;
+            pointer-events: none;
+            transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                        visibility 0.32s;
+        }
+        .mobile-nav.open {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .mobile-nav a {
+            padding: 14px 20px; font-size: 15px; font-weight: 700; color: var(--text-muted);
+            border-bottom: 1px solid var(--border3); display: flex; align-items: center; gap: 12px;
+            transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        .mobile-nav.open a {
+            animation: mobileNavItemIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .mobile-nav.open a:nth-child(1) { animation-delay: 0.04s; }
+        .mobile-nav.open a:nth-child(2) { animation-delay: 0.09s; }
+        .mobile-nav.open a:nth-child(3) { animation-delay: 0.14s; }
+        .mobile-nav.open a:nth-child(4) { animation-delay: 0.19s; }
+        @keyframes mobileNavItemIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-nav a:active { background: rgba(255, 255, 255, 0.06); color: #fff; padding-left: 26px; }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: var(--primary); color: #fff; border: none; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: transparent; color: var(--text); border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+
+        /* ===== SECTION HEADING ===== */
+        .section-heading { text-align: center; margin-bottom: 48px; }
+        .section-heading .badge { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-light); padding: 4px 14px; border-radius: 100px; margin-bottom: 16px; }
+        .section-heading h2 { margin-bottom: 12px; font-size: clamp(1.5rem, 4vw, 2.2rem); }
+        .section-heading p { max-width: 600px; margin: 0 auto; }
+
+        /* ===== HERO ===== */
+        .hero { position: relative; min-height: 600px; display: flex; align-items: center; padding: 90px 24px 70px; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; }
+        /* Field-inspired: dark with green tint and grid lines */
+        .hero-bg::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(180deg, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.85) 60%, rgba(10,10,10,0.97) 100%),
+                radial-gradient(ellipse 80% 50% at 70% 50%, rgba(16,185,129,0.1) 0%, transparent 65%),
+                radial-gradient(ellipse 40% 60% at 20% 30%, rgba(26,107,255,0.08) 0%, transparent 60%);
+        }
+        /* Court lines pattern */
+        .hero-bg::after {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(16,185,129,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16,185,129,0.07) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: linear-gradient(135deg, transparent 30%, rgba(0,0,0,0.4) 60%, transparent 90%);
+            -webkit-mask-image: linear-gradient(135deg, transparent 30%, rgba(0,0,0,0.4) 60%, transparent 90%);
+        }
+        .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 56px; position: relative; z-index: 2; }
+        .hero-content { flex: 1; max-width: 560px; }
+
+        .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 22px; }
+        .breadcrumb a { color: var(--primary); font-weight: 600; }
+        .breadcrumb span { color: var(--text-dim); }
+
+        .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--green); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); padding: 5px 14px; border-radius: 100px; margin-bottom: 22px; }
+        .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse-green 1.5s infinite; }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.5); } 70% { box-shadow: 0 0 0 7px rgba(16,185,129,0); } 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); } }
+
+        .hero-content h1 { font-size: clamp(2rem, 5vw, 3.3rem); line-height: 1.1; margin-bottom: 20px; color: #fff; }
+        .hero-content h1 span { color: var(--primary); }
+        .hero-content h1 em { font-style: normal; color: var(--green); }
+        .hero-content > p { font-size: 1rem; color: rgba(255,255,255,0.72); margin-bottom: 30px; }
+
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+        .hero-tag { display: flex; align-items: center; gap: 7px; font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.8); background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 7px 13px; }
+        .hero-tag i { font-size: 0.9rem; }
+        .hero-tag i.green { color: var(--green); }
+        .hero-tag i.blue { color: var(--primary); }
+        .hero-tag i.gold { color: var(--gold); }
+        .hero-tag i.teal { color: var(--teal); }
+
+        .hero-cta-group { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+        .hero-note { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--text-muted); }
+        .hero-note i { color: var(--green); }
+
+        /* ===== BOOKING MOCKUP ===== */
+        .hero-visual { flex: 1; max-width: 500px; position: relative; }
+
+        .booking-mockup {
+            background: var(--card-bg2); border: 1.5px solid var(--border2);
+            border-radius: var(--radius-xl); overflow: hidden;
+            box-shadow: var(--shadow-lg), 0 0 60px rgba(16,185,129,0.08);
+        }
+        .bm-header {
+            background: var(--card-bg); border-bottom: 1px solid var(--border3);
+            padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+        }
+        .bm-dots { display: flex; gap: 6px; }
+        .bm-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .bm-url { flex: 1; background: var(--card-bg3); border-radius: 5px; padding: 4px 10px; font-size: 0.68rem; color: var(--text-dim); font-family: monospace; margin-left: 6px; }
+        .bm-body { padding: 20px; }
+
+        /* Court cards row */
+        .bm-courts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+        .bm-court {
+            background: var(--card-bg3); border-radius: var(--radius-md); overflow: hidden;
+            border: 1px solid var(--border3); transition: var(--transition-fast); cursor: pointer;
+        }
+        .bm-court.selected { border-color: var(--green); box-shadow: 0 0 12px rgba(16,185,129,0.2); }
+        .bm-court-img { height: 60px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; position: relative; }
+        .bm-court-img.futsal { background: linear-gradient(135deg, #0a2010, rgba(16,185,129,0.2)); }
+        .bm-court-img.badminton { background: linear-gradient(135deg, #0a1020, rgba(26,107,255,0.2)); }
+        .bm-court-img.tenis { background: linear-gradient(135deg, #1a1200, rgba(250,204,21,0.15)); }
+        .bm-court-status { position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; border-radius: 50%; }
+        .bm-court-status.available { background: var(--green); }
+        .bm-court-status.busy { background: var(--red); }
+        .bm-court-info { padding: 8px; }
+        .bm-court-name { font-size: 0.65rem; font-weight: 700; color: #fff; font-family: 'Rajdhani', sans-serif; }
+        .bm-court-price { font-size: 0.6rem; color: var(--primary); font-weight: 700; }
+
+        /* Schedule grid */
+        .bm-schedule-label { font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+        .bm-schedule { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 16px; }
+        .bm-slot { padding: 6px 0; border-radius: 5px; font-size: 0.6rem; font-weight: 700; text-align: center; cursor: pointer; border: 1px solid transparent; }
+        .bm-slot.available { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.2); color: var(--green); }
+        .bm-slot.booked { background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.2); color: var(--red); }
+        .bm-slot.selected-slot { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+        /* Booking form mini */
+        .bm-form { background: var(--card-bg3); border-radius: var(--radius-md); padding: 14px; }
+        .bm-form-title { font-size: 0.72rem; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .bm-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+        .bm-input { background: var(--card-bg2); border: 1px solid var(--border); border-radius: 5px; padding: 7px 10px; font-size: 0.65rem; color: var(--text-muted); font-family: 'Nunito', sans-serif; width: 100%; }
+        .bm-book-btn { width: 100%; background: var(--green); color: #fff; border: none; border-radius: 6px; padding: 9px; font-size: 0.72rem; font-weight: 700; font-family: 'Nunito', sans-serif; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; }
+
+        /* Floating badges */
+        .float-badge { position: absolute; background: var(--card-bg2); border: 1px solid var(--border2); border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-lg); z-index: 10; }
+        .float-badge .fb-icon { font-size: 1rem; }
+        .float-badge .fb-val { font-size: 0.7rem; font-weight: 700; color: #fff; white-space: nowrap; }
+        .float-badge .fb-sub { font-size: 0.6rem; color: var(--text-muted); white-space: nowrap; }
+        .badge-tr { top: -14px; right: -10px; }
+        .badge-bl { bottom: -14px; left: -10px; }
+
+        /* ===== OLAHRAGA SECTION ===== */
+        .olahraga { padding: 80px 0; background: var(--dark-bg); }
+        .olahraga-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .olahraga-card {
+            background: var(--card-bg2); border: 1px solid var(--border);
+            border-radius: var(--radius-xl); overflow: hidden;
+            transition: var(--transition-base); cursor: default; text-align: center;
+        }
+        .olahraga-card:hover { transform: translateY(-6px); border-color: rgba(16,185,129,0.4); box-shadow: 0 4px 20px rgba(16,185,129,0.1); }
+        .olahraga-thumb {
+            height: 140px; display: flex; align-items: center; justify-content: center;
+            font-size: 3.5rem; position: relative;
+        }
+        .olahraga-card:nth-child(1) .olahraga-thumb { background: linear-gradient(135deg, #071a0e, rgba(16,185,129,0.25)); }
+        .olahraga-card:nth-child(2) .olahraga-thumb { background: linear-gradient(135deg, #0a0d1a, rgba(26,107,255,0.25)); }
+        .olahraga-card:nth-child(3) .olahraga-thumb { background: linear-gradient(135deg, #1a1200, rgba(250,204,21,0.2)); }
+        .olahraga-card:nth-child(4) .olahraga-thumb { background: linear-gradient(135deg, #0d1020, rgba(6,182,212,0.2)); }
+        .olahraga-popular { position: absolute; top: 8px; right: 8px; background: var(--green); color: #fff; font-size: 0.58rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+        .olahraga-body { padding: 18px 16px; }
+        .olahraga-body h3 { font-size: 1rem; margin-bottom: 6px; }
+        .olahraga-body p { font-size: 0.78rem; margin-bottom: 12px; }
+        .olahraga-features { display: flex; flex-direction: column; gap: 5px; text-align: left; }
+        .olahraga-feature { display: flex; align-items: center; gap: 7px; font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+        .olahraga-feature i { color: var(--green); font-size: 0.65rem; width: 12px; }
+
+        /* ===== FITUR ===== */
+        .fitur { padding: 80px 0; background: var(--card-bg); }
+        .fitur-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .fitur-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: var(--transition-base); position: relative; overflow: hidden; }
+        .fitur-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), transparent); opacity: 0; transition: opacity 0.3s; }
+        .fitur-card:hover { border-color: rgba(16,185,129,0.3); transform: translateY(-4px); box-shadow: 0 4px 20px rgba(16,185,129,0.08); }
+        .fitur-card:hover::before { opacity: 1; }
+        .fitur-icon { width: 48px; height: 48px; background: rgba(16,185,129,0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--green); margin-bottom: 18px; }
+        .fitur-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+        .fitur-card p { font-size: 0.85rem; }
+
+        /* ===== DEMO SCHEDULE ===== */
+        .demo { padding: 80px 0; background: var(--dark-bg); }
+        .demo-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: center; }
+        .demo-text h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom: 16px; }
+        .demo-text h2 span { color: var(--green); }
+        .demo-text p { margin-bottom: 20px; }
+        .demo-checklist { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+        .demo-check { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+        .demo-check i { color: var(--green); margin-top: 2px; width: 16px; flex-shrink: 0; }
+
+        /* Full schedule preview */
+        .schedule-preview { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); }
+        .sp-header { background: var(--card-bg); border-bottom: 1px solid var(--border3); padding: 16px 20px; }
+        .sp-title { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+        .sp-tabs { display: flex; gap: 6px; }
+        .sp-tab { padding: 5px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 700; border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; font-family: 'Nunito', sans-serif; transition: var(--transition-fast); }
+        .sp-tab.active { background: var(--green); border-color: var(--green); color: #fff; }
+        .sp-body { padding: 18px 20px; }
+        .sp-court-row { margin-bottom: 16px; }
+        .sp-court-row:last-child { margin-bottom: 0; }
+        .sp-court-name { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .sp-court-name span { font-size: 0.9rem; }
+        .sp-slots-row { display: flex; gap: 5px; flex-wrap: wrap; }
+        .sp-slot { padding: 5px 10px; border-radius: 5px; font-size: 0.65rem; font-weight: 700; white-space: nowrap; }
+        .sp-slot.available { background: rgba(16,185,129,0.12); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+        .sp-slot.booked { background: rgba(248,113,113,0.1); color: var(--red); border: 1px solid rgba(248,113,113,0.15); }
+        .sp-slot.selected { background: var(--primary); color: #fff; border: 1px solid var(--primary); }
+        .sp-legend { display: flex; gap: 14px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border3); flex-wrap: wrap; }
+        .sp-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; color: var(--text-muted); }
+        .sp-legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+        /* ===== PROSES ===== */
+        .proses { padding: 80px 0; background: var(--card-bg); }
+        .proses-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+        .proses-grid::before { content: ''; position: absolute; top: 32px; left: 12.5%; right: 12.5%; height: 2px; background: linear-gradient(90deg, var(--green) 0%, rgba(16,185,129,0.1) 100%); z-index: 0; }
+        .proses-step { text-align: center; padding: 0 12px; position: relative; z-index: 1; }
+        .step-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--card-bg2); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.4rem; position: relative; z-index: 2; }
+        .step-icon.done { background: var(--green); }
+        .proses-step h3 { font-size: 1rem; margin-bottom: 8px; }
+        .proses-step p { font-size: 0.8rem; }
+
+        /* ===== HARGA ===== */
+        .harga { padding: 80px 0; background: var(--dark-bg); }
+        .harga-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .harga-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 32px; transition: var(--transition-base); position: relative; }
+        .harga-card.popular { border-color: var(--green); box-shadow: 0 0 40px rgba(16,185,129,0.1); }
+        .popular-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--green); color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
+        .harga-card:hover:not(.popular) { border-color: rgba(16,185,129,0.3); transform: translateY(-4px); }
+        .harga-card.popular:hover { transform: translateY(-4px); }
+        .harga-paket-name { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--green); margin-bottom: 12px; }
+        .harga-price { margin-bottom: 8px; }
+        .harga-price .currency { font-size: 1rem; color: var(--white); font-weight: 700; vertical-align: top; line-height: 2.2; }
+        .harga-price .amount { font-family: 'Rajdhani', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+        .harga-price .period { font-size: 0.8rem; color: var(--text-muted); }
+        .harga-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border3); }
+        .harga-fitur-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+        .harga-fitur-list li { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+        .harga-fitur-list li i.ok { color: var(--green); font-size: 0.75rem; width: 16px; }
+        .harga-fitur-list li i.no { color: var(--text-dim); font-size: 0.75rem; width: 16px; }
+        .harga-fitur-list li.muted { color: var(--text-dim); }
+        .harga-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.9rem; cursor: pointer; font-family: 'Nunito', sans-serif; transition: var(--transition-fast); border: none; }
+        .harga-btn-outline { background: transparent; color: var(--green); border: 1.5px solid var(--green); }
+        .harga-btn-outline:hover { background: var(--green); color: #fff; }
+        .harga-btn-fill { background: var(--green); color: #fff; }
+        .harga-btn-fill:hover { background: #0a9566; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(16,185,129,0.3); }
+
+        /* ===== TESTIMONI ===== */
+        .testimoni { padding: 80px 0; background: var(--card-bg); }
+        .testimoni-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .testi-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; transition: var(--transition-base); }
+        .testi-card:hover { border-color: rgba(16,185,129,0.3); transform: translateY(-4px); }
+        .testi-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--green), #0a9566); display: flex; align-items: center; justify-content: center; font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+        .testi-name { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; }
+        .testi-venue { font-size: 0.75rem; color: var(--text-muted); }
+        .testi-stars { color: var(--gold); font-size: 0.75rem; margin-bottom: 12px; }
+        .testi-text { font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.65; font-style: italic; }
+        .testi-tag { display: inline-block; margin-top: 12px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green); background: rgba(16,185,129,0.1); padding: 3px 10px; border-radius: 100px; }
+
+        /* ===== FAQ ===== */
+        .faq { padding: 80px 0; background: var(--dark-bg); }
+        .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .faq-item { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+        .faq-question { width: 100%; padding: 18px 20px; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 700; color: #fff; text-align: left; }
+        .faq-question i { color: var(--green); transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.open .faq-question i { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s; }
+        .faq-item.open .faq-answer { max-height: 200px; padding: 0 20px 18px; }
+        .faq-answer p { font-size: 0.85rem; }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner { padding: 80px 0; background: var(--card-bg); }
+        .cta-inner {
+            background: linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(26,107,255,0.07) 100%);
+            border: 1px solid rgba(16,185,129,0.2); border-radius: var(--radius-xl);
+            padding: 60px 40px; text-align: center; position: relative; overflow: hidden;
+        }
+        .cta-inner::before { content: ''; position: absolute; top: -40%; left: -5%; width: 50%; height: 180%; background: radial-gradient(ellipse, rgba(16,185,129,0.1) 0%, transparent 70%); pointer-events: none; }
+        .cta-inner h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 14px; position: relative; }
+        .cta-inner p { margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; position: relative; }
+        .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+        .btn-green { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: var(--green); color: #fff; border: none; border-radius: var(--radius-sm); font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        .btn-green:hover { background: #0a9566; transform: translateY(-2px); box-shadow: 0 4px 20px rgba(16,185,129,0.3); }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--dark-bg); border-top: 1px solid var(--border); padding: 32px 0 20px; }
+        .footer-slim { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .footer-slim-logo { display: flex; align-items: center; gap: 10px; }
+        .footer-slim-logo strong { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: #fff; }
+        .footer-slim-links { display: flex; gap: 16px; flex-wrap: wrap; }
+        .footer-slim-links a { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; transition: color 0.15s; }
+        .footer-slim-links a:hover { color: var(--green); }
+        .footer-copy { font-size: 0.75rem; color: var(--text-dim); }
+
+        /* ===== ANIMATION ===== */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .olahraga-grid { grid-template-columns: repeat(2, 1fr); }
+            .fitur-grid { grid-template-columns: repeat(2, 1fr); }
+            .demo-inner { grid-template-columns: 1fr; gap: 40px; }
+            .proses-grid { grid-template-columns: repeat(2, 1fr); }
+            .proses-grid::before { display: none; }
+            .harga-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .testimoni-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            :root { --header-h: 60px; }
+            nav { display: none; }
+            .hamburger { display: flex; }
+            .btn-wa span { display: none; }
+            .btn-wa { padding: 8px 12px; }
+            .hero-inner { flex-direction: column; }
+            .hero-content { max-width: 100%; text-align: center; }
+            .hero-tags { justify-content: center; }
+            .hero-cta-group { justify-content: center; }
+            .hero-note { justify-content: center; }
+            .hero-visual { width: 100%; max-width: 100%; }
+            .olahraga-grid { grid-template-columns: repeat(2, 1fr); }
+            .fitur-grid { grid-template-columns: 1fr; }
+            .proses-grid { grid-template-columns: 1fr; }
+            .testimoni-grid { grid-template-columns: 1fr; }
+            .cta-inner { padding: 36px 20px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero { padding: 50px 16px 40px; }
+            .bm-courts { grid-template-columns: repeat(3, 1fr); }
+            .olahraga-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <img src="../images/logo.jpg" alt="Jeff" onerror="this.parentElement.style.background='#1A6BFF'; this.style.display='none';">
+            </div>
+            <div class="logo-text">
+                <strong>Jeff</strong>
+                <span>Jasa Pembuatan Website</span>
+            </div>
+        </a>
+        <nav>
+            <a href="../index.html#beranda">Beranda</a>
+            <a href="../index.html#promo">Cari Website</a>
+            <a href="../index.html#testimoni">Testimoni</a>
+            <a href="../index.html#kontak">Kontak</a>
+        </nav>
+        <div class="header-ctas">
+            <a href="https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+Web+Booking+Lapangan" class="btn-wa" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.2a1 1 0 001.254 1.254l3.032-.892A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.67 0-3.23-.46-4.57-1.26l-.33-.19-2.19.64.65-2.13-.21-.34A8 8 0 0112 4a8 8 0 010 16z"/>
+                </svg>
+                <span>WhatsApp</span>
+            </a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        </div>
+    </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+    <a href="../index.html#beranda" onclick="closeMenu()">Beranda</a>
+    <a href="../index.html#promo" onclick="closeMenu()">Cari Website</a>
+    <a href="../index.html#testimoni" onclick="closeMenu()">Testimoni</a>
+    <a href="../index.html#kontak" onclick="closeMenu()">Kontak</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+        <div class="hero-content fade-up">
+            <div class="breadcrumb">
+                <a href="../index.html">Beranda</a><span>›</span>
+                <a href="../index.html#promo">Layanan</a><span>›</span>
+                <span style="color:var(--text);">Web Booking Lapangan</span>
+            </div>
+            <div class="hero-eyebrow"><span class="live-dot"></span> Sistem Reservasi Online Otomatis</div>
+            <h1>Kelola Booking<br><span>Lapangan Olahraga</span><br><em>Tanpa Ribet</em></h1>
+            <p>Tidak perlu lagi terima WA booking manual sampai malam. Sistem online kami memungkinkan pelanggan reservasi sendiri 24 jam sehari, 7 hari seminggu.</p>
+
+            <div class="hero-tags">
+                <div class="hero-tag"><i class="fas fa-futbol green"></i> Futsal</div>
+                <div class="hero-tag"><i class="fas fa-shuttlecock blue"></i> Badminton</div>
+                <div class="hero-tag"><i class="fas fa-baseball gold"></i> Tenis</div>
+                <div class="hero-tag"><i class="fas fa-volleyball-ball teal"></i> Voli</div>
+                <div class="hero-tag"><i class="fas fa-plus" style="color:var(--text-muted);"></i> Olahraga Lainnya</div>
+            </div>
+
+            <div class="hero-cta-group">
+                <a href="../index.html#kontak" class="btn-primary"><i class="fas fa-calendar-check"></i> Buat Sistem Booking</a>
+                <a href="#demo" class="btn-secondary"><i class="fas fa-eye"></i> Lihat Demo</a>
+            </div>
+            
+        </div>
+
+        <!-- Booking UI Mockup -->
+        <div class="hero-visual fade-up">
+            <div class="float-badge badge-tr">
+                <div class="fb-icon">⚡</div>
+                <div><div class="fb-val">Booking otomatis</div><div class="fb-sub">Tanpa admin standby</div></div>
+            </div>
+            <div class="float-badge badge-bl">
+                <div class="fb-icon">💰</div>
+                <div><div class="fb-val">+40% pendapatan</div><div class="fb-sub">rata-rata pemilik lapangan</div></div>
+            </div>
+
+            <div class="booking-mockup">
+                <div class="bm-header">
+                    <div class="bm-dots">
+                        <div class="bm-dot" style="background:#f87171;"></div>
+                        <div class="bm-dot" style="background:#facc15;"></div>
+                        <div class="bm-dot" style="background:#10B981;"></div>
+                    </div>
+                    <div class="bm-url">sportcenter-anda.com/booking</div>
+                </div>
+                <div class="bm-body">
+                    <!-- Court selector -->
+                    <div style="font-size:0.68rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Pilih Lapangan</div>
+                    <div class="bm-courts">
+                        <div class="bm-court selected">
+                            <div class="bm-court-img futsal">⚽ <div class="bm-court-status available"></div></div>
+                            <div class="bm-court-info"><div class="bm-court-name">Futsal A</div><div class="bm-court-price">Rp 120rb/jam</div></div>
+                        </div>
+                        <div class="bm-court">
+                            <div class="bm-court-img badminton">🏸 <div class="bm-court-status available"></div></div>
+                            <div class="bm-court-info"><div class="bm-court-name">Badminton 1</div><div class="bm-court-price">Rp 60rb/jam</div></div>
+                        </div>
+                        <div class="bm-court">
+                            <div class="bm-court-img tenis">🎾 <div class="bm-court-status busy"></div></div>
+                            <div class="bm-court-info"><div class="bm-court-name">Tenis B</div><div class="bm-court-price">Rp 85rb/jam</div></div>
+                        </div>
+                    </div>
+
+                    <!-- Time slots -->
+                    <div class="bm-schedule-label">Pilih Jam · Senin, 16 Juni 2026</div>
+                    <div class="bm-schedule">
+                        <div class="bm-slot booked">06.00</div>
+                        <div class="bm-slot booked">07.00</div>
+                        <div class="bm-slot available">08.00</div>
+                        <div class="bm-slot selected-slot">09.00</div>
+                        <div class="bm-slot available">10.00</div>
+                        <div class="bm-slot available">11.00</div>
+                        <div class="bm-slot booked">12.00</div>
+                        <div class="bm-slot booked">13.00</div>
+                        <div class="bm-slot available">14.00</div>
+                        <div class="bm-slot available">15.00</div>
+                        <div class="bm-slot available">16.00</div>
+                        <div class="bm-slot booked">17.00</div>
+                    </div>
+
+                    <!-- Mini form -->
+                    <div class="bm-form">
+                        <div class="bm-form-title"><i class="fas fa-user" style="color:var(--green);"></i> Detail Pemesanan</div>
+                        <div class="bm-form-row">
+                            <input class="bm-input" placeholder="Nama pemesan" readonly>
+                            <input class="bm-input" placeholder="No. WhatsApp" readonly>
+                        </div>
+                        <button class="bm-book-btn"><i class="fas fa-check-circle"></i> Konfirmasi Booking — Rp 120.000</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== JENIS OLAHRAGA ===== -->
+<section class="olahraga">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Semua Jenis Lapangan</span>
+            <h2>Cocok untuk Semua Olahraga</h2>
+            <p>Sistem booking kami fleksibel dan bisa disesuaikan untuk berbagai jenis fasilitas olahraga.</p>
+        </div>
+        <div class="olahraga-grid fade-up">
+            <div class="olahraga-card">
+                <div class="olahraga-thumb"><span class="olahraga-popular">Terpopuler</span>⚽</div>
+                <div class="olahraga-body">
+                    <h3>Futsal</h3>
+                    <p>Kelola booking lapangan futsal 5v5 jadwal yang teratur.</p>
+                    <div class="olahraga-features">
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Multi lapangan</div>
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Booking per jam</div>
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Konfirmasi otomatis</div>
+                    </div>
+                </div>
+            </div>
+            <div class="olahraga-card">
+                <div class="olahraga-thumb">🏸</div>
+                <div class="olahraga-body">
+                    <h3>Badminton</h3>
+                    <p>Ideal untuk GOR badminton dengan banyak court yang perlu dikelola secara bersamaan.</p>
+                    <div class="olahraga-features">
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Hingga 20+ court</div>
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Booking 30 menit</div>
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Harga peak/off-peak</div>
+                    </div>
+                </div>
+            </div>
+            <div class="olahraga-card">
+                <div class="olahraga-thumb">🎾</div>
+                <div class="olahraga-body">
+                    <h3>Tenis</h3>
+                    <p>Manajemen lapangan tenis dengan sistem member dan non-member yang terpisah.</p>
+                    <div class="olahraga-features">
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Sistem member</div>
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Booking berulang</div>
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Jadwal turnamen</div>
+                    </div>
+                </div>
+            </div>
+            <div class="olahraga-card">
+                <div class="olahraga-thumb">🏊</div>
+                <div class="olahraga-body">
+                    <h3>Olahraga Lainnya</h3>
+                    <p>Voli, basket, renang, biliar, bowling, golf, dan fasilitas olahraga lainnya.</p>
+                    <div class="olahraga-features">
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Fully customizable</div>
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Mixed facility</div>
+                        <div class="olahraga-feature"><i class="fas fa-check"></i> Add-on rental alat</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FITUR ===== -->
+<section class="fitur">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Fitur Sistem</span>
+            <h2>Semua yang Anda Butuhkan untuk Kelola Lapangan</h2>
+            <p>Sistem booking lengkap yang memudahkan Anda dan pelanggan, sekaligus meningkatkan pendapatan.</p>
+        </div>
+        <div class="fitur-grid fade-up">
+            <div class="fitur-card">
+                <div class="fitur-icon"><i class="fas fa-calendar-alt"></i></div>
+                <h3>Jadwal Real-Time</h3>
+                <p>Tampilan kalender interaktif yang selalu up-to-date. Slot yang sudah dipesan langsung terkunci otomatis — tidak ada double booking.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon"><i class="fab fa-whatsapp"></i></div>
+                <h3>Notifikasi WhatsApp</h3>
+                <p>Konfirmasi booking, pengingat H-1, dan rekap pembayaran dikirim otomatis ke WhatsApp pelanggan dan pemilik lapangan.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon"><i class="fas fa-credit-card"></i></div>
+                <h3>Pembayaran Online</h3>
+                <p>Integrasi payment gateway: Transfer Bank, DANA, OVO, GoPay, QRIS. DP atau full payment sebelum konfirmasi booking.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Dashboard Admin</h3>
+                <p>Pantau pendapatan harian, lapangan paling laris, jam paling sibuk, dan rekap bulanan dari satu dashboard yang mudah dipahami.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon"><i class="fas fa-users"></i></div>
+                <h3>Manajemen Member</h3>
+                <p>Fitur member dengan harga spesial, poin loyalitas, dan riwayat booking. Dorong pelanggan untuk terus kembali.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Tampilan Mobile-First</h3>
+                <p>Dioptimalkan untuk HP. Pelanggan bisa booking dalam 30 detik langsung dari smartphone — kapan saja dan di mana saja.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== DEMO SCHEDULE ===== -->
+<section class="demo" id="demo">
+    <div class="container">
+        <div class="demo-inner">
+            <div class="demo-text fade-up">
+                <span class="section-heading badge" style="display:inline-block; text-align:left; margin-bottom:16px;">Preview Sistem</span>
+                <h2>Jadwal <span>Transparan</span>, Booking Tanpa Konflik</h2>
+                <p>Pelanggan bisa langsung lihat slot kosong dan pesan sendiri. Tidak perlu WA dulu, tidak perlu tunggu konfirmasi manual dari Anda.</p>
+                <div class="demo-checklist">
+                    <div class="demo-check"><i class="fas fa-check-circle"></i> Slot otomatis terkunci setelah booking berhasil</div>
+                    <div class="demo-check"><i class="fas fa-check-circle"></i> Tampilan berbeda untuk jam tersedia, terisi, dan dipilih</div>
+                    <div class="demo-check"><i class="fas fa-check-circle"></i> Filter per lapangan, per hari, per jenis olahraga</div>
+                    <div class="demo-check"><i class="fas fa-check-circle"></i> Bisa dilihat dari HP tanpa install aplikasi</div>
+                </div>
+                <a href="https://wa.me/6285779853512?text=Halo+Jeff,+saya+ingin+coba+demo+Web+Booking+Lapangan" target="_blank" class="btn-primary"><i class="fab fa-whatsapp"></i> Minta Demo Langsung</a>
+            </div>
+
+            <div class="schedule-preview fade-up">
+                <div class="sp-header">
+                    <div class="sp-title">📅 Jadwal Booking — Hari Ini</div>
+                    <div class="sp-tabs">
+                        <button class="sp-tab active">Senin</button>
+                        <button class="sp-tab">Selasa</button>
+                        <button class="sp-tab">Rabu</button>
+                        <button class="sp-tab">Kamis</button>
+                    </div>
+                </div>
+                <div class="sp-body">
+                    <div class="sp-court-row">
+                        <div class="sp-court-name"><span>⚽</span> Futsal A</div>
+                        <div class="sp-slots-row">
+                            <div class="sp-slot booked">06.00</div>
+                            <div class="sp-slot booked">07.00</div>
+                            <div class="sp-slot available">08.00</div>
+                            <div class="sp-slot selected">09.00 ✓</div>
+                            <div class="sp-slot available">10.00</div>
+                            <div class="sp-slot available">11.00</div>
+                            <div class="sp-slot booked">12.00</div>
+                            <div class="sp-slot booked">13.00</div>
+                            <div class="sp-slot available">14.00</div>
+                            <div class="sp-slot available">15.00</div>
+                        </div>
+                    </div>
+                    <div class="sp-court-row">
+                        <div class="sp-court-name"><span>🏸</span> Badminton 1</div>
+                        <div class="sp-slots-row">
+                            <div class="sp-slot available">06.00</div>
+                            <div class="sp-slot booked">07.00</div>
+                            <div class="sp-slot booked">08.00</div>
+                            <div class="sp-slot booked">09.00</div>
+                            <div class="sp-slot available">10.00</div>
+                            <div class="sp-slot available">11.00</div>
+                            <div class="sp-slot available">12.00</div>
+                            <div class="sp-slot booked">13.00</div>
+                            <div class="sp-slot booked">14.00</div>
+                            <div class="sp-slot available">15.00</div>
+                        </div>
+                    </div>
+                    <div class="sp-court-row">
+                        <div class="sp-court-name"><span>🎾</span> Tenis B</div>
+                        <div class="sp-slots-row">
+                            <div class="sp-slot available">06.00</div>
+                            <div class="sp-slot available">07.00</div>
+                            <div class="sp-slot available">08.00</div>
+                            <div class="sp-slot available">09.00</div>
+                            <div class="sp-slot booked">10.00</div>
+                            <div class="sp-slot booked">11.00</div>
+                            <div class="sp-slot booked">12.00</div>
+                            <div class="sp-slot available">13.00</div>
+                            <div class="sp-slot available">14.00</div>
+                            <div class="sp-slot booked">15.00</div>
+                        </div>
+                    </div>
+                    <div class="sp-legend">
+                        <div class="sp-legend-item"><div class="sp-legend-dot" style="background:rgba(16,185,129,0.5);"></div> Tersedia</div>
+                        <div class="sp-legend-item"><div class="sp-legend-dot" style="background:rgba(248,113,113,0.5);"></div> Terisi</div>
+                        <div class="sp-legend-item"><div class="sp-legend-dot" style="background:var(--primary);"></div> Dipilih</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROSES ===== -->
+<section class="proses">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Alur Pengerjaan</span>
+            <h2>Website Booking Anda Siap dalam 14 Hari</h2>
+            <p>Proses pengerjaan yang cepat dan terstruktur agar sistem Anda segera bisa digunakan.</p>
+        </div>
+        <div class="proses-grid fade-up">
+            <div class="proses-step">
+                <div class="step-icon done">💬</div>
+                <h3>Konsultasi</h3>
+                <p>Diskusi jumlah lapangan, jenis olahraga, harga, dan fitur yang dibutuhkan.</p>
+            </div>
+            <div class="proses-step">
+                <div class="step-icon">🎨</div>
+                <h3>Desain UI</h3>
+                <p>Kami buat tampilan booking yang intuitif, branded sesuai identitas venue Anda.</p>
+            </div>
+            <div class="proses-step">
+                <div class="step-icon">⚙️</div>
+                <h3>Development</h3>
+                <p>Bangun sistem booking, database jadwal, dan integrasi payment & notifikasi WA.</p>
+            </div>
+            <div class="proses-step">
+                <div class="step-icon">🚀</div>
+                <h3>Live & Training</h3>
+                <p>Website live, Anda kami training cara kelola booking & pantau dashboard admin.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== HARGA ===== -->
+<section class="harga">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Paket Harga</span>
+            <h2>Pilih Paket Sesuai Skala Venue</h2>
+            <p>Investasi sekali, nikmati sistem booking otomatis selamanya. Tidak ada biaya langganan bulanan.</p>
+        </div>
+        <div class="harga-grid fade-up">
+            <div class="harga-card">
+                <div class="harga-paket-name">Starter</div>
+                <div class="harga-price"><span class="currency">Rp</span><span class="amount">1.2</span><span class="period">jt</span></div>
+                <div class="harga-desc">Ideal untuk venue kecil dengan 1–3 lapangan yang baru mulai go online.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check ok"></i> Hingga 3 lapangan</li>
+                    <li><i class="fas fa-check ok"></i> Booking real-time</li>
+                    <li><i class="fas fa-check ok"></i> Notifikasi WhatsApp</li>
+                    <li><i class="fas fa-check ok"></i> Admin dashboard dasar</li>
+                    <li><i class="fas fa-check ok"></i> Mobile responsif</li>
+                    <li class="muted"><i class="fas fa-times no"></i> Pembayaran online</li>
+                    <li class="muted"><i class="fas fa-times no"></i> Sistem member</li>
+                </ul>
+                <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Starter+Booking+Lapangan'">Pilih Starter</button>
+            </div>
+            <div class="harga-card popular">
+                <div class="popular-badge">⚡ Paling Laris</div>
+                <div class="harga-paket-name">Pro</div>
+                <div class="harga-price"><span class="currency">Rp</span><span class="amount">2.5</span><span class="period">jt</span></div>
+                <div class="harga-desc">Untuk venue aktif dengan 4–10 lapangan yang butuh sistem lengkap.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check ok"></i> Hingga 10 lapangan</li>
+                    <li><i class="fas fa-check ok"></i> Booking real-time</li>
+                    <li><i class="fas fa-check ok"></i> Notifikasi WhatsApp otomatis</li>
+                    <li><i class="fas fa-check ok"></i> Pembayaran online (QRIS/transfer)</li>
+                    <li><i class="fas fa-check ok"></i> Dashboard admin lengkap</li>
+                    <li><i class="fas fa-check ok"></i> Laporan & rekap otomatis</li>
+                    <li><i class="fas fa-check ok"></i> Sistem member & diskon</li>
+                </ul>
+                <button class="harga-btn harga-btn-fill" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Pro+Booking+Lapangan'">Pilih Pro</button>
+            </div>
+            <div class="harga-card">
+                <div class="harga-paket-name">Enterprise</div>
+                <div class="harga-price"><span class="currency" style="font-size:0.9rem; line-height:3.2;">Custom</span></div>
+                <div class="harga-desc">Untuk sport center besar, franchise, atau venue dengan kebutuhan khusus.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check ok"></i> Lapangan tidak terbatas</li>
+                    <li><i class="fas fa-check ok"></i> Semua fitur Pro</li>
+                    <li><i class="fas fa-check ok"></i> Multi-venue / cabang</li>
+                    <li><i class="fas fa-check ok"></i> Aplikasi mobile (PWA)</li>
+                    <li><i class="fas fa-check ok"></i> Turnamen & event management</li>
+                    <li><i class="fas fa-check ok"></i> Integrasi kamera CCTV</li>
+                    <li><i class="fas fa-check ok"></i> Dedicated support & SLA</li>
+                </ul>
+                <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Enterprise+Booking+Lapangan'">Diskusi Dulu</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TESTIMONI ===== -->
+<section class="testimoni">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">⭐ Testimoni</span>
+            <h2>Kata Pemilik Lapangan Kami</h2>
+            <p>Pengalaman nyata dari pemilik venue yang sudah beralih ke sistem booking online.</p>
+        </div>
+        <div class="testimoni-grid fade-up">
+            <div class="testi-card">
+                <div class="testi-top">
+                    <div class="testi-avatar">RH</div>
+                    <div>
+                        <div class="testi-name">Rizky Hidayat</div>
+                        
+                    </div>
+                </div>
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-text">"Dulu saya harus standby HP 24 jam buat nerima booking WA. Sekarang pelanggan booking sendiri, bayar sendiri, saya tinggal pantau dashboard. Revenue naik 35% karena slot yang tadinya kelewat sekarang keisi semua."</div>
+                <span class="testi-tag">⚽ Futsal · 4 Lapangan</span>
+            </div>
+            <div class="testi-card">
+                <div class="testi-top">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, var(--primary), #0d3fa8);">SA</div>
+                    <div>
+                        <div class="testi-name">Sari Anggraini</div>
+                        
+                    </div>
+                </div>
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-text">"GOR kami punya 12 court badminton. Sebelumnya sering double booking dan pelanggan komplain. Sejak pakai sistem dari Jeff, semua rapi otomatis. Staff kami lebih fokus ke pelayanan, bukan admin booking."</div>
+                <span class="testi-tag">🏸 Badminton · 4 Court</span>
+            </div>
+            <div class="testi-card">
+                <div class="testi-top">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, var(--gold), #d97706);">DW</div>
+                    <div>
+                        <div class="testi-name">Dimas Wibowo</div>
+                        
+                    </div>
+                </div>
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-text">"Venue kami ada futsal, badminton, dan tenis. Jeff bisa handle semua dalam satu sistem. Fitur laporan bulanannya sangat membantu untuk evaluasi bisnis. Rekomendasi banget untuk sesama pemilik sport center!"</div>
+                <span class="testi-tag">🏟️ Multi-sport · 8 Lapangan</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">FAQ</span>
+            <h2>Pertanyaan yang Sering Ditanyakan</h2>
+        </div>
+        <div class="faq-list fade-up">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Apakah sistem ini bisa dipakai tanpa install aplikasi? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Ya! Website booking bisa diakses langsung dari browser HP maupun komputer — tanpa install aplikasi apapun. Pelanggan tinggal buka link, pilih lapangan, pilih jam, dan bayar. Semudah itu.</p></div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Apakah bisa atur harga berbeda untuk hari biasa dan weekend? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Bisa! Fitur dynamic pricing memungkinkan Anda atur harga berbeda untuk weekday vs weekend, peak hour vs off-peak, bahkan harga khusus untuk member. Semua bisa diatur dari dashboard admin tanpa perlu coding.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Berapa lama sistem booking selesai dikerjakan? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Paket Starter selesai dalam 5–7 hari kerja. Paket Pro 7–10 hari. Enterprise tergantung kompleksitas kebutuhan. Waktu ini sudah termasuk setup lapangan, harga, integrasi payment, dan training admin.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Apakah ada biaya bulanan atau biaya per transaksi? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Tidak ada biaya per transaksi dari kami. Harga yang tertera adalah biaya pengerjaan sekali bayar. Biaya yang ada hanyalah hosting bulanan (mulai Rp 70rb/bulan) dan fee payment gateway dari penyedia (biasanya 0.7–2% per transaksi, bukan dari kami).</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-banner">
+    <div class="container">
+        <div class="cta-inner fade-up">
+            <h2>Stop Kelola Booking Manual.<br>Otomatiskan Sekarang!</h2>
+            <p>Konsultasi gratis untuk tahu berapa biaya sistem booking yang tepat untuk venue Anda. Respons cepat, no hard-selling.</p>
+            <div class="cta-btns">
+                <a href="https://wa.me/6285779853512?text=Halo+Jeff,+saya+ingin+konsultasi+Web+Booking+Lapangan+untuk+venue+saya" target="_blank" class="btn-green"><i class="fab fa-whatsapp"></i> Chat WhatsApp Sekarang</a>
+                <a href="../index.html#kontak" class="btn-secondary" style="padding:14px 32px; font-size:1rem;"><i class="fas fa-envelope"></i> Kirim Pesan</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-slim">
+        <div class="footer-slim-logo">
+            <div style="width:36px; height:36px; border-radius:8px; overflow:hidden; background:var(--card-bg2); border:1px solid var(--border2); flex-shrink:0; display:flex; align-items:center; justify-content:center;">
+                <img src="../images/logo.jpg" alt="Jeff" onerror="this.parentElement.style.background='#1A6BFF'; this.style.display='none';">
+            </div>
+            <div><strong>Jeff</strong><div style="font-size:10px; color:var(--text-muted);">Jasa Pembuatan Website</div></div>
+        </div>
+        <div class="footer-slim-links">
+            <a href="../index.html">Beranda</a>
+            <a href="../index.html#promo">Layanan Lain</a>
+            <a href="katalog.html">Web Katalog</a>
+            <a href="landing-page.html">Landing Page</a>
+            <a href="../index.html#kontak">Kontak</a>
+        </div>
+        <div class="footer-copy">© 2026 Jeff. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById('mobileNav'), hb = document.querySelector('.hamburger');
+    nav.classList.toggle('open'); hb.classList.toggle('is-open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+    const nav = document.getElementById('mobileNav'), hb = document.querySelector('.hamburger');
+    nav.classList.remove('open'); hb.classList.remove('is-open');
+    document.body.style.overflow = '';
+}
+document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobileNav'), hb = document.querySelector('.hamburger');
+    if (nav?.classList.contains('open') && !nav.contains(e.target) && !hb?.contains(e.target)) closeMenu();
+});
+
+function toggleFaq(btn) {
+    const item = btn.parentElement, isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+}
+
+// Schedule tab switching
+document.querySelectorAll('.sp-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        document.querySelectorAll('.sp-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// Fade-up on scroll
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+});
+</script>
+</body>
+</html>

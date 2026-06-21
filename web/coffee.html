@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Jeff – Jasa Pembuatan Website Coffee Shop. Tampilkan menu, terima pre-order, dan bangun brand kafe Anda secara online.">
+    <title>Web Coffee Shop – Jeff</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1A6BFF;
+            --primary-dark: #1355CC;
+            --primary-light: #1a6bff1a;
+            --coffee: #C17A3A;
+            --coffee-dark: #9a5f2a;
+            --coffee-light: rgba(193,122,58,0.12);
+            --coffee-glow: rgba(193,122,58,0.2);
+            --cream: #F5E6C8;
+            --dark-bg: #0a0808;
+            --card-bg: #141010;
+            --card-bg2: #1c1614;
+            --card-bg3: #242018;
+            --text: #f0ece4;
+            --text-muted: #8a7e6e;
+            --text-dim: #4a4038;
+            --white: #FFFFFF;
+            --border: rgba(193,122,58,0.15);
+            --border2: rgba(193,122,58,0.28);
+            --border3: rgba(255,255,255,0.05);
+            --green: #10B981;
+            --gold: #facc15;
+            --red: #f87171;
+            --header-h: 68px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-md: 0 4px 20px rgba(193,122,58,0.15);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
+            --shadow-warm: 0 0 50px rgba(193,122,58,0.1);
+            --transition-fast: all .15s cubic-bezier(0.2,0.9,0.4,1.1);
+            --transition-base: all .25s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Nunito', sans-serif; background: var(--dark-bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        h1,h2,h3,h4 { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--white); }
+        p { color: var(--text-muted); line-height: 1.7; }
+        a { text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== HEADER ===== */
+        header { position: sticky; top: 0; z-index: 100; background: rgba(10,8,8,0.96); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); height: var(--header-h); }
+        .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 100%; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; background: var(--card-bg2); border: 1px solid var(--border2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text strong { display: block; font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 1.5px; }
+        .logo-text span { font-size: 10px; color: var(--text-muted); }
+        nav { display: flex; align-items: center; gap: 4px; }
+        nav a { padding: 8px 16px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; color: var(--text-muted); transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .header-ctas { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .btn-wa { display: flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: var(--radius-sm); background: #25d366; color: #fff; font-size: 13px; font-weight: 700; transition: var(--transition-fast); white-space: nowrap; }
+        .btn-wa:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-wa svg { width: 15px; height: 15px; flex-shrink: 0; }
+        .hamburger { width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 5px; background: rgba(255,255,255,0.04); flex-shrink: 0; }
+        .hamburger:hover { background: rgba(255, 255, 255, 0.09); }
+        .hamburger span { display: block; width: 18px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.28s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease, width 0.2s ease; transform-origin: center; }
+        .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.is-open span:nth-child(2) { opacity: 0; width: 0; }
+        .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile nav: smooth slide + fade open/close instead of an abrupt toggle */
+        .mobile-nav {
+            display: flex; flex-direction: column; position: fixed; top: var(--header-h); left: 0; right: 0;
+            background: var(--dark-bg); border-bottom: 1px solid var(--border); padding: 8px 0 20px; z-index: 99;
+            max-height: calc(100vh - var(--header-h)); overflow-y: auto; box-shadow: var(--shadow-lg);
+
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-12px) scale(0.99);
+            transform-origin: top center;
+            pointer-events: none;
+            transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                        visibility 0.32s;
+        }
+        .mobile-nav.open {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .mobile-nav a {
+            padding: 14px 20px; font-size: 15px; font-weight: 700; color: var(--text-muted);
+            border-bottom: 1px solid var(--border3); display: flex; align-items: center; gap: 12px;
+            transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        .mobile-nav.open a {
+            animation: mobileNavItemIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .mobile-nav.open a:nth-child(1) { animation-delay: 0.04s; }
+        .mobile-nav.open a:nth-child(2) { animation-delay: 0.09s; }
+        .mobile-nav.open a:nth-child(3) { animation-delay: 0.14s; }
+        .mobile-nav.open a:nth-child(4) { animation-delay: 0.19s; }
+        @keyframes mobileNavItemIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-nav a:active { background: rgba(255, 255, 255, 0.06); color: #fff; padding-left: 26px; }
+
+        /* ===== BUTTONS ===== */
+        .btn-coffee { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: var(--coffee); color: #fff; border: none; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        .btn-coffee:hover { background: var(--coffee-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: transparent; color: var(--text); border: 1.5px solid var(--border2); border-radius: var(--radius-sm); font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        .btn-outline:hover { border-color: var(--coffee); color: var(--coffee); transform: translateY(-2px); }
+
+        /* ===== SECTION HEADING ===== */
+        .section-heading { text-align: center; margin-bottom: 48px; }
+        .section-heading .badge { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--coffee); background: var(--coffee-light); padding: 4px 14px; border-radius: 100px; margin-bottom: 16px; border: 1px solid rgba(193,122,58,0.2); }
+        .section-heading h2 { margin-bottom: 12px; font-size: clamp(1.5rem, 4vw, 2.2rem); }
+        .section-heading p { max-width: 600px; margin: 0 auto; }
+
+        /* ===== HERO ===== */
+        .hero { position: relative; min-height: 620px; display: flex; align-items: center; padding: 90px 24px 70px; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; }
+        .hero-bg::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 60% 70% at 80% 40%, rgba(193,122,58,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 50% at 10% 60%, rgba(193,122,58,0.06) 0%, transparent 55%),
+                linear-gradient(180deg, #0a0808 0%, #100c08 50%, #0a0808 100%);
+        }
+        /* Steam / wisp pattern */
+        .hero-bg::after {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(193,122,58,0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse 70% 80% at 75% 40%, rgba(0,0,0,0.6) 0%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 80% at 75% 40%, rgba(0,0,0,0.6) 0%, transparent 70%);
+        }
+
+        .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 60px; position: relative; z-index: 2; }
+        .hero-content { flex: 1; max-width: 540px; }
+
+        .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 22px; }
+        .breadcrumb a { color: var(--coffee); font-weight: 600; }
+        .breadcrumb span { color: var(--text-dim); }
+
+        .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--coffee); background: var(--coffee-light); border: 1px solid rgba(193,122,58,0.3); padding: 5px 14px; border-radius: 100px; margin-bottom: 22px; }
+        .steam-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--coffee); animation: steam-pulse 2s infinite; }
+        @keyframes steam-pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+
+        .hero-content h1 { font-size: clamp(2rem, 5vw, 3.3rem); line-height: 1.1; margin-bottom: 20px; color: #fff; }
+        .hero-content h1 span { color: var(--coffee); }
+        .hero-content h1 em { font-style: normal; background: linear-gradient(90deg, var(--cream), rgba(245,230,200,0.5)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-content > p { font-size: 1rem; color: rgba(240,236,228,0.72); margin-bottom: 28px; }
+
+        /* Benefit pills */
+        .hero-benefits { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+        .hero-benefit { display: flex; align-items: center; gap: 12px; font-size: 0.86rem; color: rgba(240,236,228,0.85); font-weight: 600; }
+        .benefit-icon { width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--coffee-light); border: 1px solid rgba(193,122,58,0.25); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+
+        .hero-cta-group { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+        .hero-note { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--text-muted); }
+        .hero-note i { color: var(--coffee); }
+
+        /* ===== COFFEE WEBSITE MOCKUP ===== */
+        .hero-visual { flex: 1; max-width: 500px; position: relative; }
+
+        .coffee-mockup { background: var(--card-bg2); border: 1.5px solid var(--border2); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg), var(--shadow-warm); }
+        .cm-topbar { background: var(--card-bg); border-bottom: 1px solid var(--border3); padding: 12px 16px; display: flex; align-items: center; gap: 8px; }
+        .cm-dots { display: flex; gap: 5px; }
+        .cm-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .cm-url { flex: 1; background: var(--card-bg3); border-radius: 5px; padding: 4px 10px; font-size: 0.68rem; color: var(--text-dim); font-family: monospace; margin-left: 6px; }
+
+        /* Simulated coffee website */
+        .cm-hero-strip {
+            padding: 22px 20px 18px;
+            background: linear-gradient(135deg, #1a0f06, #2a1a0a);
+            border-bottom: 1px solid var(--border3);
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        }
+        .cm-hero-left { flex: 1; }
+        .cm-site-name { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--coffee); letter-spacing: 2px; margin-bottom: 4px; }
+        .cm-tagline { font-size: 0.65rem; color: rgba(245,230,200,0.6); margin-bottom: 10px; }
+        .cm-order-btn { display: inline-block; background: var(--coffee); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 5px 14px; border-radius: 4px; }
+        .cm-hero-right { font-size: 2.8rem; }
+
+        /* Menu grid */
+        .cm-body { padding: 16px; }
+        .cm-section-lbl { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+        .cm-section-lbl a { color: var(--coffee); font-size: 0.6rem; }
+        .cm-menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+        .cm-menu-item { background: var(--card-bg3); border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border3); transition: var(--transition-fast); }
+        .cm-menu-img { height: 58px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+        .cm-menu-img.espresso { background: linear-gradient(135deg, #1a0a00, rgba(193,122,58,0.3)); }
+        .cm-menu-img.latte { background: linear-gradient(135deg, #1a0e06, rgba(193,122,58,0.2)); }
+        .cm-menu-img.matcha { background: linear-gradient(135deg, #081208, rgba(16,185,129,0.2)); }
+        .cm-menu-img.pastry { background: linear-gradient(135deg, #1a1208, rgba(250,204,21,0.15)); }
+        .cm-menu-img.cold { background: linear-gradient(135deg, #080e1a, rgba(26,107,255,0.2)); }
+        .cm-menu-img.special { background: linear-gradient(135deg, #180a10, rgba(193,122,58,0.25)); }
+        .cm-menu-info { padding: 7px 8px; }
+        .cm-menu-name { font-size: 0.6rem; font-weight: 700; color: #fff; margin-bottom: 2px; font-family: 'Rajdhani', sans-serif; }
+        .cm-menu-price { font-size: 0.58rem; color: var(--coffee); font-weight: 700; }
+
+        /* Pre-order mini form */
+        .cm-preorder { background: var(--card-bg3); border-radius: var(--radius-md); padding: 12px; margin-bottom: 10px; }
+        .cm-preorder-title { font-size: 0.65rem; font-weight: 700; color: #fff; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+        .cm-preorder-title i { color: var(--coffee); }
+        .cm-preorder-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+        .cm-input { background: var(--card-bg2); border: 1px solid var(--border); border-radius: 4px; padding: 6px 8px; font-size: 0.58rem; color: var(--text-muted); font-family: 'Nunito', sans-serif; width: 100%; }
+        .cm-wa-btn { width: 100%; background: #25d366; color: #fff; border: none; border-radius: 4px; padding: 7px; font-size: 0.65rem; font-weight: 700; font-family: 'Nunito', sans-serif; display: flex; align-items: center; justify-content: center; gap: 5px; }
+
+        /* Rating strip */
+        .cm-rating-strip { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: rgba(193,122,58,0.08); border-radius: 6px; border: 1px solid rgba(193,122,58,0.15); }
+        .cm-rating-num { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--coffee); }
+        .cm-stars { color: var(--gold); font-size: 0.7rem; }
+        .cm-rating-lbl { font-size: 0.6rem; color: var(--text-muted); }
+
+        /* Float badges */
+        .float-badge { position: absolute; background: var(--card-bg2); border: 1px solid var(--border2); border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-lg); z-index: 10; }
+        .float-badge .fb-icon { font-size: 1.1rem; }
+        .float-badge .fb-val { font-size: 0.7rem; font-weight: 700; color: #fff; white-space: nowrap; }
+        .float-badge .fb-sub { font-size: 0.6rem; color: var(--text-muted); white-space: nowrap; }
+        .badge-tr { top: -14px; right: -8px; }
+        .badge-bl { bottom: -14px; left: -8px; }
+
+        /* ===== TAMPILAN SECTION ===== */
+        .tampilan { padding: 80px 0; background: var(--dark-bg); }
+        .tampilan-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+        .tampilan-tab { padding: 8px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 700; border: 1.5px solid var(--border2); background: transparent; color: var(--text-muted); cursor: pointer; transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        .tampilan-tab.active, .tampilan-tab:hover { background: var(--coffee); border-color: var(--coffee); color: #fff; }
+        .tampilan-panel { display: none; }
+        .tampilan-panel.active { display: block; }
+
+        /* Simulated full website views */
+        .site-preview { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; }
+        .sp-nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; background: var(--card-bg); border-bottom: 1px solid var(--border3); }
+        .sp-brand { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; color: var(--coffee); letter-spacing: 1.5px; }
+        .sp-nav-links { display: flex; gap: 12px; }
+        .sp-nav-links span { font-size: 0.68rem; color: var(--text-muted); }
+        .sp-nav-links span.active { color: var(--coffee); font-weight: 700; }
+        .sp-body { padding: 24px 20px; }
+
+        /* Page: Menu */
+        .sp-menu-header { text-align: center; margin-bottom: 20px; }
+        .sp-menu-title { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; color: #fff; margin-bottom: 6px; }
+        .sp-menu-sub { font-size: 0.78rem; color: var(--text-muted); }
+        .sp-filter-row { display: flex; gap: 6px; justify-content: center; margin-bottom: 18px; flex-wrap: wrap; }
+        .sp-filter { padding: 4px 14px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; border: 1px solid var(--border2); color: var(--text-muted); }
+        .sp-filter.active { background: var(--coffee); border-color: var(--coffee); color: #fff; }
+        .sp-menu-big { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .sp-menu-card { background: var(--card-bg3); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border3); }
+        .sp-menu-img { height: 90px; display: flex; align-items: center; justify-content: center; font-size: 2.4rem; }
+        .sp-menu-body { padding: 10px 12px; }
+        .sp-menu-name { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; color: #fff; margin-bottom: 3px; }
+        .sp-menu-desc { font-size: 0.65rem; color: var(--text-muted); margin-bottom: 6px; }
+        .sp-menu-footer { display: flex; align-items: center; justify-content: space-between; }
+        .sp-menu-price { font-size: 0.78rem; font-weight: 700; color: var(--coffee); }
+        .sp-menu-add { width: 22px; height: 22px; background: var(--coffee); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #fff; cursor: pointer; }
+
+        /* Page: About */
+        .sp-about { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+        .sp-about-img { height: 180px; background: linear-gradient(135deg, #1a0f06, rgba(193,122,58,0.2)); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+        .sp-about-text h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .sp-about-text p { font-size: 0.78rem; margin-bottom: 12px; }
+        .sp-about-stats { display: flex; gap: 16px; }
+        .sp-about-stat { text-align: center; }
+        .sp-about-stat .num { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--coffee); line-height: 1; }
+        .sp-about-stat .lbl { font-size: 0.62rem; color: var(--text-muted); }
+
+        /* Page: Pre-order */
+        .sp-order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .sp-order-menu { background: var(--card-bg3); border-radius: var(--radius-md); padding: 14px; }
+        .sp-order-menu-title { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; color: #fff; margin-bottom: 10px; }
+        .sp-order-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border3); }
+        .sp-order-item:last-child { border-bottom: none; }
+        .sp-order-item-name { font-size: 0.75rem; color: rgba(255,255,255,0.8); }
+        .sp-order-item-price { font-size: 0.72rem; font-weight: 700; color: var(--coffee); }
+        .sp-order-item-add { width: 20px; height: 20px; background: var(--coffee-light); border: 1px solid rgba(193,122,58,0.3); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--coffee); }
+        .sp-order-form { background: var(--card-bg3); border-radius: var(--radius-md); padding: 14px; }
+        .sp-order-form-title { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        .sp-order-form-title i { color: var(--coffee); }
+        .sp-form-input { width: 100%; background: var(--card-bg2); border: 1px solid var(--border); border-radius: 5px; padding: 8px 10px; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 7px; display: block; font-family: 'Nunito', sans-serif; }
+        .sp-form-select { width: 100%; background: var(--card-bg2); border: 1px solid var(--border); border-radius: 5px; padding: 8px 10px; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 10px; display: block; }
+        .sp-form-submit { width: 100%; background: var(--coffee); color: #fff; border: none; border-radius: 5px; padding: 9px; font-size: 0.75rem; font-weight: 700; text-align: center; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Nunito', sans-serif; }
+
+        /* ===== FITUR ===== */
+        .fitur { padding: 80px 0; background: var(--card-bg); }
+        .fitur-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .fitur-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: var(--transition-base); position: relative; overflow: hidden; }
+        .fitur-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--coffee), transparent); opacity: 0; transition: opacity 0.3s; }
+        .fitur-card:hover { border-color: rgba(193,122,58,0.4); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .fitur-card:hover::before { opacity: 1; }
+        .fitur-icon { width: 48px; height: 48px; background: var(--coffee-light); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--coffee); margin-bottom: 18px; border: 1px solid rgba(193,122,58,0.2); }
+        .fitur-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+        .fitur-card p { font-size: 0.85rem; }
+
+        /* ===== KENAPA SECTION ===== */
+        .kenapa { padding: 80px 0; background: var(--dark-bg); }
+        .kenapa-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+        .kenapa-text h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); margin-bottom: 18px; }
+        .kenapa-text h2 span { color: var(--coffee); }
+        .kenapa-text p { margin-bottom: 24px; }
+        .kenapa-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+        .kenapa-item { display: flex; gap: 14px; align-items: flex-start; }
+        .kenapa-item-icon { width: 40px; height: 40px; background: var(--coffee-light); border: 1px solid rgba(193,122,58,0.2); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--coffee); flex-shrink: 0; margin-top: 2px; }
+        .kenapa-item h4 { font-size: 0.95rem; margin-bottom: 3px; font-family: 'Rajdhani', sans-serif; }
+        .kenapa-item p { font-size: 0.8rem; margin: 0; }
+
+        /* Stats panel */
+        .kenapa-stats { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 28px; }
+        .kenapa-stats-title { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 20px; }
+        .kenapa-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+        .kenapa-stat { background: var(--card-bg3); border: 1px solid var(--border3); border-radius: var(--radius-md); padding: 16px; text-align: center; }
+        .kenapa-stat .num { font-family: 'Rajdhani', sans-serif; font-size: 1.9rem; font-weight: 700; color: var(--coffee); line-height: 1; }
+        .kenapa-stat .lbl { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+        .kenapa-cta-note { display: flex; align-items: center; gap: 10px; font-size: 0.78rem; color: var(--text-muted); padding-top: 16px; border-top: 1px solid var(--border3); }
+        .kenapa-cta-note i { color: var(--coffee); }
+
+        /* ===== PROSES ===== */
+        .proses { padding: 80px 0; background: var(--card-bg); }
+        .proses-timeline { max-width: 760px; margin: 0 auto; position: relative; }
+        .proses-timeline::before { content: ''; position: absolute; left: 31px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--coffee), rgba(193,122,58,0.08)); }
+        .proses-item { display: flex; gap: 24px; margin-bottom: 36px; }
+        .proses-item:last-child { margin-bottom: 0; }
+        .proses-num { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; background: var(--card-bg2); border: 2px solid var(--coffee); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; position: relative; z-index: 2; }
+        .proses-num.done { background: var(--coffee); }
+        .proses-body { padding-top: 14px; flex: 1; }
+        .proses-body h3 { font-size: 1.1rem; margin-bottom: 6px; }
+        .proses-body p { font-size: 0.85rem; }
+        .proses-days { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 700; color: var(--coffee); background: var(--coffee-light); border: 1px solid rgba(193,122,58,0.2); padding: 2px 10px; border-radius: 100px; margin-top: 8px; }
+
+        /* ===== HARGA ===== */
+        .harga { padding: 80px 0; background: var(--dark-bg); }
+        .harga-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .harga-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 32px; transition: var(--transition-base); position: relative; }
+        .harga-card.popular { border-color: var(--coffee); box-shadow: 0 0 40px rgba(193,122,58,0.12); }
+        .popular-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--coffee); color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
+        .harga-card:hover:not(.popular) { border-color: rgba(193,122,58,0.35); transform: translateY(-4px); }
+        .harga-card.popular:hover { transform: translateY(-4px); }
+        .harga-paket-name { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--coffee); margin-bottom: 12px; }
+        .harga-price { margin-bottom: 8px; }
+        .harga-price .currency { font-size: 1rem; color: var(--white); font-weight: 700; vertical-align: top; line-height: 2.2; }
+        .harga-price .amount { font-family: 'Rajdhani', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+        .harga-price .period { font-size: 0.8rem; color: var(--text-muted); }
+        .harga-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border3); }
+        .harga-fitur-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+        .harga-fitur-list li { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: rgba(240,236,228,0.8); }
+        .harga-fitur-list li i.ok { color: var(--coffee); font-size: 0.75rem; width: 16px; }
+        .harga-fitur-list li i.no { color: var(--text-dim); font-size: 0.75rem; width: 16px; }
+        .harga-fitur-list li.muted { color: var(--text-dim); }
+        .harga-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.9rem; cursor: pointer; font-family: 'Nunito', sans-serif; transition: var(--transition-fast); border: none; }
+        .harga-btn-outline { background: transparent; color: var(--coffee); border: 1.5px solid var(--coffee); }
+        .harga-btn-outline:hover { background: var(--coffee); color: #fff; }
+        .harga-btn-fill { background: var(--coffee); color: #fff; }
+        .harga-btn-fill:hover { background: var(--coffee-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        /* ===== TESTIMONI ===== */
+        .testimoni { padding: 80px 0; background: var(--card-bg); }
+        .testimoni-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .testi-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; transition: var(--transition-base); position: relative; overflow: hidden; }
+        .testi-card::before { content: '☕'; position: absolute; bottom: -10px; right: -5px; font-size: 4rem; opacity: 0.04; }
+        .testi-card:hover { border-color: rgba(193,122,58,0.3); transform: translateY(-4px); }
+        .testi-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--coffee), var(--coffee-dark)); display: flex; align-items: center; justify-content: center; font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+        .testi-name { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; }
+        .testi-venue { font-size: 0.72rem; color: var(--text-muted); }
+        .testi-stars { color: var(--gold); font-size: 0.75rem; margin-bottom: 10px; }
+        .testi-text { font-size: 0.85rem; color: rgba(240,236,228,0.75); line-height: 1.65; font-style: italic; }
+        .testi-tag { display: inline-block; margin-top: 12px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--coffee); background: var(--coffee-light); padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(193,122,58,0.2); }
+
+        /* ===== FAQ ===== */
+        .faq { padding: 80px 0; background: var(--dark-bg); }
+        .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .faq-item { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+        .faq-question { width: 100%; padding: 18px 20px; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text); text-align: left; }
+        .faq-question i { color: var(--coffee); transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.open .faq-question i { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s; }
+        .faq-item.open .faq-answer { max-height: 220px; padding: 0 20px 18px; }
+        .faq-answer p { font-size: 0.85rem; }
+
+        /* ===== CTA ===== */
+        .cta-banner { padding: 80px 0; background: var(--card-bg); }
+        .cta-inner {
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, rgba(193,122,58,0.15) 0%, rgba(150,90,30,0.06) 100%);
+            border: 1px solid rgba(193,122,58,0.25); border-radius: var(--radius-xl);
+            padding: 64px 40px; text-align: center;
+        }
+        .cta-inner::before { content: ''; position: absolute; top: -40%; right: -5%; width: 50%; height: 180%; background: radial-gradient(ellipse, rgba(193,122,58,0.1) 0%, transparent 70%); pointer-events: none; }
+        .cta-inner::after { content: '☕'; position: absolute; bottom: -20px; left: 5%; font-size: 8rem; opacity: 0.04; pointer-events: none; }
+        .cta-inner h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); margin-bottom: 14px; position: relative; }
+        .cta-inner p { margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; position: relative; }
+        .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--dark-bg); border-top: 1px solid var(--border); padding: 32px 0 20px; }
+        .footer-slim { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .footer-slim-logo { display: flex; align-items: center; gap: 10px; }
+        .footer-slim-logo strong { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: #fff; }
+        .footer-slim-links { display: flex; gap: 16px; flex-wrap: wrap; }
+        .footer-slim-links a { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; transition: color 0.15s; }
+        .footer-slim-links a:hover { color: var(--coffee); }
+        .footer-copy { font-size: 0.75rem; color: var(--text-dim); }
+
+        /* ===== ANIMATION ===== */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--coffee); border-radius: 3px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .kenapa-inner { grid-template-columns: 1fr; gap: 40px; }
+            .fitur-grid { grid-template-columns: repeat(2, 1fr); }
+            .harga-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .testimoni-grid { grid-template-columns: repeat(2, 1fr); }
+            .sp-menu-big { grid-template-columns: repeat(3, 1fr); }
+            .sp-about { grid-template-columns: 1fr; }
+            .sp-about-img { height: 120px; }
+        }
+        @media (max-width: 768px) {
+            :root { --header-h: 60px; }
+            nav { display: none; }
+            .hamburger { display: flex; }
+            .btn-wa span { display: none; }
+            .btn-wa { padding: 8px 12px; }
+            .hero-inner { flex-direction: column; }
+            .hero-content { max-width: 100%; text-align: center; }
+            .hero-benefits { align-items: flex-start; }
+            .hero-cta-group { justify-content: center; }
+            .hero-note { justify-content: center; }
+            .hero-visual { width: 100%; max-width: 100%; }
+            .fitur-grid { grid-template-columns: 1fr; }
+            .testimoni-grid { grid-template-columns: 1fr; }
+            .sp-menu-big { grid-template-columns: repeat(2, 1fr); }
+            .sp-order-grid { grid-template-columns: 1fr; }
+            .cta-inner { padding: 36px 20px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero { padding: 50px 16px 40px; }
+            .cm-menu-grid { grid-template-columns: repeat(3, 1fr); }
+            .sp-menu-big { grid-template-columns: repeat(2, 1fr); }
+            .kenapa-stat-row { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <img src="../images/logo.jpg" alt="Jeff" onerror="this.parentElement.style.background='#C17A3A'; this.style.display='none';">
+            </div>
+            <div class="logo-text">
+                <strong>Jeff</strong>
+                <span>Jasa Pembuatan Website</span>
+            </div>
+        </a>
+        <nav>
+            <a href="../index.html#beranda">Beranda</a>
+            <a href="../index.html#promo">Cari Website</a>
+            <a href="../index.html#testimoni">Testimoni</a>
+            <a href="../index.html#kontak">Kontak</a>
+        </nav>
+        <div class="header-ctas">
+            <a href="https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+Web+Coffee+Shop" class="btn-wa" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        </div>
+    </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+    <a href="../index.html#beranda" onclick="closeMenu()">Beranda</a>
+    <a href="../index.html#promo" onclick="closeMenu()">Cari Website</a>
+    <a href="../index.html#testimoni" onclick="closeMenu()">Testimoni</a>
+    <a href="../index.html#kontak" onclick="closeMenu()">Kontak</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+        <div class="hero-content fade-up">
+            <div class="breadcrumb">
+                <a href="../index.html">Beranda</a><span>›</span>
+                <a href="../index.html#promo">Layanan</a><span>›</span>
+                <span style="color:var(--text);">Web Coffee Shop</span>
+            </div>
+            <div class="hero-eyebrow"><span class="steam-dot"></span> Spesialis Website Kafe & Coffee Shop</div>
+            <h1>Website Kafe yang<br><span>Hangat</span>, Cantik, &<br><em>Menghasilkan</em></h1>
+            <p>Tampilkan menu, atmosfer, dan cerita kafe Anda secara online. Biarkan pelanggan jatuh cinta sebelum mereka datang — dan pesan lebih mudah lewat website Anda.</p>
+
+            <div class="hero-benefits">
+                <div class="hero-benefit">
+                    <div class="benefit-icon">☕</div>
+                    Menu digital yang bisa diperbarui kapan saja tanpa cetak ulang
+                </div>
+                <div class="hero-benefit">
+                    <div class="benefit-icon">📱</div>
+                    Pre-order & reservasi meja langsung dari website
+                </div>
+                <div class="hero-benefit">
+                    <div class="benefit-icon">📍</div>
+                    Tampil di Google Maps & pencarian lokal lebih mudah
+                </div>
+                <div class="hero-benefit">
+                    <div class="benefit-icon">🌟</div>
+                    Tampilan estetik sesuai branding kafe Anda
+                </div>
+            </div>
+
+            <div class="hero-cta-group">
+                <a href="../index.html#kontak" class="btn-coffee"><i class="fas fa-mug-hot"></i> Buat Website Kafe Saya</a>
+                <a href="#tampilan" class="btn-outline"><i class="fas fa-eye"></i> Lihat Preview</a>
+            </div>
+           
+        </div>
+
+        <!-- Coffee Website Mockup -->
+        <div class="hero-visual fade-up">
+            <div class="float-badge badge-tr">
+                <div class="fb-icon">🎨</div>
+                <div><div class="fb-val">Desain estetik</div><div class="fb-sub">Sesuai brand kafe Anda</div></div>
+            </div>
+            <div class="float-badge badge-bl">
+                <div class="fb-icon">📦</div>
+                <div><div class="fb-val">Pre-order online</div><div class="fb-sub">Terima pesanan 24/7</div></div>
+            </div>
+
+            <div class="coffee-mockup">
+                <div class="cm-topbar">
+                    <div class="cm-dots">
+                        <div class="cm-dot" style="background:#f87171;"></div>
+                        <div class="cm-dot" style="background:#facc15;"></div>
+                        <div class="cm-dot" style="background:#10B981;"></div>
+                    </div>
+                    <div class="cm-url">kopikita.com</div>
+                </div>
+
+                <!-- Simulated coffee site hero -->
+                <div class="cm-hero-strip">
+                    <div class="cm-hero-left">
+                        <div class="cm-site-name">KOPI KITA</div>
+                        <div class="cm-tagline">Setiap tegukan, sebuah cerita ☕</div>
+                        <div class="cm-order-btn">Pre-Order Sekarang →</div>
+                    </div>
+                    <div class="cm-hero-right">☕</div>
+                </div>
+
+                <div class="cm-body">
+                    <!-- Menu section -->
+                    <div class="cm-section-lbl">Menu Kami <a href="#">Lihat semua →</a></div>
+                    <div class="cm-menu-grid">
+                        <div class="cm-menu-item">
+                            <div class="cm-menu-img espresso">☕</div>
+                            <div class="cm-menu-info"><div class="cm-menu-name">Espresso</div><div class="cm-menu-price">Rp 22k</div></div>
+                        </div>
+                        <div class="cm-menu-item">
+                            <div class="cm-menu-img latte">🥛</div>
+                            <div class="cm-menu-info"><div class="cm-menu-name">Caramel Latte</div><div class="cm-menu-price">Rp 35k</div></div>
+                        </div>
+                        <div class="cm-menu-item">
+                            <div class="cm-menu-img matcha">🍵</div>
+                            <div class="cm-menu-info"><div class="cm-menu-name">Matcha Latte</div><div class="cm-menu-price">Rp 32k</div></div>
+                        </div>
+                        <div class="cm-menu-item">
+                            <div class="cm-menu-img pastry">🥐</div>
+                            <div class="cm-menu-info"><div class="cm-menu-name">Croissant</div><div class="cm-menu-price">Rp 28k</div></div>
+                        </div>
+                        <div class="cm-menu-item">
+                            <div class="cm-menu-img cold">🧊</div>
+                            <div class="cm-menu-info"><div class="cm-menu-name">Cold Brew</div><div class="cm-menu-price">Rp 30k</div></div>
+                        </div>
+                        <div class="cm-menu-item">
+                            <div class="cm-menu-img special">✨</div>
+                            <div class="cm-menu-info"><div class="cm-menu-name">Special Blend</div><div class="cm-menu-price">Rp 40k</div></div>
+                        </div>
+                    </div>
+
+                    <!-- Pre-order form mini -->
+                    <div class="cm-preorder">
+                        <div class="cm-preorder-title"><i class="fas fa-shopping-bag"></i> Pre-Order & Ambil di Kafe</div>
+                        <div class="cm-preorder-row">
+                            <input class="cm-input" placeholder="Nama Anda" readonly>
+                            <input class="cm-input" placeholder="Jam ambil" readonly>
+                        </div>
+                        <button class="cm-wa-btn"><i class="fab fa-whatsapp"></i> Pesan via WhatsApp</button>
+                    </div>
+
+                    <!-- Rating -->
+                    <div class="cm-rating-strip">
+                        <div class="cm-rating-num">4.9</div>
+                        <div>
+                            <div class="cm-stars">★★★★★</div>
+                            <div class="cm-rating-lbl">218 ulasan Google</div>
+                        </div>
+                        <div style="margin-left:auto; font-size:0.6rem; color:var(--text-dim);">Buka 07.00 – 22.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PREVIEW TAMPILAN ===== -->
+<section class="tampilan" id="tampilan">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Preview Halaman</span>
+            <h2>Tampilan Lengkap Website Kafe Anda</h2>
+            <p>Setiap halaman dirancang untuk memberikan pengalaman yang hangat dan memudahkan pelanggan.</p>
+        </div>
+
+        <div class="tampilan-tabs fade-up">
+            <button class="tampilan-tab active" onclick="switchTab('menu', this)">☕ Halaman Menu</button>
+            <button class="tampilan-tab" onclick="switchTab('about', this)">📖 Tentang Kafe</button>
+            <button class="tampilan-tab" onclick="switchTab('order', this)">🛒 Pre-Order</button>
+        </div>
+
+        <div class="fade-up">
+            <!-- MENU PAGE -->
+            <div class="tampilan-panel active" id="tab-menu">
+                <div class="site-preview">
+                    <div class="sp-nav">
+                        <div class="sp-brand">KOPI KITA</div>
+                        <div class="sp-nav-links">
+                            <span class="active">Menu</span>
+                            <span>Tentang</span>
+                            <span>Pre-Order</span>
+                            <span>Lokasi</span>
+                        </div>
+                    </div>
+                    <div class="sp-body">
+                        <div class="sp-menu-header">
+                            <div class="sp-menu-title">Menu Kami ☕</div>
+                            <div class="sp-menu-sub">Dibuat dengan biji kopi pilihan terbaik dari seluruh Nusantara</div>
+                        </div>
+                        <div class="sp-filter-row">
+                            <div class="sp-filter active">Semua</div>
+                            <div class="sp-filter">Kopi Panas</div>
+                            <div class="sp-filter">Kopi Dingin</div>
+                            <div class="sp-filter">Non-Kopi</div>
+                            <div class="sp-filter">Makanan</div>
+                        </div>
+                        <div class="sp-menu-big">
+                            <div class="sp-menu-card">
+                                <div class="sp-menu-img" style="background: linear-gradient(135deg, #1a0a00, rgba(193,122,58,0.3));">☕</div>
+                                <div class="sp-menu-body">
+                                    <div class="sp-menu-name">Signature Espresso</div>
+                                    <div class="sp-menu-desc">Single origin Aceh Gayo, medium roast</div>
+                                    <div class="sp-menu-footer"><div class="sp-menu-price">Rp 22.000</div><div class="sp-menu-add">+</div></div>
+                                </div>
+                            </div>
+                            <div class="sp-menu-card">
+                                <div class="sp-menu-img" style="background: linear-gradient(135deg, #1a0e06, rgba(193,122,58,0.2));">🥛</div>
+                                <div class="sp-menu-body">
+                                    <div class="sp-menu-name">Caramel Latte</div>
+                                    <div class="sp-menu-desc">Espresso + susu segar + caramel drizzle</div>
+                                    <div class="sp-menu-footer"><div class="sp-menu-price">Rp 35.000</div><div class="sp-menu-add">+</div></div>
+                                </div>
+                            </div>
+                            <div class="sp-menu-card">
+                                <div class="sp-menu-img" style="background: linear-gradient(135deg, #081208, rgba(16,185,129,0.2));">🍵</div>
+                                <div class="sp-menu-body">
+                                    <div class="sp-menu-name">Matcha Latte</div>
+                                    <div class="sp-menu-desc">Matcha premium Jepang, oat milk</div>
+                                    <div class="sp-menu-footer"><div class="sp-menu-price">Rp 32.000</div><div class="sp-menu-add">+</div></div>
+                                </div>
+                            </div>
+                            <div class="sp-menu-card">
+                                <div class="sp-menu-img" style="background: linear-gradient(135deg, #080e1a, rgba(26,107,255,0.2));">🧊</div>
+                                <div class="sp-menu-body">
+                                    <div class="sp-menu-name">Cold Brew</div>
+                                    <div class="sp-menu-desc">12 jam cold brew, smooth & mellow</div>
+                                    <div class="sp-menu-footer"><div class="sp-menu-price">Rp 30.000</div><div class="sp-menu-add">+</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT PAGE -->
+            <div class="tampilan-panel" id="tab-about">
+                <div class="site-preview">
+                    <div class="sp-nav">
+                        <div class="sp-brand">KOPI KITA</div>
+                        <div class="sp-nav-links">
+                            <span>Menu</span>
+                            <span class="active">Tentang</span>
+                            <span>Pre-Order</span>
+                            <span>Lokasi</span>
+                        </div>
+                    </div>
+                    <div class="sp-body">
+                        <div class="sp-about">
+                            <div class="sp-about-img">☕🌿</div>
+                            <div class="sp-about-text">
+                                <h3>Cerita di Balik Setiap Cangkir</h3>
+                                <p>Kopi Kita lahir dari kecintaan kami terhadap kopi Indonesia. Sejak 2019, kami menghadirkan biji kopi single origin terbaik dari Aceh, Toraja, hingga Flores — diseduh dengan penuh cinta oleh barista berpengalaman kami.</p>
+                                <p>Bukan sekadar kedai kopi. Ini adalah tempat di mana cerita lahir, kerja terasa lebih ringan, dan setiap tegukan membawa kehangatan.</p>
+                                <div class="sp-about-stats">
+                                    <div class="sp-about-stat"><div class="num">5+</div><div class="lbl">Tahun berdiri</div></div>
+                                    <div class="sp-about-stat"><div class="num">20k+</div><div class="lbl">Pelanggan setia</div></div>
+                                    <div class="sp-about-stat"><div class="num">4.9★</div><div class="lbl">Rating Google</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ORDER PAGE -->
+            <div class="tampilan-panel" id="tab-order">
+                <div class="site-preview">
+                    <div class="sp-nav">
+                        <div class="sp-brand">KOPI KITA</div>
+                        <div class="sp-nav-links">
+                            <span>Menu</span>
+                            <span>Tentang</span>
+                            <span class="active">Pre-Order</span>
+                            <span>Lokasi</span>
+                        </div>
+                    </div>
+                    <div class="sp-body">
+                        <div style="text-align:center; margin-bottom:20px;">
+                            <div style="font-family:'Rajdhani',sans-serif; font-size:1.3rem; color:#fff; margin-bottom:6px;">Pre-Order & Ambil di Kafe 🛒</div>
+                            <div style="font-size:0.78rem; color:var(--text-muted);">Pesan sekarang, ambil sesuai jadwal Anda. Tidak perlu antri!</div>
+                        </div>
+                        <div class="sp-order-grid">
+                            <div class="sp-order-menu">
+                                <div class="sp-order-menu-title">Pilih Menu</div>
+                                <div class="sp-order-item">
+                                    <div class="sp-order-item-name">☕ Signature Espresso</div>
+                                    <div style="display:flex; align-items:center; gap:8px;"><div class="sp-order-item-price">Rp 22k</div><div class="sp-order-item-add">+</div></div>
+                                </div>
+                                <div class="sp-order-item">
+                                    <div class="sp-order-item-name">🥛 Caramel Latte</div>
+                                    <div style="display:flex; align-items:center; gap:8px;"><div class="sp-order-item-price">Rp 35k</div><div class="sp-order-item-add">+</div></div>
+                                </div>
+                                <div class="sp-order-item">
+                                    <div class="sp-order-item-name">🍵 Matcha Latte</div>
+                                    <div style="display:flex; align-items:center; gap:8px;"><div class="sp-order-item-price">Rp 32k</div><div class="sp-order-item-add">+</div></div>
+                                </div>
+                                <div class="sp-order-item">
+                                    <div class="sp-order-item-name">🥐 Croissant</div>
+                                    <div style="display:flex; align-items:center; gap:8px;"><div class="sp-order-item-price">Rp 28k</div><div class="sp-order-item-add">+</div></div>
+                                </div>
+                                <div class="sp-order-item">
+                                    <div class="sp-order-item-name">🧊 Cold Brew</div>
+                                    <div style="display:flex; align-items:center; gap:8px;"><div class="sp-order-item-price">Rp 30k</div><div class="sp-order-item-add">+</div></div>
+                                </div>
+                            </div>
+                            <div class="sp-order-form">
+                                <div class="sp-order-form-title"><i class="fas fa-user"></i> Detail Pesanan</div>
+                                <div class="sp-form-input" style="display:block; padding:8px 10px; color:var(--text-dim); font-size:0.7rem;">Nama pemesan</div>
+                                <div class="sp-form-input" style="display:block; padding:8px 10px; color:var(--text-dim); font-size:0.7rem;">Nomor WhatsApp</div>
+                                <div class="sp-form-select" style="display:block; padding:8px 10px; color:var(--text-dim); font-size:0.7rem;">Jam ambil pesanan</div>
+                                <div class="sp-form-input" style="display:block; padding:8px 10px; color:var(--text-dim); font-size:0.7rem; margin-bottom:10px;">Catatan khusus (opsional)</div>
+                                <div style="background: var(--card-bg2); border: 1px solid var(--border3); border-radius:6px; padding:10px; margin-bottom:10px;">
+                                    <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:5px;">Ringkasan Pesanan</div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.7rem;"><span style="color:rgba(255,255,255,0.7);">Caramel Latte × 1</span><span style="color:var(--coffee);">Rp 35.000</span></div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.7rem; margin-top:4px;"><span style="color:rgba(255,255,255,0.7);">Cold Brew × 1</span><span style="color:var(--coffee);">Rp 30.000</span></div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:700; margin-top:8px; padding-top:8px; border-top:1px solid var(--border3);"><span style="color:#fff;">Total</span><span style="color:var(--coffee);">Rp 65.000</span></div>
+                                </div>
+                                <div class="sp-form-submit"><i class="fab fa-whatsapp"></i> Kirim Pesanan via WA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FITUR ===== -->
+<section class="fitur">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Fitur Website</span>
+            <h2>Semua yang Kafe Anda Butuhkan</h2>
+            <p>Lebih dari sekadar tampilan — website kafe yang kami buat benar-benar membantu bisnis Anda tumbuh.</p>
+        </div>
+        <div class="fitur-grid fade-up">
+            <div class="fitur-card">
+                <div class="fitur-icon">🍽️</div>
+                <h3>Menu Digital Interaktif</h3>
+                <p>Tampilkan seluruh menu dengan foto, deskripsi, dan harga. Update kapan saja tanpa cetak ulang — hemat biaya, selalu up-to-date.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon">📦</div>
+                <h3>Sistem Pre-Order</h3>
+                <p>Pelanggan bisa pesan minuman & makanan sebelum datang. Kurangi antrean, tingkatkan kepuasan, dan pendapatan lebih terprediksi.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon">📅</div>
+                <h3>Reservasi Meja</h3>
+                <p>Fitur booking meja untuk acara, rapat, atau gathering. Hindari kecewa karena tidak dapat tempat duduk di jam sibuk.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon">📸</div>
+                <h3>Galeri & Atmosfer</h3>
+                <p>Tampilkan foto interior, suasana kafe, dan momen spesial. Buat calon pelanggan "merasakan" kafe Anda sebelum datang.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon">📍</div>
+                <h3>Peta & Info Lokasi</h3>
+                <p>Integrasi Google Maps, jam operasional, nomor telepon, dan info parkir. Pelanggan baru tidak akan kesulitan menemukan kafe Anda.</p>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon">⭐</div>
+                <h3>Ulasan & Testimoni</h3>
+                <p>Tampilkan review terbaik dari Google, Instagram, atau Grab Food untuk membangun kepercayaan pelanggan baru secara organik.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== KENAPA ===== -->
+<section class="kenapa">
+    <div class="container">
+        <div class="kenapa-inner">
+            <div class="kenapa-text fade-up">
+                <span class="section-heading badge" style="display:inline-block; text-align:left; margin-bottom:16px;">Kenapa Butuh Website?</span>
+                <h2>Kafe Tanpa Website<br>Kehilangan <span>Banyak Pelanggan</span></h2>
+                <p>Di era digital, calon pelanggan cari kafe lewat Google sebelum datang. Kalau kafe Anda tidak punya website, mereka memilih kompetitor yang lebih mudah ditemukan.</p>
+                <div class="kenapa-list">
+                    <div class="kenapa-item">
+                        <div class="kenapa-item-icon">🔍</div>
+                        <div>
+                            <h4>Mudah Ditemukan di Google</h4>
+                            <p>Website + SEO membuat kafe Anda muncul ketika orang cari "kafe enak di [kota Anda]".</p>
+                        </div>
+                    </div>
+                    <div class="kenapa-item">
+                        <div class="kenapa-item-icon">💡</div>
+                        <div>
+                            <h4>Kesan Pertama yang Profesional</h4>
+                            <p>Website yang cantik menunjukkan bahwa kafe Anda serius dan layak dikunjungi — bahkan sebelum pelanggan datang.</p>
+                        </div>
+                    </div>
+                    <div class="kenapa-item">
+                        <div class="kenapa-item-icon">💰</div>
+                        <div>
+                            <h4>Pendapatan Tambahan dari Pre-Order</h4>
+                            <p>Sistem pre-order membuka sumber pendapatan baru — catering, hampers, pesanan dalam jumlah besar.</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="../index.html#kontak" class="btn-coffee"><i class="fas fa-mug-hot"></i> Konsultasi Gratis Sekarang</a>
+            </div>
+
+            <div class="kenapa-stats fade-up">
+                <div class="kenapa-stats-title">☕ Dampak Nyata bagi Kafe</div>
+                <div class="kenapa-stat-row">
+                    <div class="kenapa-stat"><div class="num">3×</div><div class="lbl">Lebih banyak pelanggan baru lewat Google</div></div>
+                    <div class="kenapa-stat"><div class="num">+28%</div><div class="lbl">Kenaikan omzet rata-rata dengan pre-order</div></div>
+                    <div class="kenapa-stat"><div class="num">70%</div><div class="lbl">Konsumen cari info kafe online sebelum datang</div></div>
+                    <div class="kenapa-stat"><div class="num">4.9★</div><div class="lbl">Rating rata-rata kafe klien kami di Google</div></div>
+                </div>
+                <div class="kenapa-cta-note">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Data berdasarkan rata-rata klien kafe yang sudah menggunakan layanan kami.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROSES ===== -->
+<section class="proses">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Alur Pengerjaan</span>
+            <h2>Website Kafe Anda Siap dalam 7-14 Hari</h2>
+            <p>Proses yang cepat, nyaman, dan hasilnya cantik sesuai karakter kafe Anda.</p>
+        </div>
+        <div class="proses-timeline fade-up">
+            <div class="proses-item">
+                <div class="proses-num done">💬</div>
+                <div class="proses-body">
+                    <h3>Konsultasi & Mood Board</h3>
+                    <p>Ceritakan konsep kafe, warna brand, dan fitur yang diinginkan. Kami buatkan referensi desain (mood board) terlebih dahulu agar arah visualnya sesuai.</p>
+                    <div class="proses-days"><i class="fas fa-clock"></i> Hari 1</div>
+                </div>
+            </div>
+            <div class="proses-item">
+                <div class="proses-num">✏️</div>
+                <div class="proses-body">
+                    <h3>Input Konten & Menu</h3>
+                    <p>Anda kirim foto menu, foto kafe, teks deskripsi, dan harga. Kami siapkan semuanya dan mulai proses desain.</p>
+                    <div class="proses-days"><i class="fas fa-clock"></i> Hari 1–2</div>
+                </div>
+            </div>
+            <div class="proses-item">
+                <div class="proses-num">🎨</div>
+                <div class="proses-body">
+                    <h3>Desain & Development</h3>
+                    <p>Tim kami kerjakan tampilan, menu digital, pre-order, galeri, dan semua fitur yang disepakati. Prioritas estetik sesuai karakter kafe Anda.</p>
+                    <div class="proses-days"><i class="fas fa-clock"></i> Hari 2–4</div>
+                </div>
+            </div>
+            <div class="proses-item">
+                <div class="proses-num">✅</div>
+                <div class="proses-body">
+                    <h3>Review & Revisi</h3>
+                    <p>Anda lihat hasilnya, berikan masukan, kami perbaiki. Revisi dilakukan sampai Anda benar-benar puas dan bangga tunjukkan ke pelanggan.</p>
+                    <div class="proses-days"><i class="fas fa-clock"></i> Hari 7–14</div>
+                </div>
+            </div>
+            <div class="proses-item">
+                <div class="proses-num">🚀</div>
+                <div class="proses-body">
+                    <h3>Website Live & Promosi!</h3>
+                    <p>Website kafe Anda online dan siap dibagikan. Kami juga berikan tips cara promosi website ke Instagram dan Google agar cepat ramai pengunjung.</p>
+                    <div class="proses-days"><i class="fas fa-clock"></i> Hari 14</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== HARGA ===== -->
+<section class="harga">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Paket Harga</span>
+            <h2>Pilih Paket Sesuai Kebutuhan Kafe</h2>
+            <p>Harga terjangkau untuk website yang tampil profesional dan membantu bisnis kafe Anda berkembang.</p>
+        </div>
+        <div class="harga-grid fade-up">
+            <div class="harga-card">
+                <div class="harga-paket-name">Starter</div>
+                <div class="harga-price"><span class="currency">Rp</span><span class="amount">499</span><span class="period">rb</span></div>
+                <div class="harga-desc">Cocok untuk kafe baru yang ingin hadir secara online dengan cepat dan terjangkau.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check ok"></i> Halaman menu digital</li>
+                    <li><i class="fas fa-check ok"></i> Info lokasi & jam buka</li>
+                    <li><i class="fas fa-check ok"></i> Galeri foto kafe</li>
+                    <li><i class="fas fa-check ok"></i> Tombol WhatsApp order</li>
+                    <li><i class="fas fa-check ok"></i> Desain responsif mobile</li>
+                    <li class="muted"><i class="fas fa-times no"></i> Sistem pre-order online</li>
+                    <li class="muted"><i class="fas fa-times no"></i> Reservasi meja</li>
+                </ul>
+                <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Starter+Web+Coffee'">Pilih Starter</button>
+            </div>
+            <div class="harga-card popular">
+                <div class="popular-badge">☕ Paling Diminati</div>
+                <div class="harga-paket-name">Signature</div>
+                <div class="harga-price"><span class="currency">Rp</span><span class="amount">899</span><span class="period">rb</span></div>
+                <div class="harga-desc">Paket lengkap untuk kafe yang ingin memberikan pengalaman terbaik kepada pelanggan online.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check ok"></i> Semua fitur Starter</li>
+                    <li><i class="fas fa-check ok"></i> Sistem pre-order online</li>
+                    <li><i class="fas fa-check ok"></i> Reservasi meja online</li>
+                    <li><i class="fas fa-check ok"></i> Halaman cerita kafe</li>
+                    <li><i class="fas fa-check ok"></i> Testimoni & ulasan</li>
+                    <li><i class="fas fa-check ok"></i> SEO lokal Google</li>
+                    <li><i class="fas fa-check ok"></i> 5x revisi</li>
+                </ul>
+                <button class="harga-btn harga-btn-fill" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Signature+Web+Coffee'">Pilih Signature</button>
+            </div>
+            <div class="harga-card">
+                <div class="harga-paket-name">Premium</div>
+                <div class="harga-price"><span class="currency">Rp</span><span class="amount">1.5</span><span class="period">jt</span></div>
+                <div class="harga-desc">Untuk coffee shop brand besar atau chain yang butuh website representatif dan fitur kustom.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check ok"></i> Semua fitur Signature</li>
+                    <li><i class="fas fa-check ok"></i> Desain custom premium</li>
+                    <li><i class="fas fa-check ok"></i> Integrasi payment (DP online)</li>
+                    <li><i class="fas fa-check ok"></i> Program loyalty / stamp</li>
+                    <li><i class="fas fa-check ok"></i> Multi-cabang</li>
+                    <li><i class="fas fa-check ok"></i> Blog & artikel konten</li>
+                    <li><i class="fas fa-check ok"></i> Revisi unlimited + maintenance</li>
+                </ul>
+                <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Premium+Web+Coffee'">Pilih Premium</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TESTIMONI ===== -->
+<section class="testimoni">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">☕ Testimoni</span>
+            <h2>Kata Pemilik Kafe Kami</h2>
+            <p>Pengalaman nyata dari pemilik coffee shop yang sudah punya website bersama Jeff.</p>
+        </div>
+        <div class="testimoni-grid fade-up">
+            <div class="testi-card">
+                <div class="testi-top">
+                    <div class="testi-avatar">AF</div>
+                    <div>
+                        <div class="testi-name">Aldi Firmansyah</div>
+                        
+                    </div>
+                </div>
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-text">"Sebelumnya cuma andalkan Instagram, banyak yang nanya jam buka dan menu lewat DM. Sekarang tinggal share link website, semua info lengkap. Pre-order online juga membantu banget pas weekend ramai, antrean jadi lebih teratur."</div>
+                
+            </div>
+            <div class="testi-card">
+                <div class="testi-top">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, #8B5CF6, #6d3fc7);">NR</div>
+                    <div>
+                        <div class="testi-name">Nadya Rahmawati</div>
+                        
+                    </div>
+                </div>
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-text">"Desainnya cantik banget, persis seperti konsep kafe kami yang cozy dan aesthetic. Jeff sabar banget nemenin revisi sampai hasilnya beneran sesuai visi kami. Banyak pelanggan baru bilang nemuin kami dari Google!"</div>
+                
+            </div>
+            <div class="testi-card">
+                <div class="testi-top">
+                    <div class="testi-avatar" style="background: linear-gradient(135deg, #10B981, #0a7a55);">BS</div>
+                    <div>
+                        <div class="testi-name">Bagas Setiawan</div>
+                        
+                    </div>
+                </div>
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-text">"Fitur reservasi meja terbukti nambah omzet. Sekarang tamu yang mau meeting atau gathering bisa booking dulu, jadi kami bisa siapkan better. Website sudah balik modal hanya dalam 2 bulan pertama. Worth it banget!"</div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">FAQ</span>
+            <h2>Pertanyaan yang Sering Ditanyakan</h2>
+        </div>
+        <div class="faq-list fade-up">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Apakah saya perlu siapkan konten sendiri? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Idealnya Anda siapkan foto menu dan foto kafe (bisa pakai HP), harga, dan teks singkat tentang kafe. Tapi tenang — kalau belum punya semua, kami bisa bantu arahkan dan bahkan menggunakan foto placeholder yang estetik dulu sambil foto asli disiapkan.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Bisa update menu sendiri setelah website jadi? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Ya! Kami sediakan panel admin sederhana untuk update harga, tambah item menu, dan ganti foto. Tidak perlu coding sama sekali. Atau kalau lebih suka, cukup hubungi kami via WA dan kami update untuk Anda — gratis untuk perubahan kecil dalam 1 bulan pertama.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Apakah bisa minta desain yang estetik sesuai tema kafe kami? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Tentu! Kami akan menyesuaikan warna, font, gaya foto, dan mood website dengan karakter kafe Anda. Dark & moody? Airy & minimalis? Warm & rustic? Semua bisa. Di awal proses kami kirim mood board dulu untuk disetujui sebelum mulai development.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Bagaimana cara pelanggan pre-order lewat website? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Pelanggan tinggal pilih menu, isi nama & nomor WA, pilih jam ambil, lalu klik kirim. Pesanan langsung masuk ke WhatsApp Anda beserta detail lengkapnya. Simple, tidak perlu aplikasi tambahan, dan Anda langsung bisa konfirmasi pesanan.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Apakah website bisa tampil di Google Maps? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Website akan kami optimasi untuk SEO lokal agar lebih mudah ditemukan di Google. Namun untuk tampil di Google Maps, Anda perlu mendaftarkan kafe di Google Business Profile (gratis).</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-banner">
+    <div class="container">
+        <div class="cta-inner fade-up">
+            <h2>Siap Bawa Kafe Anda<br>ke Level Berikutnya? ☕</h2>
+            <p>Konsultasi gratis, tanpa komitmen. Ceritakan konsep kafe Anda dan kami bantu wujudkan website yang bikin pelanggan jatuh cinta.</p>
+            <div class="cta-btns">
+                <a href="https://wa.me/6285779853512?text=Halo+Jeff,+saya+ingin+konsultasi+gratis+Web+Coffee+Shop+untuk+kafe+saya" target="_blank" class="btn-coffee" style="padding:14px 32px; font-size:1rem;"><i class="fab fa-whatsapp"></i> Chat WhatsApp Sekarang</a>
+                <a href="../index.html#kontak" class="btn-outline" style="padding:14px 32px; font-size:1rem;"><i class="fas fa-envelope"></i> Kirim Pesan</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-slim">
+        <div class="footer-slim-logo">
+            <div style="width:36px; height:36px; border-radius:8px; overflow:hidden; background:var(--card-bg2); border:1px solid var(--border2); flex-shrink:0; display:flex; align-items:center; justify-content:center;">
+                <img src="../images/logo.jpg" alt="Jeff" onerror="this.parentElement.style.background='#C17A3A'; this.style.display='none';">
+            </div>
+            <div><strong>Jeff</strong><div style="font-size:10px; color:var(--text-muted);">Jasa Pembuatan Website</div></div>
+        </div>
+        <div class="footer-slim-links">
+            <a href="../index.html">Beranda</a>
+            <a href="katalog.html">Web Katalog</a>
+            <a href="landing-page.html">Landing Page</a>
+            <a href="booking-lapangan.html">Web Booking</a>
+            <a href="../index.html#kontak">Kontak</a>
+        </div>
+        <div class="footer-copy">© 2026 Jeff. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById('mobileNav'), hb = document.querySelector('.hamburger');
+    nav.classList.toggle('open'); hb.classList.toggle('is-open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+    const nav = document.getElementById('mobileNav'), hb = document.querySelector('.hamburger');
+    nav.classList.remove('open'); hb.classList.remove('is-open');
+    document.body.style.overflow = '';
+}
+document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobileNav'), hb = document.querySelector('.hamburger');
+    if (nav?.classList.contains('open') && !nav.contains(e.target) && !hb?.contains(e.target)) closeMenu();
+});
+
+function switchTab(tab, btn) {
+    document.querySelectorAll('.tampilan-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tampilan-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+}
+
+function toggleFaq(btn) {
+    const item = btn.parentElement, isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+}
+
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+});
+</script>
+</body>
+</html>

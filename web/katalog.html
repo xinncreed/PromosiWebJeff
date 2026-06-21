@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Jeff – Web Katalog Produk. Tampilkan produk Anda secara profesional dengan website katalog modern dan responsif.">
+    <title>Web Katalog Produk – Jeff</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* ===== ROOT & RESET ===== */
+        :root {
+            --primary: #1A6BFF;
+            --primary-dark: #1355CC;
+            --primary-light: #1a6bff1a;
+            --primary-glow: rgba(26,107,255,0.25);
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --card-bg2: #1c1c1c;
+            --card-bg3: #222222;
+            --text: #f0f0f0;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --white: #FFFFFF;
+            --border: rgba(255,255,255,0.1);
+            --border2: rgba(255,255,255,0.18);
+            --border3: rgba(255,255,255,0.06);
+            --green: #10B981;
+            --gold: #facc15;
+            --orange: #F59E0B;
+            --red: #f87171;
+            --header-h: 68px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-md: 0 4px 20px rgba(26,107,255,0.15);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 40px rgba(26,107,255,0.25);
+            --transition-fast: all .15s cubic-bezier(0.2,0.9,0.4,1.1);
+            --transition-base: all .25s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1,h2,h3,h4 { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--white); }
+        p { color: var(--text-muted); line-height: 1.7; }
+        a { text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== HEADER ===== */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(8,8,8,0.96);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            height: var(--header-h);
+        }
+        .header-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 24px; height: 100%; gap: 16px;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+            background: var(--card-bg2); border: 1px solid var(--border2); flex-shrink: 0;
+        }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text strong { display: block; font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 1.5px; }
+        .logo-text span { font-size: 10px; color: var(--text-muted); }
+
+        nav { display: flex; align-items: center; gap: 4px; }
+        nav a {
+            padding: 8px 16px; border-radius: var(--radius-sm);
+            font-size: 14px; font-weight: 600; color: var(--text-muted);
+            transition: var(--transition-fast); font-family: 'Nunito', sans-serif;
+        }
+        nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        nav a.active { color: #fff; background: rgba(255,255,255,0.1); border-bottom: 2px solid var(--primary); }
+
+        .header-ctas { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .btn-wa {
+            display: flex; align-items: center; gap: 7px;
+            padding: 8px 16px; border-radius: var(--radius-sm);
+            background: #25d366; color: #fff;
+            font-size: 13px; font-weight: 700;
+            transition: var(--transition-fast); white-space: nowrap;
+        }
+        .btn-wa:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-wa svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+        .hamburger {
+            width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 8px;
+            cursor: pointer; display: none; flex-direction: column;
+            align-items: center; justify-content: center; gap: 5px;
+            background: rgba(255,255,255,0.04); transition: background 0.15s; flex-shrink: 0;
+        }
+        .hamburger:hover { background: rgba(255, 255, 255, 0.09); }
+        .hamburger span { display: block; width: 18px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.28s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease, width 0.2s ease; transform-origin: center; }
+        .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.is-open span:nth-child(2) { opacity: 0; width: 0; }
+        .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile nav: smooth slide + fade open/close instead of an abrupt toggle */
+        .mobile-nav {
+            display: flex; flex-direction: column;
+            position: fixed; top: var(--header-h); left: 0; right: 0;
+            background: var(--dark-bg); border-bottom: 1px solid var(--border);
+            padding: 8px 0 20px; z-index: 99;
+            max-height: calc(100vh - var(--header-h)); overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-12px) scale(0.99);
+            transform-origin: top center;
+            pointer-events: none;
+            transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                        visibility 0.32s;
+        }
+        .mobile-nav.open {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .mobile-nav a {
+            padding: 14px 20px; font-size: 15px; font-weight: 700; color: var(--text-muted);
+            border-bottom: 1px solid var(--border3); display: flex; align-items: center; gap: 12px;
+            transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        .mobile-nav.open a {
+            animation: mobileNavItemIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .mobile-nav.open a:nth-child(1) { animation-delay: 0.04s; }
+        .mobile-nav.open a:nth-child(2) { animation-delay: 0.09s; }
+        .mobile-nav.open a:nth-child(3) { animation-delay: 0.14s; }
+        .mobile-nav.open a:nth-child(4) { animation-delay: 0.19s; }
+        @keyframes mobileNavItemIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mobile-nav a:active { background: rgba(255, 255, 255, 0.06); color: #fff; padding-left: 26px; }
+
+        /* ===== HERO — KATALOG ===== */
+        .hero-katalog {
+            position: relative;
+            min-height: 560px;
+            display: flex; align-items: center;
+            overflow: hidden;
+            padding: 80px 24px 60px;
+        }
+        .hero-katalog-bg {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,107,255,0.18) 0%, transparent 65%),
+                        linear-gradient(135deg, #0a0a0a 0%, #0d1b3e 50%, #0a0a0a 100%);
+        }
+        /* Grid pattern overlay */
+        .hero-katalog-bg::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(26,107,255,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26,107,255,0.06) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+        .hero-katalog-bg::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(0deg, rgba(10,10,10,0.9) 0%, transparent 40%, rgba(10,10,10,0.5) 100%);
+        }
+
+        .hero-katalog-inner {
+            max-width: 1200px; margin: 0 auto; width: 100%;
+            display: flex; align-items: center; justify-content: space-between; gap: 48px;
+            position: relative; z-index: 2;
+        }
+        .hero-katalog-content { flex: 1; max-width: 560px; }
+
+        .breadcrumb {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.75rem; color: var(--text-muted); margin-bottom: 20px;
+        }
+        .breadcrumb a { color: var(--primary); font-weight: 600; }
+        .breadcrumb span { color: var(--text-dim); }
+
+        .hero-badge-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--primary); background: var(--primary-light);
+            border: 1px solid rgba(26,107,255,0.3);
+            padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+        }
+        .hero-badge-pill .pulse {
+            width: 7px; height: 7px; border-radius: 50%; background: var(--primary);
+            box-shadow: 0 0 0 0 rgba(26,107,255,0.6);
+            animation: pulse-ring 1.5s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(26,107,255,0.6); }
+            70% { box-shadow: 0 0 0 7px rgba(26,107,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(26,107,255,0); }
+        }
+
+        .hero-katalog-content h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            line-height: 1.15; margin-bottom: 18px; color: #fff;
+        }
+        .hero-katalog-content h1 span { color: var(--primary); }
+        .hero-katalog-content p { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 32px; }
+
+        .hero-feature-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+        .hero-feature-item {
+            display: flex; align-items: center; gap: 12px;
+            font-size: 0.85rem; color: rgba(255,255,255,0.8); font-weight: 600;
+        }
+        .hero-feature-item i { color: var(--primary); width: 18px; text-align: center; }
+
+        .hero-cta-group { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; background: var(--primary); color: #fff;
+            border: none; border-radius: var(--radius-sm);
+            font-weight: 700; font-size: 0.9rem; cursor: pointer;
+            transition: var(--transition-fast); font-family: 'Nunito', sans-serif;
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; background: transparent; color: var(--text);
+            border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+            font-weight: 700; font-size: 0.9rem; cursor: pointer;
+            transition: var(--transition-fast); font-family: 'Nunito', sans-serif;
+        }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+
+        .hero-trust-row {
+            display: flex; align-items: center; gap: 16px;
+            padding-top: 28px; border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+        .trust-avatar-stack { display: flex; }
+        .trust-avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            border: 2px solid var(--dark-bg);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            margin-left: -8px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.65rem; font-weight: 700; color: #fff;
+        }
+        .trust-avatar:first-child { margin-left: 0; }
+        .trust-text { font-size: 0.8rem; color: var(--text-muted); }
+        .trust-text strong { color: var(--white); }
+
+        /* Floating preview card */
+        .hero-preview-side {
+            flex: 1; max-width: 480px;
+            display: flex; flex-direction: column; gap: 16px;
+        }
+        .preview-mockup {
+            background: var(--card-bg2);
+            border: 1px solid var(--border2);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg), 0 0 60px rgba(26,107,255,0.15);
+        }
+        .mockup-bar {
+            display: flex; align-items: center; gap: 8px;
+            padding: 12px 16px; background: var(--card-bg); border-bottom: 1px solid var(--border3);
+        }
+        .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .mockup-dot-r { background: #f87171; }
+        .mockup-dot-y { background: #facc15; }
+        .mockup-dot-g { background: var(--green); }
+        .mockup-url {
+            flex: 1; background: var(--card-bg3); border-radius: 4px;
+            padding: 4px 10px; font-size: 0.7rem; color: var(--text-muted);
+            margin-left: 8px; font-family: monospace;
+        }
+
+        .mockup-body { padding: 20px; }
+        .mockup-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+        .mockup-card {
+            background: var(--card-bg3); border-radius: var(--radius-sm); overflow: hidden;
+            border: 1px solid var(--border3);
+        }
+        .mockup-card-img {
+            height: 64px;
+            background: linear-gradient(135deg, rgba(26,107,255,0.3), rgba(19,85,204,0.2));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+        }
+        .mockup-card-info { padding: 8px; }
+        .mockup-card-title { font-size: 0.62rem; font-weight: 700; color: #fff; margin-bottom: 3px; font-family: 'Rajdhani', sans-serif; }
+        .mockup-card-price { font-size: 0.6rem; color: var(--primary); font-weight: 700; }
+
+        .mockup-search {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--card-bg3); border-radius: 6px; padding: 8px 12px;
+            border: 1px solid var(--border3);
+        }
+        .mockup-search i { color: var(--text-dim); font-size: 0.75rem; }
+        .mockup-search span { font-size: 0.7rem; color: var(--text-dim); }
+
+        /* Floating stat pills */
+        .hero-stat-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+        .stat-pill {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--card-bg2); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 12px 16px;
+            flex: 1; min-width: 120px;
+        }
+        .stat-pill-icon {
+            width: 36px; height: 36px; border-radius: var(--radius-sm);
+            background: var(--primary-light); color: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
+        .stat-pill-val { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; line-height: 1; }
+        .stat-pill-lbl { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* ===== SECTION BADGE ===== */
+        .section-heading { text-align: center; margin-bottom: 48px; }
+        .section-heading .badge {
+            display: inline-block; font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--primary); background: var(--primary-light);
+            padding: 4px 14px; border-radius: 100px; margin-bottom: 16px;
+        }
+        .section-heading h2 { margin-bottom: 12px; color: var(--white); font-size: clamp(1.5rem, 4vw, 2.2rem); }
+        .section-heading p { max-width: 600px; margin: 0 auto; }
+
+        /* ===== FITUR UNGGULAN ===== */
+        .fitur { padding: 80px 0; background: var(--dark-bg); }
+        .fitur-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .fitur-card {
+            background: var(--card-bg2); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 28px;
+            transition: var(--transition-base); position: relative; overflow: hidden;
+        }
+        .fitur-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .fitur-card:hover { border-color: rgba(26,107,255,0.4); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .fitur-card:hover::before { opacity: 1; }
+        .fitur-icon {
+            width: 48px; height: 48px; background: var(--primary-light);
+            border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; color: var(--primary); margin-bottom: 18px;
+        }
+        .fitur-card h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--white); }
+        .fitur-card p { font-size: 0.85rem; }
+
+        /* ===== DEMO PREVIEW SECTION ===== */
+        .demo-section { padding: 80px 0; background: var(--card-bg); }
+        .demo-tabs {
+            display: flex; gap: 8px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap;
+        }
+        .demo-tab {
+            padding: 8px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 700;
+            border: 1.5px solid var(--border); background: transparent; color: var(--text-muted);
+            cursor: pointer; transition: var(--transition-fast); font-family: 'Nunito', sans-serif;
+        }
+        .demo-tab.active, .demo-tab:hover {
+            background: var(--primary); border-color: var(--primary); color: #fff;
+        }
+
+        .demo-panel { display: none; }
+        .demo-panel.active { display: block; }
+
+        .demo-showcase {
+            background: var(--card-bg2); border: 1px solid var(--border);
+            border-radius: var(--radius-xl); overflow: hidden;
+        }
+        .demo-topbar {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 20px; background: var(--card-bg); border-bottom: 1px solid var(--border3);
+        }
+        .demo-dots { display: flex; gap: 7px; }
+        .demo-dot { width: 11px; height: 11px; border-radius: 50%; }
+        .demo-url-bar {
+            flex: 1; background: var(--card-bg3); border-radius: 6px;
+            padding: 5px 12px; font-size: 0.72rem; color: var(--text-dim); font-family: monospace;
+        }
+        .demo-content { padding: 28px; }
+
+        /* Simulated catalog UI */
+        .sim-header {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+        }
+        .sim-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; }
+        .sim-logo span { color: var(--primary); }
+        .sim-search-bar {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--card-bg3); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 8px 14px; flex: 1; max-width: 280px;
+        }
+        .sim-search-bar i { color: var(--text-dim); font-size: 0.85rem; }
+        .sim-search-bar span { font-size: 0.8rem; color: var(--text-dim); }
+
+        .sim-cats { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .sim-cat {
+            padding: 5px 14px; border-radius: 100px; font-size: 0.75rem; font-weight: 700;
+            border: 1px solid var(--border); color: var(--text-muted); cursor: default;
+        }
+        .sim-cat.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+        .sim-product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .sim-product {
+            background: var(--card-bg); border: 1px solid var(--border3);
+            border-radius: var(--radius-md); overflow: hidden;
+            transition: var(--transition-base);
+        }
+        .sim-product:hover { border-color: rgba(26,107,255,0.4); transform: translateY(-3px); }
+        .sim-product-img {
+            height: 110px;
+            background: linear-gradient(135deg, var(--card-bg3), var(--card-bg2));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem; position: relative;
+        }
+        .sim-badge {
+            position: absolute; top: 8px; left: 8px;
+            font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 100px;
+        }
+        .sim-badge-new { background: var(--green); color: #fff; }
+        .sim-badge-sale { background: var(--red); color: #fff; }
+        .sim-product-body { padding: 12px; }
+        .sim-product-name { font-size: 0.78rem; font-weight: 700; color: #fff; margin-bottom: 4px; font-family: 'Rajdhani', sans-serif; }
+        .sim-product-price { font-size: 0.82rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+        .sim-product-old { font-size: 0.68rem; color: var(--text-dim); text-decoration: line-through; }
+        .sim-product-rating { font-size: 0.65rem; color: var(--gold); }
+        .sim-add-btn {
+            display: flex; align-items: center; justify-content: center;
+            margin: 8px 12px 12px; padding: 7px;
+            background: var(--primary-light); border: 1px solid rgba(26,107,255,0.3);
+            border-radius: var(--radius-sm); font-size: 0.72rem; font-weight: 700; color: var(--primary);
+            cursor: pointer; transition: var(--transition-fast);
+        }
+        .sim-add-btn:hover { background: var(--primary); color: #fff; }
+
+        /* ===== PAKET HARGA ===== */
+        .harga { padding: 80px 0; background: var(--dark-bg); }
+        .harga-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .harga-card {
+            background: var(--card-bg2); border: 1px solid var(--border);
+            border-radius: var(--radius-xl); padding: 32px;
+            transition: var(--transition-base); position: relative;
+        }
+        .harga-card.popular {
+            border-color: var(--primary);
+            box-shadow: 0 0 40px rgba(26,107,255,0.15);
+        }
+        .popular-badge {
+            position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+            background: var(--primary); color: #fff;
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+            padding: 4px 16px; border-radius: 100px; white-space: nowrap;
+        }
+        .harga-card:hover:not(.popular) { border-color: rgba(26,107,255,0.4); transform: translateY(-4px); }
+        .harga-card.popular:hover { transform: translateY(-4px); }
+        .harga-paket-name { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary); margin-bottom: 12px; }
+        .harga-price { margin-bottom: 8px; }
+        .harga-price .currency { font-size: 1rem; color: var(--white); font-weight: 700; vertical-align: top; line-height: 2; }
+        .harga-price .amount { font-family: 'Rajdhani', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+        .harga-price .period { font-size: 0.8rem; color: var(--text-muted); }
+        .harga-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border3); }
+        .harga-fitur-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+        .harga-fitur-list li { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+        .harga-fitur-list li i { color: var(--green); font-size: 0.75rem; width: 16px; }
+        .harga-fitur-list li.muted { color: var(--text-dim); }
+        .harga-fitur-list li.muted i { color: var(--text-dim); }
+        .harga-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 12px; border-radius: var(--radius-sm);
+            font-weight: 700; font-size: 0.9rem; cursor: pointer;
+            font-family: 'Nunito', sans-serif; transition: var(--transition-fast); border: none;
+        }
+        .harga-btn-outline {
+            background: transparent; color: var(--primary);
+            border: 1.5px solid var(--primary);
+        }
+        .harga-btn-outline:hover { background: var(--primary); color: #fff; }
+        .harga-btn-fill { background: var(--primary); color: #fff; }
+        .harga-btn-fill:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        /* ===== STEPS / PROSES ===== */
+        .proses { padding: 80px 0; background: var(--card-bg); }
+        .proses-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+        .proses-grid::before {
+            content: '';
+            position: absolute; top: 32px; left: 10%; right: 10%; height: 2px;
+            background: linear-gradient(90deg, var(--primary) 0%, rgba(26,107,255,0.1) 100%);
+            z-index: 0;
+        }
+        .proses-step {
+            text-align: center; position: relative; z-index: 1;
+        }
+        .step-num {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: var(--card-bg2); border: 2px solid var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--primary);
+            position: relative; z-index: 2;
+        }
+        .step-num.completed { background: var(--primary); color: #fff; }
+        .proses-step h3 { font-size: 1rem; margin-bottom: 8px; }
+        .proses-step p { font-size: 0.8rem; }
+
+        /* ===== FAQ ===== */
+        .faq { padding: 80px 0; background: var(--dark-bg); }
+        .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .faq-item {
+            background: var(--card-bg2); border: 1px solid var(--border);
+            border-radius: var(--radius-md); overflow: hidden;
+        }
+        .faq-question {
+            width: 100%; padding: 18px 20px; background: none; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 700; color: #fff;
+            text-align: left;
+        }
+        .faq-question i { color: var(--primary); transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.open .faq-question i { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s;
+        }
+        .faq-item.open .faq-answer { max-height: 200px; padding: 0 20px 18px; }
+        .faq-answer p { font-size: 0.85rem; }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner {
+            padding: 80px 0; background: var(--dark-bg);
+        }
+        .cta-inner {
+            background: linear-gradient(135deg, rgba(26,107,255,0.15) 0%, rgba(19,85,204,0.08) 100%);
+            border: 1px solid rgba(26,107,255,0.25);
+            border-radius: var(--radius-xl); padding: 56px 40px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .cta-inner::before {
+            content: '';
+            position: absolute; top: -50%; left: -10%; width: 60%; height: 200%;
+            background: radial-gradient(ellipse, rgba(26,107,255,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta-inner h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 14px; position: relative; }
+        .cta-inner p { margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; position: relative; }
+        .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--card-bg); border-top: 1px solid var(--border); padding: 32px 0 20px;
+        }
+        .footer-slim {
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+        }
+        .footer-slim-logo { display: flex; align-items: center; gap: 10px; }
+        .footer-slim-logo strong { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: #fff; }
+        .footer-slim-logo span { font-size: 11px; color: var(--text-muted); }
+        .footer-slim-links { display: flex; gap: 16px; flex-wrap: wrap; }
+        .footer-slim-links a { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; transition: color 0.15s; }
+        .footer-slim-links a:hover { color: var(--primary); }
+        .footer-copy { font-size: 0.75rem; color: var(--text-dim); }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .fitur-grid { grid-template-columns: repeat(2, 1fr); }
+            .harga-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .proses-grid { grid-template-columns: repeat(2, 1fr); }
+            .proses-grid::before { display: none; }
+            .sim-product-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            :root { --header-h: 60px; }
+            nav { display: none; }
+            .hamburger { display: flex; }
+            .btn-wa span { display: none; }
+            .btn-wa { padding: 8px 12px; }
+            .hero-katalog-inner { flex-direction: column; }
+            .hero-katalog-content { max-width: 100%; text-align: center; }
+            .hero-feature-list { align-items: flex-start; text-align: left; }
+            .hero-cta-group { justify-content: center; }
+            .hero-trust-row { justify-content: center; }
+            .hero-preview-side { width: 100%; max-width: 100%; }
+            .fitur-grid { grid-template-columns: 1fr; }
+            .proses-grid { grid-template-columns: 1fr; }
+            .sim-product-grid { grid-template-columns: repeat(2, 1fr); }
+            .cta-inner { padding: 36px 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero-katalog { padding: 50px 16px 40px; }
+            .sim-header { flex-direction: column; align-items: flex-start; }
+            .sim-search-bar { max-width: 100%; width: 100%; }
+            .sim-product-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <img src="../images/logo.jpg" alt="Jeff Logo" onerror="this.parentElement.style.background='#1A6BFF'; this.style.display='none';">
+            </div>
+            <div class="logo-text">
+                <strong>Jeff</strong>
+                <span>Jasa Pembuatan Website</span>
+            </div>
+        </a>
+
+        <nav>
+            <a href="../index.html#beranda" class="nav-link">Beranda</a>
+            <a href="../index.html#promo" class="nav-link">Cari Website</a>
+            <a href="../index.html#testimoni" class="nav-link">Testimoni</a>
+            <a href="../index.html#kontak" class="nav-link">Kontak</a>
+        </nav>
+
+        <div class="header-ctas">
+            <a href="https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+dengan+Web+Katalog+Produk" class="btn-wa" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+    <a href="../index.html#beranda" onclick="closeMenu()">Beranda</a>
+    <a href="../index.html#promo" onclick="closeMenu()">Cari Website</a>
+    <a href="../index.html#testimoni" onclick="closeMenu()">Testimoni</a>
+    <a href="../index.html#kontak" onclick="closeMenu()">Kontak</a>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero-katalog">
+    <div class="hero-katalog-bg"></div>
+    <div class="hero-katalog-inner">
+
+        <div class="hero-katalog-content fade-up">
+            <div class="breadcrumb">
+                <a href="../index.html">Beranda</a>
+                <span>›</span>
+                <a href="../index.html#promo">Layanan</a>
+                <span>›</span>
+                <span style="color: var(--text);">Web Katalog Produk</span>
+            </div>
+
+            <div class="hero-badge-pill">
+                <span class="pulse"></span>
+                Tersedia Langsung — Ready to Deploy
+            </div>
+
+            <h1>Website Katalog<br>yang <span>Menjual</span> Sendiri</h1>
+            <p>Tampilkan seluruh produk Anda secara profesional. Pelanggan bisa browse, cari, dan pesan langsung — kapan saja, dari mana saja.</p>
+
+            <div class="hero-feature-list">
+                <div class="hero-feature-item"><i class="fas fa-check-circle"></i> Tampilan produk yang rapi dengan filter & pencarian</div>
+                <div class="hero-feature-item"><i class="fas fa-check-circle"></i> Integrasi WhatsApp untuk pemesanan instan</div>
+                <div class="hero-feature-item"><i class="fas fa-check-circle"></i> Responsif sempurna di HP & desktop</div>
+                <div class="hero-feature-item"><i class="fas fa-check-circle"></i> Admin panel mudah — tambah produk tanpa coding</div>
+            </div>
+
+            <div class="hero-cta-group">
+                <a href="../index.html#kontak" class="btn-primary"><i class="fas fa-comment-dots"></i> Pesan Sekarang</a>
+                <a href="#demo" class="btn-secondary"><i class="fas fa-eye"></i> Lihat Demo</a>
+            </div>
+
+            <div class="hero-trust-row">
+
+
+            </div>
+        </div>
+
+        <div class="hero-preview-side fade-up">
+            <div class="preview-mockup">
+                <div class="mockup-bar">
+                    <div class="mockup-dot mockup-dot-r"></div>
+                    <div class="mockup-dot mockup-dot-y"></div>
+                    <div class="mockup-dot mockup-dot-g"></div>
+                    <div class="mockup-url">toko-anda.com/katalog</div>
+                </div>
+                <div class="mockup-body">
+                    <div class="mockup-search" style="margin-bottom: 14px;">
+                        <i class="fas fa-search"></i>
+                        <span>Cari produk...</span>
+                    </div>
+                    <div class="mockup-grid">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img">👕</div>
+                            <div class="mockup-card-info">
+                                <div class="mockup-card-title">Kaos Premium</div>
+                                <div class="mockup-card-price">Rp 120rb</div>
+                            </div>
+                        </div>
+                        <div class="mockup-card">
+                            <div class="mockup-card-img">👟</div>
+                            <div class="mockup-card-info">
+                                <div class="mockup-card-title">Sepatu Casual</div>
+                                <div class="mockup-card-price">Rp 350rb</div>
+                            </div>
+                        </div>
+                        <div class="mockup-card">
+                            <div class="mockup-card-img">👜</div>
+                            <div class="mockup-card-info">
+                                <div class="mockup-card-title">Tas Selempang</div>
+                                <div class="mockup-card-price">Rp 185rb</div>
+                            </div>
+                        </div>
+                        <div class="mockup-card">
+                            <div class="mockup-card-img">🧢</div>
+                            <div class="mockup-card-info">
+                                <div class="mockup-card-title">Topi Snapback</div>
+                                <div class="mockup-card-price">Rp 95rb</div>
+                            </div>
+                        </div>
+                        <div class="mockup-card">
+                            <div class="mockup-card-img">🕶️</div>
+                            <div class="mockup-card-info">
+                                <div class="mockup-card-title">Kacamata UV</div>
+                                <div class="mockup-card-price">Rp 75rb</div>
+                            </div>
+                        </div>
+                        <div class="mockup-card">
+                            <div class="mockup-card-img">⌚</div>
+                            <div class="mockup-card-info">
+                                <div class="mockup-card-title">Jam Tangan</div>
+                                <div class="mockup-card-price">Rp 450rb</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-stat-pills">
+                <div class="stat-pill">
+                    <div class="stat-pill-icon"><i class="fas fa-box"></i></div>
+                    <div><div class="stat-pill-val">∞</div><div class="stat-pill-lbl">Produk tanpa batas</div></div>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-pill-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div><div class="stat-pill-val">100%</div><div class="stat-pill-lbl">Mobile friendly</div></div>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-pill-icon"><i class="fas fa-bolt"></i></div>
+                    <div><div class="stat-pill-val">3 hari</div><div class="stat-pill-lbl">Estimasi pengerjaan</div></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ========== FITUR ========== -->
+<section class="fitur">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Fitur Unggulan</span>
+            <h2>Semua yang Bisnis Anda Butuhkan</h2>
+            <p>Fitur lengkap yang dirancang khusus untuk memudahkan pengelolaan dan peningkatan penjualan produk Anda.</p>
+        </div>
+        <div class="fitur-grid">
+            <div class="fitur-card fade-up">
+                <div class="fitur-icon"><i class="fas fa-search"></i></div>
+                <h3>Filter & Pencarian Canggih</h3>
+                <p>Pelanggan bisa temukan produk dengan cepat lewat filter kategori, harga, dan kotak pencarian real-time.</p>
+            </div>
+            <div class="fitur-card fade-up">
+                <div class="fitur-icon"><i class="fab fa-whatsapp"></i></div>
+                <h3>Order via WhatsApp</h3>
+                <p>Tombol pesan langsung terhubung ke WhatsApp Anda. Tidak perlu payment gateway yang rumit.</p>
+            </div>
+            <div class="fitur-card fade-up">
+                <div class="fitur-icon"><i class="fas fa-images"></i></div>
+                <h3>Galeri Foto Multi-Gambar</h3>
+                <p>Tampilkan produk dari berbagai sudut dengan galeri foto yang bisa di-zoom dan di-swipe.</p>
+            </div>
+            <div class="fitur-card fade-up">
+                <div class="fitur-icon"><i class="fas fa-sliders-h"></i></div>
+                <h3>Admin Panel Mudah</h3>
+                <p>Kelola produk, harga, stok, dan kategori langsung dari dashboard tanpa perlu coding sama sekali.</p>
+            </div>
+            <div class="fitur-card fade-up">
+                <div class="fitur-icon"><i class="fas fa-tag"></i></div>
+                <h3>Label & Badge Produk</h3>
+                <p>Tandai produk dengan label "Baru", "Diskon", "Terlaris" untuk menarik perhatian pembeli.</p>
+            </div>
+            <div class="fitur-card fade-up">
+                <div class="fitur-icon"><i class="fas fa-share-alt"></i></div>
+                <h3>Share ke Sosial Media</h3>
+                <p>Setiap produk bisa dibagikan langsung ke WhatsApp, Instagram, dan platform lainnya dengan satu klik.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== DEMO PREVIEW ========== -->
+<section class="demo-section" id="demo">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Preview Langsung</span>
+            <h2>Tampilan Website Katalog Anda</h2>
+            <p>Ini tampilan nyata yang akan dilihat pelanggan Anda. Pilih jenis katalog sesuai bisnis.</p>
+        </div>
+
+        <div class="demo-tabs fade-up">
+            <button class="demo-tab active" onclick="switchTab('fashion')">👕 Fashion</button>
+            <button class="demo-tab" onclick="switchTab('makanan')">🍱 Makanan & Minuman</button>
+            <button class="demo-tab" onclick="switchTab('elektronik')">💻 Elektronik</button>
+            <button class="demo-tab" onclick="switchTab('game')">🎮 Game</button>
+        </div>
+
+        <div class="fade-up">
+            <!-- FASHION -->
+            <div class="demo-panel active" id="tab-fashion">
+                <div class="demo-showcase">
+                    <div class="demo-topbar">
+                        <div class="demo-dots">
+                            <div class="demo-dot" style="background:#f87171;"></div>
+                            <div class="demo-dot" style="background:#facc15;"></div>
+                            <div class="demo-dot" style="background:#10B981;"></div>
+                        </div>
+                        <div class="demo-url-bar">toko-fashion.id/katalog</div>
+                    </div>
+                    <div class="demo-content">
+                        <div class="sim-header">
+                            <div class="sim-logo">Mode<span>Style</span></div>
+                            <div class="sim-search-bar"><i class="fas fa-search"></i><span>Cari produk fashion...</span></div>
+                        </div>
+                        <div class="sim-cats">
+                            <div class="sim-cat active">Semua</div>
+                            <div class="sim-cat">Atasan</div>
+                            <div class="sim-cat">Bawahan</div>
+                            <div class="sim-cat">Aksesori</div>
+                            <div class="sim-cat">Sepatu</div>
+                        </div>
+                        <div class="sim-product-grid">
+                            <div class="sim-product">
+                                <div class="sim-product-img">👕 <span class="sim-badge sim-badge-new">Baru</span></div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Kaos Oversize</div>
+                                    <div class="sim-product-price">Rp 120.000</div>
+                                    <div class="sim-product-rating">★★★★★ (24)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img">👟 <span class="sim-badge sim-badge-sale">-30%</span></div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Sneakers Canvas</div>
+                                    <div class="sim-product-price">Rp 245.000 <span class="sim-product-old">Rp 350.000</span></div>
+                                    <div class="sim-product-rating">★★★★☆ (18)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img">👜</div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Tas Kulit Wanita</div>
+                                    <div class="sim-product-price">Rp 185.000</div>
+                                    <div class="sim-product-rating">★★★★★ (41)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img">🧢</div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Topi Snapback</div>
+                                    <div class="sim-product-price">Rp 95.000</div>
+                                    <div class="sim-product-rating">★★★★☆ (12)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAKANAN -->
+            <div class="demo-panel" id="tab-makanan">
+                <div class="demo-showcase">
+                    <div class="demo-topbar">
+                        <div class="demo-dots">
+                            <div class="demo-dot" style="background:#f87171;"></div>
+                            <div class="demo-dot" style="background:#facc15;"></div>
+                            <div class="demo-dot" style="background:#10B981;"></div>
+                        </div>
+                        <div class="demo-url-bar">dapur-mama.id/menu</div>
+                    </div>
+                    <div class="demo-content">
+                        <div class="sim-header">
+                            <div class="sim-logo">Dapur<span>Mama</span></div>
+                            <div class="sim-search-bar"><i class="fas fa-search"></i><span>Cari menu favorit...</span></div>
+                        </div>
+                        <div class="sim-cats">
+                            <div class="sim-cat active">Semua Menu</div>
+                            <div class="sim-cat">Makanan</div>
+                            <div class="sim-cat">Minuman</div>
+                            <div class="sim-cat">Snack</div>
+                        </div>
+                        <div class="sim-product-grid">
+                            <div class="sim-product">
+                                <div class="sim-product-img">🍱 <span class="sim-badge sim-badge-new">Baru</span></div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Nasi Box Spesial</div>
+                                    <div class="sim-product-price">Rp 25.000</div>
+                                    <div class="sim-product-rating">★★★★★ (88)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img">🍜 <span class="sim-badge sim-badge-sale">Best</span></div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Mie Ayam Bakso</div>
+                                    <div class="sim-product-price">Rp 18.000</div>
+                                    <div class="sim-product-rating">★★★★★ (120)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img">🧃</div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Jus Buah Segar</div>
+                                    <div class="sim-product-price">Rp 12.000</div>
+                                    <div class="sim-product-rating">★★★★☆ (55)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img">🍪</div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Hampers Kue</div>
+                                    <div class="sim-product-price">Rp 85.000</div>
+                                    <div class="sim-product-rating">★★★★★ (34)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ELEKTRONIK -->
+            <div class="demo-panel" id="tab-elektronik">
+                <div class="demo-showcase">
+                    <div class="demo-topbar">
+                        <div class="demo-dots">
+                            <div class="demo-dot" style="background:#f87171;"></div>
+                            <div class="demo-dot" style="background:#facc15;"></div>
+                            <div class="demo-dot" style="background:#10B981;"></div>
+                        </div>
+                        <div class="demo-url-bar">techstore.id/produk</div>
+                    </div>
+                    <div class="demo-content">
+                        <div class="sim-header">
+                            <div class="sim-logo">Tech<span>Store</span></div>
+                            <div class="sim-search-bar"><i class="fas fa-search"></i><span>Cari gadget & aksesoris...</span></div>
+                        </div>
+                        <div class="sim-cats">
+                            <div class="sim-cat active">Semua</div>
+                            <div class="sim-cat">Handphone</div>
+                            <div class="sim-cat">Laptop</div>
+                            <div class="sim-cat">Aksesoris</div>
+                        </div>
+                        <div class="sim-product-grid">
+                            <div class="sim-product">
+                                <div class="sim-product-img">📱 <span class="sim-badge sim-badge-new">Baru</span></div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Smartphone 5G</div>
+                                    <div class="sim-product-price">Rp 3.200.000</div>
+                                    <div class="sim-product-rating">★★★★★ (67)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img">💻 <span class="sim-badge sim-badge-sale">-15%</span></div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Laptop Slim 14"</div>
+                                    <div class="sim-product-price">Rp 7.650.000 <span class="sim-product-old">Rp 9.000.000</span></div>
+                                    <div class="sim-product-rating">★★★★☆ (29)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img">🎧</div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Earbuds Wireless</div>
+                                    <div class="sim-product-price">Rp 450.000</div>
+                                    <div class="sim-product-rating">★★★★★ (103)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img">⌨️</div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Keyboard Mekanikal</div>
+                                    <div class="sim-product-price">Rp 680.000</div>
+                                    <div class="sim-product-rating">★★★★☆ (48)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAME -->
+            <div class="demo-panel" id="tab-game">
+                <div class="demo-showcase">
+                    <div class="demo-topbar">
+                        <div class="demo-dots">
+                            <div class="demo-dot" style="background:#f87171;"></div>
+                            <div class="demo-dot" style="background:#facc15;"></div>
+                            <div class="demo-dot" style="background:#10B981;"></div>
+                        </div>
+                        <div class="demo-url-bar">gamestore.id/katalog</div>
+                    </div>
+                    <div class="demo-content">
+                        <div class="sim-header">
+                            <div class="sim-logo">Game<span>Store</span></div>
+                            <div class="sim-search-bar"><i class="fas fa-search"></i><span>Cari game & voucher...</span></div>
+                        </div>
+                        <div class="sim-cats">
+                            <div class="sim-cat active">Semua</div>
+                            <div class="sim-cat">Top Up</div>
+                            <div class="sim-cat">Voucher</div>
+                            <div class="sim-cat">Akun</div>
+                            <div class="sim-cat">Joki</div>
+                        </div>
+                        <div class="sim-product-grid">
+                            <div class="sim-product">
+                                <div class="sim-product-img" style="background:linear-gradient(135deg,#0d0a1a,rgba(139,92,246,0.3));">💎 <span class="sim-badge sim-badge-new">Hot</span></div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Akun Admin</div>
+                                    <div class="sim-product-price">Rp 82.000</div>
+                                    <div class="sim-product-rating">★★★★★ (312)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img" style="background:linear-gradient(135deg,#0a1a0d,rgba(16,185,129,0.25));">🎯 <span class="sim-badge sim-badge-sale">-20%</span></div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Akun Admin</div>
+                                    <div class="sim-product-price">Rp 135.000 <span class="sim-product-old">Rp 169.000</span></div>
+                                    <div class="sim-product-rating">★★★★★ (198)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img" style="background:linear-gradient(135deg,#1a0a00,rgba(245,158,11,0.25));">🃏</div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Akun Admin</div>
+                                    <div class="sim-product-price">Rp 155.000</div>
+                                    <div class="sim-product-rating">★★★★☆ (87)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                            <div class="sim-product">
+                                <div class="sim-product-img" style="background:linear-gradient(135deg,#0a0d1a,rgba(26,107,255,0.25));">⚡</div>
+                                <div class="sim-product-body">
+                                    <div class="sim-product-name">Akun Admin</div>
+                                    <div class="sim-product-price">Rp 145.000</div>
+                                    <div class="sim-product-rating">★★★★★ (143)</div>
+                                </div>
+                                <div class="sim-add-btn"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> Pesan via WA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="harga">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Paket Harga</span>
+            <h2>Pilih Paket yang Tepat</h2>
+            <p>Harga transparan, tanpa biaya tersembunyi. Semua paket sudah termasuk revisi dan support.</p>
+        </div>
+        <div class="harga-grid fade-up">
+            <div class="harga-card">
+                <div class="harga-paket-name">Starter</div>
+                <div class="harga-price">
+                    <span class="currency">Rp</span>
+                    <span class="amount">499</span>
+                    <span class="period">rb</span>
+                </div>
+                <div class="harga-desc">Cocok untuk usaha baru yang ingin mulai online dengan cepat.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check"></i> Hingga 30 produk</li>
+                    <li><i class="fas fa-check"></i> 3 kategori produk</li>
+                    <li><i class="fas fa-check"></i> Integrasi WhatsApp</li>
+                    <li><i class="fas fa-check"></i> Desain responsif mobile</li>
+                    <li><i class="fas fa-check"></i> 2x revisi</li>
+                    <li class="muted"><i class="fas fa-times"></i> Admin panel</li>
+                    <li class="muted"><i class="fas fa-times"></i> SEO Optimization</li>
+                </ul>
+                <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Starter+Web+Katalog'">Mulai dengan Starter</button>
+            </div>
+
+            <div class="harga-card popular">
+                <div class="popular-badge">⚡ Paling Populer</div>
+                <div class="harga-paket-name">Profesional</div>
+                <div class="harga-price">
+                    <span class="currency">Rp</span>
+                    <span class="amount">999</span>
+                    <span class="period">rb</span>
+                </div>
+                <div class="harga-desc">Solusi terlengkap untuk bisnis yang ingin serius berjualan online.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check"></i> Produk tidak terbatas</li>
+                    <li><i class="fas fa-check"></i> Kategori tidak terbatas</li>
+                    <li><i class="fas fa-check"></i> Integrasi WhatsApp</li>
+                    <li><i class="fas fa-check"></i> Desain responsif mobile</li>
+                    <li><i class="fas fa-check"></i> 5x revisi</li>
+                    <li><i class="fas fa-check"></i> Admin panel mudah</li>
+                    <li><i class="fas fa-check"></i> SEO Optimization</li>
+                </ul>
+                <button class="harga-btn harga-btn-fill" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Profesional+Web+Katalog'">Pilih Profesional</button>
+            </div>
+
+            <div class="harga-card">
+                <div class="harga-paket-name">Enterprise</div>
+                <div class="harga-price">
+                    <span class="currency" style="font-size:0.85rem; line-height:3;">Custom</span>
+                </div>
+                <div class="harga-desc">Untuk kebutuhan khusus skala besar dengan fitur kustom sepenuhnya.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check"></i> Semua fitur Profesional</li>
+                    <li><i class="fas fa-check"></i> Fitur custom sesuai kebutuhan</li>
+                    <li><i class="fas fa-check"></i> Multi-bahasa</li>
+                    <li><i class="fas fa-check"></i> Integrasi payment gateway</li>
+                    <li><i class="fas fa-check"></i> Revisi unlimited</li>
+                    <li><i class="fas fa-check"></i> Dedicated support 24/7</li>
+                    <li><i class="fas fa-check"></i> Maintenance 3 bulan</li>
+                </ul>
+                <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+ingin+diskusi+paket+Enterprise+Web+Katalog'">Hubungi Kami</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PROSES ========== -->
+<section class="proses">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Cara Kerja</span>
+            <h2>Proses Mudah, Hasil Cepat</h2>
+            <p>Dari konsultasi sampai website live, prosesnya simpel dan transparan.</p>
+        </div>
+        <div class="proses-grid fade-up">
+            <div class="proses-step">
+                <div class="step-num completed"><i class="fas fa-comments" style="font-size:1.2rem;"></i></div>
+                <h3>Konsultasi</h3>
+                <p>Ceritakan bisnis dan kebutuhan Anda. Kami bantu tentukan fitur yang tepat.</p>
+            </div>
+            <div class="proses-step">
+                <div class="step-num">2</div>
+                <h3>Desain & Development</h3>
+                <p>Tim kami mulai merancang dan membangun website sesuai brief yang disepakati.</p>
+            </div>
+            <div class="proses-step">
+                <div class="step-num">3</div>
+                <h3>Revisi & Approval</h3>
+                <p>Anda review hasilnya. Kami lakukan perbaikan sampai Anda benar-benar puas.</p>
+            </div>
+            <div class="proses-step">
+                <div class="step-num">4</div>
+                <h3>Website Live! 🚀</h3>
+                <p>Website Anda online dan siap menerima pelanggan dari seluruh Indonesia.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">FAQ</span>
+            <h2>Pertanyaan yang Sering Ditanyakan</h2>
+        </div>
+        <div class="faq-list fade-up">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Berapa lama proses pembuatan web katalog? <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer"><p>Estimasi pengerjaan 7–14 hari kerja tergantung jumlah produk dan kompleksitas desain. Paket Starter biasanya selesai dalam 7 hari, sedangkan Profesional 7–14 hari.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Apakah saya bisa mengelola produk sendiri setelah selesai? <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer"><p>Ya! Paket Profesional dan Enterprise sudah dilengkapi admin panel yang mudah digunakan. Tidak perlu skill coding — cukup klik tambah produk, isi detail, dan upload foto.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Apakah ada biaya tambahan untuk hosting dan domain? <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer"><p>Harga yang tertera belum termasuk biaya hosting dan domain tahunan. Kami bisa bantu rekomendasikan paket hosting yang sesuai budget, mulai dari Rp 60.000/bulan.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Bisnis saya bukan fashion/makanan, apakah bisa dibuat katalog juga? <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer"><p>Tentu bisa! Web katalog kami fleksibel untuk semua jenis bisnis — mulai dari Akun Game, produk kecantikan, spare part, hingga jasa dan properti.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Bagaimana cara pembayarannya? <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer"><p>Pembayaran 50% di awal sebagai tanda jadi, sisanya 50% setelah website selesai dan Anda approve. Tersedia transfer bank (BCA, BRI, Mandiri), DANA, OVO, dan GoPay.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CTA BANNER ========== -->
+<section class="cta-banner">
+    <div class="container">
+        <div class="cta-inner fade-up">
+            <h2>Siap Punya Web Katalog<br>yang Profesional?</h2>
+            <p>Konsultasikan gratis sekarang. Kami bantu tentukan paket terbaik sesuai kebutuhan dan budget Anda.</p>
+            <div class="cta-btns">
+                <a href="https://wa.me/6285779853512?text=Halo+Jeff,+saya+ingin+konsultasi+gratis+Web+Katalog+Produk" target="_blank" class="btn-primary" style="padding: 14px 32px; font-size: 1rem;">
+                    <i class="fab fa-whatsapp"></i> Chat WhatsApp Sekarang
+                </a>
+                <a href="../index.html#kontak" class="btn-secondary" style="padding: 14px 32px; font-size: 1rem;">
+                    <i class="fas fa-envelope"></i> Kirim Pesan
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="footer-slim">
+        <div class="footer-slim-logo">
+            <div class="logo-icon" style="width:36px; height:36px; border-radius:8px; overflow:hidden; background:var(--card-bg2); border:1px solid var(--border2); flex-shrink:0; display:flex; align-items:center; justify-content:center;">
+                <img src="../images/logo.jpg" alt="Jeff" onerror="this.parentElement.style.background='#1A6BFF'; this.style.display='none';">
+            </div>
+            <div>
+                <strong>Jeff</strong>
+                <div style="font-size:10px; color:var(--text-muted);">Jasa Pembuatan Website</div>
+            </div>
+        </div>
+        <div class="footer-slim-links">
+            <a href="../index.html">Beranda</a>
+            <a href="../index.html#promo">Layanan Lain</a>
+            <a href="../index.html#testimoni">Testimoni</a>
+            <a href="../index.html#kontak">Kontak</a>
+        </div>
+        <div class="footer-copy">© 2026 Jeff. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<script>
+// Mobile Menu
+function toggleMenu() {
+    const nav = document.getElementById('mobileNav');
+    const hamburger = document.querySelector('.hamburger');
+    nav.classList.toggle('open');
+    hamburger.classList.toggle('is-open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+    const nav = document.getElementById('mobileNav');
+    const hamburger = document.querySelector('.hamburger');
+    nav.classList.remove('open');
+    hamburger.classList.remove('is-open');
+    document.body.style.overflow = '';
+}
+document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobileNav');
+    const hamburger = document.querySelector('.hamburger');
+    if (nav && nav.classList.contains('open')) {
+        if (!nav.contains(e.target) && !hamburger?.contains(e.target)) closeMenu();
+    }
+});
+
+// Demo Tabs
+function switchTab(tab) {
+    document.querySelectorAll('.demo-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// FAQ Accordion
+function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+}
+
+// Fade-up on scroll
+const fadeEls = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+});
+</script>
+</body>
+</html>
