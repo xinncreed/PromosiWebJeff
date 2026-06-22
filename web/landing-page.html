@@ -308,6 +308,73 @@
         .harga-btn-fill { background: var(--primary); color: #fff; }
         .harga-btn-fill:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
+        /* ---------- NEW: Discount badge & strikethrough ---------- */
+        .harga-discount-tag {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 2px 12px;
+            border-radius: 100px;
+            margin-top: 4px;
+            margin-bottom: 8px;
+        }
+
+        .harga-price-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px 12px;
+            margin-bottom: 2px;
+        }
+
+        .harga-price-original {
+            font-size: 1rem;
+            color: var(--text-dim);
+            text-decoration: line-through;
+            font-weight: 600;
+            margin-right: 2px;
+        }
+
+        /* make sure the main price still looks clean */
+        .harga-price .amount {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .harga-price .currency {
+            font-size: 1rem;
+            color: var(--white);
+            font-weight: 700;
+            vertical-align: top;
+            line-height: 2.2;
+        }
+
+        .harga-price .period {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .harga-price .discount-badge-inline {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 2px 10px;
+            border-radius: 100px;
+            letter-spacing: 0.02em;
+            margin-left: 4px;
+        }
+
+        /* ---- Responsive ---- */
+
         /* FAQ */
         .faq { padding: 80px 0; background: var(--card-bg); }
         .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
@@ -711,9 +778,23 @@
             <p>Pilih paket sesuai skala bisnis Anda. Semua sudah termasuk revisi dan support after-launch.</p>
         </div>
         <div class="harga-grid fade-up">
+
+            <!-- BASIC -->
             <div class="harga-card">
                 <div class="harga-paket-name">Basic</div>
-                <div class="harga-price"><span class="currency">Rp</span><span class="amount">399</span><span class="period">rb</span></div>
+
+                <div class="harga-discount-tag">✨ Diskon Pengguna Pertama</div>
+
+                <div class="harga-price-wrapper">
+                    <span class="harga-price-original">Rp 499 rb</span>
+                    <span class="harga-price">
+                        <span class="currency">Rp</span>
+                        <span class="amount">399</span>
+                        <span class="period">rb</span>
+                    </span>
+                    <span class="discount-badge-inline">hemat 100 rb</span>
+                </div>
+
                 <div class="harga-desc">Ideal untuk UMKM dan bisnis baru yang butuh kehadiran online yang cepat.</div>
                 <ul class="harga-fitur-list">
                     <li><i class="fas fa-check"></i> 1 halaman landing page</li>
@@ -726,10 +807,24 @@
                 </ul>
                 <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Basic+Landing+Page'">Pilih Basic</button>
             </div>
+
+            <!-- PRO (POPULAR) -->
             <div class="harga-card popular">
                 <div class="popular-badge">🔥 Paling Laris</div>
                 <div class="harga-paket-name">Pro</div>
-                <div class="harga-price"><span class="currency">Rp</span><span class="amount">799</span><span class="period">rb</span></div>
+
+                <div class="harga-discount-tag">✨ Diskon Pengguna Pertama</div>
+
+                <div class="harga-price-wrapper">
+                    <span class="harga-price-original">Rp 999 rb</span>
+                    <span class="harga-price">
+                        <span class="currency">Rp</span>
+                        <span class="amount">799</span>
+                        <span class="period">rb</span>
+                    </span>
+                    <span class="discount-badge-inline">hemat 200 rb</span>
+                </div>
+
                 <div class="harga-desc">Untuk bisnis yang serius memasang iklan dan butuh konversi maksimal.</div>
                 <ul class="harga-fitur-list">
                     <li><i class="fas fa-check"></i> 1 halaman + thank you page</li>
@@ -742,9 +837,23 @@
                 </ul>
                 <button class="harga-btn harga-btn-fill" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Pro+Landing+Page'">Pilih Pro</button>
             </div>
+
+            <!-- PREMIUM -->
             <div class="harga-card">
                 <div class="harga-paket-name">Premium</div>
-                <div class="harga-price"><span class="currency">Rp</span><span class="amount">1.4</span><span class="period">jt</span></div>
+
+                <div class="harga-discount-tag">✨ Diskon Pengguna Pertama</div>
+
+                <div class="harga-price-wrapper">
+                    <span class="harga-price-original">Rp 1.8 jt</span>
+                    <span class="harga-price">
+                        <span class="currency">Rp</span>
+                        <span class="amount">1.4</span>
+                        <span class="period">jt</span>
+                    </span>
+                    <span class="discount-badge-inline">hemat 400 rb</span>
+                </div>
+
                 <div class="harga-desc">Paket lengkap untuk brand yang ingin tampil premium dan profesional.</div>
                 <ul class="harga-fitur-list">
                     <li><i class="fas fa-check"></i> Semua fitur Pro</li>
@@ -757,6 +866,7 @@
                 </ul>
                 <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Premium+Landing+Page'">Pilih Premium</button>
             </div>
+
         </div>
     </div>
 </section>
