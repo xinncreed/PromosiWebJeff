@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Jeff – Jasa Pembuatan Website untuk Bisnis Sales & Tim Penjualan. Website yang membantu tim sales Anda closing lebih cepat dan lebih banyak.">
+    <title>Website Bisnis Sales – Jeff</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1A6BFF;
+            --primary-dark: #1355CC;
+            --primary-light: #1a6bff1a;
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --card-bg2: #1c1c1c;
+            --card-bg3: #222222;
+            --text: #f0f0f0;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --white: #FFFFFF;
+            --border: rgba(255,255,255,0.1);
+            --border2: rgba(255,255,255,0.18);
+            --border3: rgba(255,255,255,0.06);
+            --green: #10B981;
+            --gold: #facc15;
+            --red: #f87171;
+            --orange: #F59E0B;
+            --header-h: 68px;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-md: 0 4px 20px rgba(26,107,255,0.15);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+            --transition-fast: all .15s cubic-bezier(0.2,0.9,0.4,1.1);
+            --transition-base: all .25s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--dark-bg); color: var(--text);
+            line-height: 1.6; overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1,h2,h3,h4 { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--white); }
+        p { color: var(--text-muted); line-height: 1.7; }
+        a { text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* HEADER */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(8,8,8,0.96); backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border); height: var(--header-h);
+        }
+        .header-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 24px; height: 100%; gap: 16px;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            overflow: hidden; background: var(--card-bg2); border: 1px solid var(--border2);
+            flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+        }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-text strong { display: block; font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 1.5px; }
+        .logo-text span { font-size: 10px; color: var(--text-muted); }
+        nav { display: flex; align-items: center; gap: 4px; }
+        nav a { padding: 8px 16px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; color: var(--text-muted); transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .header-ctas { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .btn-wa { display: flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: var(--radius-sm); background: #25d366; color: #fff; font-size: 13px; font-weight: 700; transition: var(--transition-fast); white-space: nowrap; }
+        .btn-wa:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-wa svg { width: 15px; height: 15px; flex-shrink: 0; }
+        .hamburger { width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 5px; background: rgba(255,255,255,0.04); flex-shrink: 0; transition: background 0.15s; }
+        .hamburger:hover { background: rgba(255,255,255,0.09); }
+        .hamburger span { display: block; width: 18px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.28s cubic-bezier(0.65,0,0.35,1), opacity 0.2s ease, width 0.2s ease; transform-origin: center; }
+        .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.is-open span:nth-child(2) { opacity: 0; width: 0; }
+        .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-nav {
+            display: flex; flex-direction: column;
+            position: fixed; top: var(--header-h); left: 0; right: 0;
+            background: var(--dark-bg); border-bottom: 1px solid var(--border);
+            padding: 8px 0 20px; z-index: 99;
+            max-height: calc(100vh - var(--header-h)); overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            visibility: hidden; opacity: 0;
+            transform: translateY(-12px) scale(0.99);
+            transform-origin: top center; pointer-events: none;
+            transition: opacity 0.32s cubic-bezier(0.22,1,0.36,1), transform 0.32s cubic-bezier(0.22,1,0.36,1), visibility 0.32s;
+        }
+        .mobile-nav.open { visibility: visible; opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+        .mobile-nav a { padding: 14px 20px; font-size: 15px; font-weight: 700; color: var(--text-muted); border-bottom: 1px solid var(--border3); display: flex; align-items: center; gap: 12px; transition: background 0.15s ease, color 0.15s ease; opacity: 0; transform: translateY(-8px); }
+        .mobile-nav.open a { animation: mobileNavItemIn 0.4s cubic-bezier(0.22,1,0.36,1) forwards; }
+        .mobile-nav.open a:nth-child(1) { animation-delay: 0.04s; }
+        .mobile-nav.open a:nth-child(2) { animation-delay: 0.09s; }
+        .mobile-nav.open a:nth-child(3) { animation-delay: 0.14s; }
+        .mobile-nav.open a:nth-child(4) { animation-delay: 0.19s; }
+        @keyframes mobileNavItemIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* HERO */
+        .hero-sales { position: relative; min-height: 600px; display: flex; align-items: center; padding: 90px 24px 70px; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; background: var(--dark-bg); }
+        .hero-bg::before { content: ''; position: absolute; inset: 0; background: linear-gradient(118deg, #0a0a0a 50%, rgba(26,107,255,0.10) 50%); }
+        .hero-bg::after { content: ''; position: absolute; right: 0; top: 0; width: 52%; height: 100%; background-image: radial-gradient(rgba(26,107,255,0.16) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(to left, rgba(0,0,0,0.5) 0%, transparent 100%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.5) 0%, transparent 100%); }
+        .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 56px; position: relative; z-index: 2; }
+        .hero-content { flex: 1; max-width: 560px; }
+
+        .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 22px; }
+        .breadcrumb a { color: var(--primary); font-weight: 600; }
+        .breadcrumb span { color: var(--text-dim); }
+
+        .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary); background: var(--primary-light); border: 1px solid rgba(26,107,255,0.3); padding: 5px 14px; border-radius: 100px; margin-bottom: 22px; }
+        .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(16,185,129,0.5); animation: pulse-green 1.5s infinite; }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.5); } 70% { box-shadow: 0 0 0 7px rgba(16,185,129,0); } 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); } }
+
+        .hero-content h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.1; margin-bottom: 20px; color: #fff; }
+        .hero-content h1 span { color: var(--primary); }
+        .hero-content h1 em { font-style: normal; background: linear-gradient(90deg, #fff, rgba(255,255,255,0.55)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-content > p { font-size: 1rem; color: rgba(255,255,255,0.72); margin-bottom: 30px; }
+
+        .proof-bar { display: flex; align-items: center; gap: 20px; background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 28px; flex-wrap: wrap; }
+        .proof-item { display: flex; align-items: center; gap: 8px; }
+        .proof-item .num { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+        .proof-item .lbl { font-size: 0.75rem; color: var(--text-muted); line-height: 1.3; }
+        .proof-divider { width: 1px; height: 32px; background: var(--border); flex-shrink: 0; }
+
+        .hero-cta-group { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+        .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: var(--primary); color: #fff; border: none; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: transparent; color: var(--text); border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: var(--transition-fast); font-family: 'Nunito', sans-serif; }
+        .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+
+        /* Hero Visual: Sales Dashboard Mockup */
+        .hero-visual { flex: 1; max-width: 500px; display: flex; align-items: flex-start; justify-content: center; position: relative; }
+        .sales-dashboard { background: var(--card-bg2); border: 1px solid var(--border2); border-radius: var(--radius-xl); overflow: hidden; width: 100%; box-shadow: var(--shadow-lg), 0 0 60px rgba(26,107,255,0.08); }
+        .sd-topbar { background: var(--card-bg3); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+        .sd-dots { display: flex; gap: 5px; }
+        .sd-dot { width: 9px; height: 9px; border-radius: 50%; }
+        .sd-title-bar { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; }
+        .sd-body { padding: 16px; }
+
+        .sd-kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+        .sd-kpi { background: var(--dark-bg); border: 1px solid var(--border3); border-radius: var(--radius-md); padding: 10px 12px; }
+        .sd-kpi .sk-label { font-size: 0.58rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+        .sd-kpi .sk-value { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1; }
+        .sd-kpi .sk-delta { font-size: 0.58rem; font-weight: 700; margin-top: 2px; }
+        .sk-delta.up { color: var(--green); }
+        .sk-delta.down { color: var(--red); }
+
+        .sd-section-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
+
+        /* Mini bar chart */
+        .sd-chart { display: flex; align-items: flex-end; gap: 5px; height: 60px; margin-bottom: 14px; }
+        .sd-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; height: 100%; justify-content: flex-end; }
+        .sd-bar { width: 100%; border-radius: 3px 3px 0 0; background: var(--primary); opacity: 0.6; transition: opacity 0.2s; }
+        .sd-bar.active { opacity: 1; background: var(--primary); }
+        .sd-bar.green { background: var(--green); opacity: 0.7; }
+        .sd-bar-lbl { font-size: 0.48rem; color: var(--text-dim); }
+
+        /* Pipeline */
+        .sd-pipeline { display: flex; flex-direction: column; gap: 6px; }
+        .sd-pipe-row { display: flex; align-items: center; gap: 8px; }
+        .sd-pipe-name { font-size: 0.6rem; color: rgba(255,255,255,0.7); width: 60px; flex-shrink: 0; }
+        .sd-pipe-track { flex: 1; height: 6px; background: var(--card-bg3); border-radius: 3px; overflow: hidden; }
+        .sd-pipe-fill { height: 100%; border-radius: 3px; }
+        .sd-pipe-val { font-size: 0.6rem; font-weight: 700; color: #fff; width: 28px; text-align: right; flex-shrink: 0; }
+
+        /* Float badges */
+        .lp-float-badge { position: absolute; background: var(--card-bg2); border: 1px solid var(--border2); border-radius: var(--radius-md); padding: 8px 12px; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-lg); z-index: 10; }
+        .lp-float-badge .bi { font-size: 1rem; }
+        .lp-float-badge .bt { font-size: 0.7rem; font-weight: 700; color: #fff; white-space: nowrap; }
+        .lp-float-badge .bs { font-size: 0.62rem; color: var(--text-muted); white-space: nowrap; }
+        .badge-tl { top: -16px; right: -10px; }
+        .badge-bl { bottom: -16px; left: -10px; }
+
+        /* SECTION HEADING */
+        .section-heading { text-align: center; margin-bottom: 48px; }
+        .section-heading .badge { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); background: var(--primary-light); padding: 4px 14px; border-radius: 100px; margin-bottom: 16px; }
+        .section-heading h2 { margin-bottom: 12px; font-size: clamp(1.5rem, 4vw, 2.2rem); }
+        .section-heading p { max-width: 600px; margin: 0 auto; }
+
+        /* MASALAH (Pain points) */
+        .masalah { padding: 80px 0; background: var(--card-bg); }
+        .masalah-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .masalah-card { background: var(--card-bg2); border: 1px solid var(--border3); border-radius: var(--radius-lg); padding: 28px 24px; position: relative; overflow: hidden; transition: var(--transition-base); }
+        .masalah-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), rgba(248,113,113,0.3)); }
+        .masalah-card:hover { border-color: rgba(248,113,113,0.25); transform: translateY(-4px); }
+        .masalah-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+        .masalah-card h3 { font-size: 1rem; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
+        .masalah-card p { font-size: 0.82rem; }
+        .masalah-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; color: var(--red); background: rgba(248,113,113,0.1); padding: 2px 10px; border-radius: 100px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+        /* SOLUSI */
+        .solusi { padding: 80px 0; background: var(--dark-bg); }
+        .solusi-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+        .solusi-text h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom: 20px; }
+        .solusi-text h2 span { color: var(--primary); }
+        .solusi-text p { margin-bottom: 24px; }
+        .solusi-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+        .solusi-item { display: flex; align-items: flex-start; gap: 14px; }
+        .solusi-item-icon { width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px; }
+        .solusi-item-text strong { display: block; font-size: 0.9rem; color: #fff; margin-bottom: 2px; }
+        .solusi-item-text p { font-size: 0.8rem; margin: 0; }
+
+        .solusi-visual { display: flex; flex-direction: column; gap: 14px; }
+        .solusi-card-vis { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; transition: var(--transition-base); }
+        .solusi-card-vis:hover { border-color: rgba(26,107,255,0.35); }
+        .sv-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .sv-icon { width: 32px; height: 32px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; }
+        .sv-label { font-size: 0.85rem; font-weight: 700; color: #fff; font-family: 'Rajdhani', sans-serif; }
+        .sv-bar-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+        .sv-bar-track { flex: 1; height: 6px; background: var(--card-bg3); border-radius: 3px; overflow: hidden; }
+        .sv-bar-fill { height: 100%; border-radius: 3px; background: var(--primary); }
+        .sv-bar-val { font-size: 0.7rem; font-weight: 700; color: var(--primary); width: 30px; text-align: right; }
+        .sv-bar-lbl { font-size: 0.62rem; color: var(--text-muted); width: 70px; flex-shrink: 0; }
+
+        /* FITUR UNGGULAN */
+        .fitur { padding: 80px 0; background: var(--card-bg); }
+        .fitur-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .fitur-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 28px 24px; transition: var(--transition-base); position: relative; overflow: hidden; }
+        .fitur-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--primary); opacity: 0; transition: opacity 0.3s; }
+        .fitur-card:hover { border-color: rgba(26,107,255,0.35); transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .fitur-card:hover::after { opacity: 1; }
+        .fitur-icon { width: 52px; height: 52px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px; }
+        .fitur-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
+        .fitur-card p { font-size: 0.82rem; margin-bottom: 16px; }
+        .fitur-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .fitur-tag-item { font-size: 0.65rem; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 3px 10px; border-radius: 100px; }
+
+        /* JENIS BISNIS */
+        .jenis { padding: 80px 0; background: var(--dark-bg); }
+        .jenis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .jenis-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 28px; display: flex; gap: 20px; align-items: flex-start; transition: var(--transition-base); }
+        .jenis-card:hover { border-color: rgba(26,107,255,0.35); transform: translateY(-4px); }
+        .jenis-emoji-box { width: 56px; height: 56px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+        .jenis-body h3 { font-size: 1.05rem; margin-bottom: 6px; }
+        .jenis-body p { font-size: 0.82rem; margin-bottom: 12px; }
+        .jenis-list { display: flex; flex-direction: column; gap: 5px; }
+        .jenis-list-item { display: flex; align-items: center; gap: 7px; font-size: 0.78rem; color: rgba(255,255,255,0.75); }
+        .jenis-list-item i { color: var(--primary); font-size: 0.65rem; }
+
+        /* PROSES */
+        .proses { padding: 80px 0; background: var(--card-bg); }
+        .proses-timeline { max-width: 760px; margin: 0 auto; position: relative; }
+        .proses-timeline::before { content: ''; position: absolute; left: 31px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--primary), rgba(26,107,255,0.08)); }
+        .proses-item { display: flex; gap: 24px; margin-bottom: 40px; position: relative; }
+        .proses-item:last-child { margin-bottom: 0; }
+        .proses-num { width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0; background: var(--card-bg2); border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--primary); position: relative; z-index: 2; }
+        .proses-num.done { background: var(--primary); color: #fff; }
+        .proses-body { padding-top: 12px; flex: 1; }
+        .proses-body h3 { font-size: 1.1rem; margin-bottom: 6px; }
+        .proses-body p { font-size: 0.85rem; }
+        .proses-duration { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 700; color: var(--orange); background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); padding: 2px 10px; border-radius: 100px; margin-top: 8px; }
+
+        /* HARGA */
+        .harga { padding: 80px 0; background: var(--dark-bg); }
+        .harga-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .harga-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 32px; transition: var(--transition-base); position: relative; }
+        .harga-card.popular { border-color: var(--primary); box-shadow: 0 0 40px rgba(26,107,255,0.15); }
+        .popular-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
+        .harga-card:hover:not(.popular) { border-color: rgba(26,107,255,0.4); transform: translateY(-4px); }
+        .harga-card.popular:hover { transform: translateY(-4px); }
+        .harga-paket-name { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary); margin-bottom: 12px; }
+        .harga-discount-tag { display: inline-block; background: var(--red); color: #fff; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 12px; border-radius: 100px; margin-top: 4px; margin-bottom: 8px; }
+        .harga-price-wrapper { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; margin-bottom: 2px; }
+        .harga-price-original { font-size: 1rem; color: var(--text-dim); text-decoration: line-through; font-weight: 600; }
+        .harga-price .currency { font-size: 1rem; color: var(--white); font-weight: 700; vertical-align: top; line-height: 2.2; }
+        .harga-price .amount { font-family: 'Rajdhani', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+        .harga-price .period { font-size: 0.8rem; color: var(--text-muted); }
+        .discount-badge-inline { display: inline-block; background: var(--red); color: #fff; font-size: 0.6rem; font-weight: 800; padding: 2px 10px; border-radius: 100px; letter-spacing: 0.02em; margin-left: 4px; }
+        .harga-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border3); margin-top: 10px; }
+        .harga-fitur-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+        .harga-fitur-list li { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+        .harga-fitur-list li i { color: var(--green); font-size: 0.75rem; width: 16px; }
+        .harga-fitur-list li.muted { color: var(--text-dim); }
+        .harga-fitur-list li.muted i { color: var(--text-dim); }
+        .harga-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.9rem; cursor: pointer; font-family: 'Nunito', sans-serif; transition: var(--transition-fast); border: none; }
+        .harga-btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+        .harga-btn-outline:hover { background: var(--primary); color: #fff; }
+        .harga-btn-fill { background: var(--primary); color: #fff; }
+        .harga-btn-fill:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        /* TESTIMONI */
+        .testimoni { padding: 80px 0; background: var(--card-bg); }
+        .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .testi-card { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; transition: var(--transition-base); }
+        .testi-card:hover { border-color: rgba(26,107,255,0.3); transform: translateY(-3px); }
+        .testi-stars { display: flex; gap: 3px; margin-bottom: 12px; }
+        .testi-stars i { color: var(--gold); font-size: 0.8rem; }
+        .testi-text { font-size: 0.85rem; color: rgba(255,255,255,0.75); margin-bottom: 16px; font-style: italic; line-height: 1.6; }
+        .testi-author { display: flex; align-items: center; gap: 10px; }
+        .testi-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; font-weight: 700; color: #fff; }
+        .testi-author-name { font-size: 0.82rem; font-weight: 700; color: #fff; }
+        .testi-author-role { font-size: 0.7rem; color: var(--text-muted); }
+
+        /* FAQ */
+        .faq { padding: 80px 0; background: var(--dark-bg); }
+        .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .faq-item { background: var(--card-bg2); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+        .faq-question { width: 100%; padding: 18px 20px; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 700; color: #fff; text-align: left; }
+        .faq-question i { color: var(--primary); transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.open .faq-question i { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s; }
+        .faq-item.open .faq-answer { max-height: 200px; padding: 0 20px 18px; }
+        .faq-answer p { font-size: 0.85rem; }
+
+        /* CTA */
+        .cta-banner { padding: 80px 0; background: var(--card-bg); }
+        .cta-inner { background: linear-gradient(135deg, rgba(26,107,255,0.15) 0%, rgba(19,85,204,0.08) 100%); border: 1px solid rgba(26,107,255,0.25); border-radius: var(--radius-xl); padding: 60px 40px; text-align: center; position: relative; overflow: hidden; }
+        .cta-inner::before { content: ''; position: absolute; top: -50%; right: -10%; width: 60%; height: 200%; background: radial-gradient(ellipse, rgba(26,107,255,0.12) 0%, transparent 70%); pointer-events: none; }
+        .cta-inner h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 14px; position: relative; }
+        .cta-inner > p { margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; position: relative; }
+        .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+        .btn-wa-cta { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; font-size: 1rem; background: #25d366; color: #fff; border: none; border-radius: var(--radius-sm); font-weight: 700; font-family: 'Nunito', sans-serif; cursor: pointer; transition: var(--transition-fast); }
+        .btn-wa-cta:hover { background: #1ebe5b; transform: translateY(-2px); box-shadow: 0 4px 20px rgba(37,211,102,0.3); }
+
+        /* FOOTER */
+        footer { background: var(--card-bg); border-top: 1px solid var(--border); padding: 32px 0 20px; }
+        .footer-slim { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .footer-slim-logo { display: flex; align-items: center; gap: 10px; }
+        .footer-slim-logo strong { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: #fff; }
+        .footer-slim-links { display: flex; gap: 16px; flex-wrap: wrap; }
+        .footer-slim-links a { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; transition: color 0.15s; }
+        .footer-slim-links a:hover { color: var(--primary); }
+        .footer-copy { font-size: 0.75rem; color: var(--text-dim); }
+
+        /* ANIMATION */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .masalah-grid { grid-template-columns: repeat(2, 1fr); }
+            .solusi-inner { grid-template-columns: 1fr; gap: 40px; }
+            .fitur-grid { grid-template-columns: repeat(2, 1fr); }
+            .jenis-grid { grid-template-columns: 1fr; }
+            .harga-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+            .testi-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            :root { --header-h: 60px; }
+            nav { display: none; }
+            .hamburger { display: flex; }
+            .btn-wa span { display: none; }
+            .btn-wa { padding: 8px 12px; }
+            .hero-inner { flex-direction: column; }
+            .hero-content { max-width: 100%; text-align: center; }
+            .hero-cta-group { justify-content: center; }
+            .proof-bar { justify-content: center; }
+            .hero-visual { width: 100%; max-width: 100%; }
+            .masalah-grid { grid-template-columns: 1fr; }
+            .fitur-grid { grid-template-columns: 1fr; }
+            .testi-grid { grid-template-columns: 1fr; }
+            .cta-inner { padding: 36px 20px; }
+            footer { padding: 28px 0 20px; }
+            .footer-slim { flex-direction: column; text-align: center; gap: 18px; }
+            .footer-slim-logo { justify-content: center; }
+            .footer-slim-links { justify-content: center; gap: 14px 18px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero-sales { padding: 50px 16px 40px; }
+            .footer-slim-links { flex-direction: column; align-items: center; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <img src="../images/logo.jpg" alt="Jeff" onerror="this.parentElement.style.background='#1A6BFF'; this.style.display='none';">
+            </div>
+            <div class="logo-text">
+                <strong>Jeff</strong>
+                <span>Jasa Pembuatan Website</span>
+            </div>
+        </a>
+        <nav>
+            <a href="../index.html#beranda">Beranda</a>
+            <a href="../index.html#promo">Cari Website</a>
+            <a href="../index.html#testimoni">Testimoni</a>
+            <a href="../index.html#kontak">Kontak</a>
+        </nav>
+        <div class="header-ctas">
+            <a href="https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+dengan+Website+Bisnis+Sales" class="btn-wa" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.2a1 1 0 001.254 1.254l3.032-.892A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.67 0-3.23-.46-4.57-1.26l-.33-.19-2.19.64.65-2.13-.21-.34A8 8 0 0112 4a8 8 0 010 16z"/>
+                </svg>
+                <span>WhatsApp</span>
+            </a>
+            <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        </div>
+    </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+    <a href="../index.html#beranda" onclick="closeMenu()">Beranda</a>
+    <a href="../index.html#promo" onclick="closeMenu()">Cari Website</a>
+    <a href="../index.html#testimoni" onclick="closeMenu()">Testimoni</a>
+    <a href="../index.html#kontak" onclick="closeMenu()">Kontak</a>
+</div>
+
+<!-- HERO -->
+<section class="hero-sales">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+        <div class="hero-content fade-up">
+            <div class="breadcrumb">
+                <a href="../index.html">Beranda</a><span>›</span>
+                <a href="../index.html#promo">Layanan</a><span>›</span>
+                <span style="color:var(--text);">Website Bisnis Sales</span>
+            </div>
+            <div class="hero-eyebrow"><span class="live-dot"></span> Solusi Digital untuk Tim Penjualan</div>
+            <h1>Website yang Membantu<br>Tim Sales Anda <span>Closing</span><br><em>Lebih Cepat</em></h1>
+            <p>Bukan website biasa — ini senjata tim sales Anda. Dilengkapi company profile, katalog produk, dan halaman penawaran yang meyakinkan calon klien sebelum meeting pertama.</p>
+            <div class="proof-bar">
+                <div class="proof-item"><div class="num">2×</div><div class="lbl">Lebih cepat<br>closing</div></div>
+                <div class="proof-divider"></div>
+                <div class="proof-item"><div class="num">+60%</div><div class="lbl">Tingkat<br>kepercayaan</div></div>
+                <div class="proof-divider"></div>
+                <div class="proof-item"><div class="num">7 hari</div><div class="lbl">Website<br>siap pakai</div></div>
+            </div>
+            <div class="hero-cta-group">
+                <a href="../index.html#kontak" class="btn-primary"><i class="fas fa-rocket"></i> Buat Website Sales Saya</a>
+                <a href="#fitur" class="btn-secondary"><i class="fas fa-eye"></i> Lihat Fitur</a>
+            </div>
+        </div>
+
+        <div class="hero-visual fade-up" style="margin-top:32px;">
+            <div class="lp-float-badge badge-tl">
+                <div class="bi">🤝</div>
+                <div><div class="bt">Closing rate naik</div><div class="bs">rata-rata klien kami</div></div>
+            </div>
+            <div class="lp-float-badge badge-bl">
+                <div class="bi">⚡</div>
+                <div><div class="bt">Live dalam 7 hari</div><div class="bs">Siap dipakai tim sales</div></div>
+            </div>
+            <div class="sales-dashboard">
+                <div class="sd-topbar">
+                    <div class="sd-dots">
+                        <div class="sd-dot" style="background:#f87171;"></div>
+                        <div class="sd-dot" style="background:#facc15;"></div>
+                        <div class="sd-dot" style="background:#10B981;"></div>
+                    </div>
+                    <div class="sd-title-bar">📊 Sales Overview — Dashboard</div>
+                    <div style="width:60px;"></div>
+                </div>
+                <div class="sd-body">
+                    <div class="sd-kpi-row">
+                        <div class="sd-kpi">
+                            <div class="sk-label">Leads Masuk</div>
+                            <div class="sk-value">248</div>
+                            <div class="sk-delta up">▲ 34% vs bulan lalu</div>
+                        </div>
+                        <div class="sd-kpi">
+                            <div class="sk-label">Closing Rate</div>
+                            <div class="sk-value">38%</div>
+                            <div class="sk-delta up">▲ 12% naik</div>
+                        </div>
+                        <div class="sd-kpi">
+                            <div class="sk-label">Omzet</div>
+                            <div class="sk-value">84jt</div>
+                            <div class="sk-delta up">▲ Rekor baru</div>
+                        </div>
+                    </div>
+                    <div class="sd-section-label">Performa 7 Hari Terakhir</div>
+                    <div class="sd-chart">
+                        <div class="sd-bar-wrap"><div class="sd-bar" style="height:45%;"></div><div class="sd-bar-lbl">Sen</div></div>
+                        <div class="sd-bar-wrap"><div class="sd-bar" style="height:60%;"></div><div class="sd-bar-lbl">Sel</div></div>
+                        <div class="sd-bar-wrap"><div class="sd-bar" style="height:50%;"></div><div class="sd-bar-lbl">Rab</div></div>
+                        <div class="sd-bar-wrap"><div class="sd-bar" style="height:80%;"></div><div class="sd-bar-lbl">Kam</div></div>
+                        <div class="sd-bar-wrap"><div class="sd-bar green" style="height:70%;"></div><div class="sd-bar-lbl">Jum</div></div>
+                        <div class="sd-bar-wrap"><div class="sd-bar active" style="height:100%;"></div><div class="sd-bar-lbl">Sab</div></div>
+                        <div class="sd-bar-wrap"><div class="sd-bar" style="height:55%;"></div><div class="sd-bar-lbl">Min</div></div>
+                    </div>
+                    <div class="sd-section-label">Pipeline Penjualan</div>
+                    <div class="sd-pipeline">
+                        <div class="sd-pipe-row">
+                            <div class="sd-pipe-name">Prospek Baru</div>
+                            <div class="sd-pipe-track"><div class="sd-pipe-fill" style="width:90%; background:var(--primary);"></div></div>
+                            <div class="sd-pipe-val">90</div>
+                        </div>
+                        <div class="sd-pipe-row">
+                            <div class="sd-pipe-name">Follow-up</div>
+                            <div class="sd-pipe-track"><div class="sd-pipe-fill" style="width:65%; background:var(--orange);"></div></div>
+                            <div class="sd-pipe-val">65</div>
+                        </div>
+                        <div class="sd-pipe-row">
+                            <div class="sd-pipe-name">Penawaran</div>
+                            <div class="sd-pipe-track"><div class="sd-pipe-fill" style="width:42%; background:var(--gold);"></div></div>
+                            <div class="sd-pipe-val">42</div>
+                        </div>
+                        <div class="sd-pipe-row">
+                            <div class="sd-pipe-name">Closing ✅</div>
+                            <div class="sd-pipe-track"><div class="sd-pipe-fill" style="width:30%; background:var(--green);"></div></div>
+                            <div class="sd-pipe-val">30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MASALAH (Pain Points) -->
+<section class="masalah">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Kenali Masalahnya</span>
+            <h2>Masalah yang Dialami Tim Sales Tanpa Website Profesional</h2>
+            <p>Apakah salah satu dari ini terasa familiar?</p>
+        </div>
+        <div class="masalah-grid fade-up">
+            <div class="masalah-card">
+                <span class="masalah-icon">😤</span>
+                <span class="masalah-tag">Kehilangan Kepercayaan</span>
+                <h3>Calon klien ragu karena tidak ada bukti online</h3>
+                <p>Ketika prospek search nama bisnis Anda dan tidak menemukan apa-apa — mereka langsung kabur ke kompetitor yang punya website lebih meyakinkan.</p>
+            </div>
+            <div class="masalah-card">
+                <span class="masalah-icon">📄</span>
+                <span class="masalah-tag">Proses Manual</span>
+                <h3>Sales kirim PDF & brosur satu per satu lewat WhatsApp</h3>
+                <p>File tidak konsisten, mudah terhapus, dan tidak ada cara untuk tahu apakah calon klien sudah membaca penawaran Anda atau belum.</p>
+            </div>
+            <div class="masalah-card">
+                <span class="masalah-icon">⏰</span>
+                <span class="masalah-tag">Buang Waktu</span>
+                <h3>Waktu meeting habis untuk menjelaskan hal yang sama berulang</h3>
+                <p>Tim sales menghabiskan terlalu banyak energi menjelaskan profil perusahaan dan produk — bukan fokus ke closing dan negosiasi.</p>
+            </div>
+            <div class="masalah-card">
+                <span class="masalah-icon">📉</span>
+                <span class="masalah-tag">Konversi Rendah</span>
+                <h3>Follow-up tidak efektif, prospek menghilang begitu saja</h3>
+                <p>Tanpa halaman penawaran online yang bisa dikirim ulang, sulit menjaga momentum dan mendorong prospek untuk mengambil keputusan.</p>
+            </div>
+            <div class="masalah-card">
+                <span class="masalah-icon">🏳️</span>
+                <span class="masalah-tag">Kalah Saing</span>
+                <h3>Kompetitor terlihat lebih besar dan profesional secara digital</h3>
+                <p>Di mata calon klien, bisnis dengan website profesional terasa lebih terpercaya — meski produk Anda sebenarnya jauh lebih baik.</p>
+            </div>
+            <div class="masalah-card">
+                <span class="masalah-icon">🔍</span>
+                <span class="masalah-tag">Tidak Ditemukan</span>
+                <h3>Tidak muncul saat calon klien mencari di Google</h3>
+                <p>Puluhan prospek potensial kehilangan Anda setiap bulan karena bisnis Anda tidak terindeks di mesin pencari sama sekali.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOLUSI -->
+<section class="solusi" id="solusi">
+    <div class="container">
+        <div class="solusi-inner">
+            <div class="solusi-text fade-up">
+                <span class="section-heading badge" style="display:inline-block; text-align:left; margin-bottom:16px;">Solusi Kami</span>
+                <h2>Website yang Bekerja sebagai <span>Sales Tool</span> Terkuat Tim Anda</h2>
+                <p>Kami bangun website yang bukan sekadar "kehadiran online" — tapi alat yang aktif membantu tim sales Anda meyakinkan, follow-up, dan closing prospek.</p>
+                <div class="solusi-list">
+                    <div class="solusi-item">
+                        <div class="solusi-item-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="solusi-item-text">
+                            <strong>Bangun Kepercayaan Sebelum Meeting</strong>
+                            <p>Kirim link website kepada prospek sebelum presentasi. Mereka tiba lebih siap dan lebih percaya dengan bisnis Anda.</p>
+                        </div>
+                    </div>
+                    <div class="solusi-item">
+                        <div class="solusi-item-icon"><i class="fas fa-share-alt"></i></div>
+                        <div class="solusi-item-text">
+                            <strong>Katalog Produk & Penawaran Digital</strong>
+                            <p>Ganti PDF berat dengan halaman online yang rapi — mudah dibagikan via WhatsApp dan selalu tampil profesional di semua perangkat.</p>
+                        </div>
+                    </div>
+                    <div class="solusi-item">
+                        <div class="solusi-item-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="solusi-item-text">
+                            <strong>Percepat Siklus Penjualan</strong>
+                            <p>Prospek bisa riset produk, baca testimoni, dan langsung hubungi sales Anda tanpa perlu tunggu jadwal presentasi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="solusi-visual fade-up">
+                <div class="solusi-card-vis">
+                    <div class="sv-header">
+                        <div class="sv-icon" style="background:rgba(16,185,129,0.15); color:var(--green);"><i class="fas fa-chart-bar"></i></div>
+                        <div class="sv-label">Efektivitas Tim Sales — Sebelum vs Sesudah</div>
+                    </div>
+                    <div class="sv-bar-wrap">
+                        <div class="sv-bar-lbl">Closing Rate</div>
+                        <div class="sv-bar-track"><div class="sv-bar-fill" style="width:82%; background:var(--green);"></div></div>
+                        <div class="sv-bar-val" style="color:var(--green);">+82%</div>
+                    </div>
+                    <div class="sv-bar-wrap">
+                        <div class="sv-bar-lbl">Trust Prospek</div>
+                        <div class="sv-bar-track"><div class="sv-bar-fill" style="width:74%; background:var(--primary);"></div></div>
+                        <div class="sv-bar-val">+74%</div>
+                    </div>
+                    <div class="sv-bar-wrap">
+                        <div class="sv-bar-lbl">Waktu Closing</div>
+                        <div class="sv-bar-track"><div class="sv-bar-fill" style="width:60%; background:var(--orange);"></div></div>
+                        <div class="sv-bar-val" style="color:var(--orange);">−60%</div>
+                    </div>
+                </div>
+                <div class="solusi-card-vis">
+                    <div class="sv-header">
+                        <div class="sv-icon" style="background:rgba(26,107,255,0.15); color:var(--primary);"><i class="fas fa-comments-dollar"></i></div>
+                        <div class="sv-label">Yang Bisa Dilakukan Sales Anda</div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <div style="display:flex; align-items:center; gap:10px; font-size:0.82rem; color:rgba(255,255,255,0.75);">
+                            <i class="fas fa-check-circle" style="color:var(--green); font-size:0.85rem;"></i>
+                            Kirim link profil perusahaan via WA dalam 3 detik
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px; font-size:0.82rem; color:rgba(255,255,255,0.75);">
+                            <i class="fas fa-check-circle" style="color:var(--green); font-size:0.85rem;"></i>
+                            Prospek lihat katalog produk lengkap kapan saja
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px; font-size:0.82rem; color:rgba(255,255,255,0.75);">
+                            <i class="fas fa-check-circle" style="color:var(--green); font-size:0.85rem;"></i>
+                            Testimoni & case study meyakinkan otomatis
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px; font-size:0.82rem; color:rgba(255,255,255,0.75);">
+                            <i class="fas fa-check-circle" style="color:var(--green); font-size:0.85rem;"></i>
+                            Tombol WA langsung hubungi tim sales
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FITUR UNGGULAN -->
+<section class="fitur" id="fitur">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Fitur Unggulan</span>
+            <h2>Semua yang Dibutuhkan Tim Sales Anda</h2>
+            <p>Setiap fitur dirancang spesifik untuk membantu tim sales bekerja lebih efektif dan closing lebih banyak.</p>
+        </div>
+        <div class="fitur-grid fade-up">
+            <div class="fitur-card">
+                <div class="fitur-icon" style="background:rgba(26,107,255,0.15); color:var(--primary);"><i class="fas fa-building"></i></div>
+                <h3>Company Profile Digital</h3>
+                <p>Profil perusahaan yang profesional dan mudah dibagikan. Ceritakan sejarah, visi, tim, dan pencapaian bisnis Anda dengan tampilan yang meyakinkan.</p>
+                <div class="fitur-tags">
+                    <span class="fitur-tag-item">Tentang Perusahaan</span>
+                    <span class="fitur-tag-item">Tim & Struktur</span>
+                    <span class="fitur-tag-item">Sertifikat & Award</span>
+                </div>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon" style="background:rgba(16,185,129,0.15); color:var(--green);"><i class="fas fa-boxes"></i></div>
+                <h3>Katalog Produk & Layanan</h3>
+                <p>Tampilkan seluruh lini produk atau jasa Anda dengan foto, deskripsi, dan spesifikasi yang lengkap — bisa dicari dan disaring oleh prospek.</p>
+                <div class="fitur-tags">
+                    <span class="fitur-tag-item">Filter Produk</span>
+                    <span class="fitur-tag-item">Foto HD</span>
+                    <span class="fitur-tag-item">Spesifikasi</span>
+                </div>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon" style="background:rgba(250,204,21,0.12); color:var(--gold);"><i class="fas fa-star"></i></div>
+                <h3>Testimoni & Social Proof</h3>
+                <p>Tampilkan ulasan klien, logo perusahaan yang sudah bermitra, dan studi kasus sukses untuk membangun kepercayaan prospek secara otomatis.</p>
+                <div class="fitur-tags">
+                    <span class="fitur-tag-item">Review Klien</span>
+                    <span class="fitur-tag-item">Logo Mitra</span>
+                    <span class="fitur-tag-item">Case Study</span>
+                </div>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon" style="background:rgba(245,158,11,0.12); color:var(--orange);"><i class="fas fa-file-invoice"></i></div>
+                <h3>Halaman Penawaran Digital</h3>
+                <p>Buat halaman penawaran khusus per produk atau per klien yang bisa dikirim via WhatsApp — lebih profesional dari PDF, lebih mudah dari presentasi.</p>
+                <div class="fitur-tags">
+                    <span class="fitur-tag-item">Harga Transparan</span>
+                    <span class="fitur-tag-item">Paket Bundling</span>
+                    <span class="fitur-tag-item">CTA Langsung</span>
+                </div>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon" style="background:rgba(248,113,113,0.12); color:var(--red);"><i class="fas fa-headset"></i></div>
+                <h3>Integrasi WhatsApp Tim Sales</h3>
+                <p>Tombol WA yang langsung terhubung ke nomor sales yang tepat berdasarkan produk atau area. Tidak ada prospek yang terlewat atau salah arah.</p>
+                <div class="fitur-tags">
+                    <span class="fitur-tag-item">Routing Otomatis</span>
+                    <span class="fitur-tag-item">Pesan Template</span>
+                    <span class="fitur-tag-item">Multi-Sales</span>
+                </div>
+            </div>
+            <div class="fitur-card">
+                <div class="fitur-icon" style="background:rgba(26,107,255,0.15); color:var(--primary);"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Mobile-First & Super Cepat</h3>
+                <p>Lebih dari 80% prospek mengakses dari HP saat meeting atau perjalanan. Website Anda tampil sempurna dan loading cepat di semua perangkat.</p>
+                <div class="fitur-tags">
+                    <span class="fitur-tag-item">Responsif</span>
+                    <span class="fitur-tag-item">Loading Cepat</span>
+                    <span class="fitur-tag-item">SEO Dasar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- JENIS BISNIS YANG COCOK -->
+<section class="jenis" id="jenis">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Cocok untuk Bisnis Anda?</span>
+            <h2>Ideal untuk Berbagai Jenis Bisnis Sales</h2>
+            <p>Website sales kami dirancang fleksibel — cocok untuk berbagai industri dan model penjualan.</p>
+        </div>
+        <div class="jenis-grid fade-up">
+            <div class="jenis-card">
+                <div class="jenis-emoji-box" style="background:rgba(26,107,255,0.12);">🏭</div>
+                <div class="jenis-body">
+                    <h3>Distributor & Supplier B2B</h3>
+                    <p>Tampilkan katalog produk lengkap, MOQ, dan wilayah distribusi. Permudah buyer dari luar kota untuk riset dan langsung hubungi sales Anda.</p>
+                    <div class="jenis-list">
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Katalog produk dengan filter & pencarian</div>
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Halaman area distribusi & keagenan</div>
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Form inquiry harga & stok</div>
+                    </div>
+                </div>
+            </div>
+            <div class="jenis-card">
+                <div class="jenis-emoji-box" style="background:rgba(16,185,129,0.12);">🏢</div>
+                <div class="jenis-body">
+                    <h3>Jasa & Konsultan Profesional</h3>
+                    <p>Bangun kredibilitas dengan portofolio proyek, profil tim ahli, dan proses kerja yang jelas. Ubah prospek ragu menjadi klien yang siap sign kontrak.</p>
+                    <div class="jenis-list">
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Portofolio proyek & case study</div>
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Profil tim & sertifikasi</div>
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Halaman layanan + paket harga</div>
+                    </div>
+                </div>
+            </div>
+            <div class="jenis-card">
+                <div class="jenis-emoji-box" style="background:rgba(250,204,21,0.10);">🏠</div>
+                <div class="jenis-body">
+                    <h3>Properti & Developer</h3>
+                    <p>Tampilkan unit, tipe, lokasi, dan simulasi cicilan. Tim sales bisa berbagi link ke calon buyer yang ingin riset sebelum datang ke lokasi.</p>
+                    <div class="jenis-list">
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Galeri unit & denah lantai</div>
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Tabel harga & ketersediaan unit</div>
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Form booking kunjungan</div>
+                    </div>
+                </div>
+            </div>
+            <div class="jenis-card">
+                <div class="jenis-emoji-box" style="background:rgba(245,158,11,0.12);">🚗</div>
+                <div class="jenis-body">
+                    <h3>Otomotif & Alat Berat</h3>
+                    <p>Spesifikasi teknis, perbandingan tipe kendaraan, dan simulasi harga bisa diakses prospek kapan saja — bantu tim sales tutup deal lebih cepat.</p>
+                    <div class="jenis-list">
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Halaman produk per tipe & varian</div>
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Simulasi harga & cicilan</div>
+                        <div class="jenis-list-item"><i class="fas fa-check"></i> Jadwal test drive / demo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROSES -->
+<section class="proses">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Alur Pengerjaan</span>
+            <h2>Website Sales Anda Siap dalam 7 Hari</h2>
+            <p>Proses terstruktur agar hasilnya tepat sasaran dan tim sales bisa langsung pakai.</p>
+        </div>
+        <div class="proses-timeline fade-up">
+            <div class="proses-item">
+                <div class="proses-num done"><i class="fas fa-comments" style="font-size:1.2rem;"></i></div>
+                <div class="proses-body">
+                    <h3>Konsultasi Kebutuhan Tim Sales</h3>
+                    <p>Kami pelajari proses penjualan Anda: siapa prospeknya, bagaimana tim sales bekerja, dan apa yang sering ditanyakan calon klien sebelum deal.</p>
+                    <div class="proses-duration"><i class="fas fa-clock"></i> 1–2 jam</div>
+                </div>
+            </div>
+            <div class="proses-item">
+                <div class="proses-num">2</div>
+                <div class="proses-body">
+                    <h3>Pengumpulan Aset & Konten</h3>
+                    <p>Kami bantu kumpulkan dan susun konten: foto produk, deskripsi layanan, testimoni klien, profil tim, dan informasi perusahaan yang perlu ditampilkan.</p>
+                    <div class="proses-duration"><i class="fas fa-clock"></i> 1–2 hari</div>
+                </div>
+            </div>
+            <div class="proses-item">
+                <div class="proses-num">3</div>
+                <div class="proses-body">
+                    <h3>Desain & Development</h3>
+                    <p>Tim kami kerjakan desain yang mencerminkan identitas bisnis Anda dan setiap halaman dioptimalkan untuk mendukung proses penjualan.</p>
+                    <div class="proses-duration"><i class="fas fa-clock"></i> 3–5 hari kerja</div>
+                </div>
+            </div>
+            <div class="proses-item">
+                <div class="proses-num">4</div>
+                <div class="proses-body">
+                    <h3>Review, Revisi & Training Tim</h3>
+                    <p>Anda dan tim cek hasilnya. Kami revisi sampai puas, lalu kami jelaskan cara tim sales menggunakan website ini secara efektif untuk closing.</p>
+                    <div class="proses-duration"><i class="fas fa-clock"></i> 1–2 hari</div>
+                </div>
+            </div>
+            <div class="proses-item">
+                <div class="proses-num">5</div>
+                <div class="proses-body">
+                    <h3>🚀 Website Live — Tim Sales Siap Closing!</h3>
+                    <p>Website online, tim sales sudah pegang "senjata" baru. Kami tetap standby untuk support setelah launch.</p>
+                    <div class="proses-duration"><i class="fas fa-clock"></i> Total: 5–7 hari</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HARGA -->
+<section class="harga">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Paket Harga</span>
+            <h2>Investasi yang Langsung Terbayar dari Satu Deal</h2>
+            <p>Pilih paket sesuai skala tim sales dan kebutuhan bisnis Anda. Semua sudah termasuk revisi dan support.</p>
+        </div>
+        <div class="harga-grid fade-up">
+
+            <!-- STARTER -->
+            <div class="harga-card">
+                <div class="harga-paket-name">Starter</div>
+                <div class="harga-discount-tag">✨ Diskon Pengguna Pertama</div>
+                <div class="harga-price-wrapper">
+                    <span class="harga-price-original">Rp 699 rb</span>
+                    <span class="harga-price">
+                        <span class="currency">Rp</span>
+                        <span class="amount">549</span>
+                        <span class="period">rb</span>
+                    </span>
+                    <span class="discount-badge-inline">hemat 150 rb</span>
+                </div>
+                <div class="harga-desc">Untuk bisnis kecil atau sales freelance yang butuh kehadiran profesional yang bisa dibagikan ke prospek.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check"></i> Company profile 1 halaman</li>
+                    <li><i class="fas fa-check"></i> Katalog produk/jasa (hingga 6 item)</li>
+                    <li><i class="fas fa-check"></i> Integrasi tombol WhatsApp</li>
+                    <li><i class="fas fa-check"></i> Desain responsif mobile</li>
+                    <li><i class="fas fa-check"></i> 2x revisi</li>
+                    <li class="muted"><i class="fas fa-times"></i> Halaman penawaran terpisah</li>
+                    <li class="muted"><i class="fas fa-times"></i> Multi-sales WA routing</li>
+                </ul>
+                <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Starter+Website+Sales'">Pilih Starter</button>
+            </div>
+
+            <!-- BISNIS (POPULAR) -->
+            <div class="harga-card popular">
+                <div class="popular-badge">🔥 Paling Dipilih</div>
+                <div class="harga-paket-name">Bisnis</div>
+                <div class="harga-discount-tag">✨ Diskon Pengguna Pertama</div>
+                <div class="harga-price-wrapper">
+                    <span class="harga-price-original">Rp 1.5 jt</span>
+                    <span class="harga-price">
+                        <span class="currency">Rp</span>
+                        <span class="amount">1.1</span>
+                        <span class="period">jt</span>
+                    </span>
+                    <span class="discount-badge-inline">hemat 400 rb</span>
+                </div>
+                <div class="harga-desc">Untuk tim sales aktif yang butuh website lengkap sebagai alat closing sehari-hari.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check"></i> Company profile multi-halaman</li>
+                    <li><i class="fas fa-check"></i> Katalog produk/jasa (hingga 20 item)</li>
+                    <li><i class="fas fa-check"></i> Halaman penawaran / pricing</li>
+                    <li><i class="fas fa-check"></i> Testimoni & logo klien</li>
+                    <li><i class="fas fa-check"></i> Multi-sales WA routing</li>
+                    <li><i class="fas fa-check"></i> 5x revisi + SEO dasar</li>
+                    <li><i class="fas fa-check"></i> Training penggunaan untuk tim</li>
+                </ul>
+                <button class="harga-btn harga-btn-fill" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Bisnis+Website+Sales'">Pilih Bisnis</button>
+            </div>
+
+            <!-- ENTERPRISE -->
+            <div class="harga-card">
+                <div class="harga-paket-name">Enterprise</div>
+                <div class="harga-discount-tag">✨ Diskon Pengguna Pertama</div>
+                <div class="harga-price-wrapper">
+                    <span class="harga-price-original">Rp 3 jt</span>
+                    <span class="harga-price">
+                        <span class="currency">Rp</span>
+                        <span class="amount">2.3</span>
+                        <span class="period">jt</span>
+                    </span>
+                    <span class="discount-badge-inline">hemat 700 rb</span>
+                </div>
+                <div class="harga-desc">Untuk perusahaan dengan tim sales besar yang butuh ekosistem digital penjualan yang lengkap.</div>
+                <ul class="harga-fitur-list">
+                    <li><i class="fas fa-check"></i> Semua fitur Bisnis</li>
+                    <li><i class="fas fa-check"></i> Katalog produk tak terbatas</li>
+                    <li><i class="fas fa-check"></i> Halaman case study & portofolio</li>
+                    <li><i class="fas fa-check"></i> Copywriting seluruh halaman</li>
+                    <li><i class="fas fa-check"></i> Revisi unlimited</li>
+                    <li><i class="fas fa-check"></i> Maintenance 2 bulan</li>
+                    <li><i class="fas fa-check"></i> Konsultasi strategi digital sales</li>
+                </ul>
+                <button class="harga-btn harga-btn-outline" onclick="location.href='https://wa.me/6285779853512?text=Halo+Jeff,+saya+tertarik+paket+Enterprise+Website+Sales'">Pilih Enterprise</button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONI -->
+<section class="testimoni">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Kata Klien Kami</span>
+            <h2>Bisnis Sales yang Sudah Merasakannya</h2>
+        </div>
+        <div class="testi-grid fade-up">
+            <div class="testi-card">
+                <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="testi-text">"Dulu tim kami kirim PDF brosur lewat WA yang sering diabaikan. Sekarang cukup kirim link website — prospek langsung bilang 'wah profesional sekali'. Closing rate naik drastis."</div>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background:linear-gradient(135deg, #1A6BFF, #0d40b0);">RH</div>
+                    <div>
+                        <div class="testi-author-name">Rudi Hartono</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="testi-text">"Sebelum meeting, saya share link ke calon klien. Waktu ketemu, mereka sudah tahu produk kita, sudah baca testimoni, jadi meeting lebih cepat dan lebih mudah deal-nya."</div>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background:linear-gradient(135deg, #10B981, #059669);">SW</div>
+                    <div>
+                        <div class="testi-author-name">Siti Wulandari</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="testi-text">"Investasinya tidak sampai 2 juta, tapi dari satu deal saja sudah balik modal berkali-kali. Tim saya sekarang lebih percaya diri saat ketemu prospek baru."</div>
+                <div class="testi-author">
+                    <div class="testi-avatar" style="background:linear-gradient(135deg, #F59E0B, #d97706);">BP</div>
+                    <div>
+                        <div class="testi-author-name">Budi Prakoso</div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">FAQ</span>
+            <h2>Pertanyaan yang Sering Muncul</h2>
+        </div>
+        <div class="faq-list fade-up">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Apa bedanya website sales dengan website biasa? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Website biasa bersifat informatif. Website sales dirancang khusus untuk mendukung proses penjualan: membangun kepercayaan prospek sebelum meeting, menyediakan semua informasi yang dibutuhkan calon klien, dan memudahkan mereka untuk langsung menghubungi tim sales Anda.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Apakah saya perlu menyiapkan semua konten dan foto sendiri? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Tidak semuanya. Kami bantu kumpulkan dan susun konten berdasarkan informasi yang Anda berikan. Untuk foto produk, kami sarankan foto asli untuk hasil terbaik, tapi kami juga bisa gunakan foto stok profesional sebagai alternatif sementara.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Bisakah website diupdate sendiri jika ada produk baru atau perubahan harga? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Bisa. Kami sediakan panduan update sederhana dan Anda bisa hubungi kami via WhatsApp untuk update konten. Paket Bisnis & Enterprise mendapatkan periode maintenance gratis sehingga update lebih mudah.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Apakah cocok jika tim sales saya tersebar di berbagai kota? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Sangat cocok. Website bisa diakses dari mana saja dan dibagikan kapan saja. Paket Bisnis ke atas bahkan mendukung multi-sales WA routing — tombol WA bisa mengarah ke nomor sales yang berbeda berdasarkan area atau produk.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Berapa lama sampai website bisa dipakai tim sales? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><p>Paket Starter bisa selesai dalam 3–4 hari kerja. Paket Bisnis 5–7 hari, dan Enterprise 7–10 hari termasuk revisi dan sesi training untuk tim. Kecepatan pengerjaan juga tergantung seberapa cepat Anda memberikan materi yang dibutuhkan.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+    <div class="container">
+        <div class="cta-inner fade-up">
+            <h2>Siap Beri Tim Sales Anda<br>Senjata Terkuat?</h2>
+            <p>Konsultasi gratis, tanpa komitmen. Ceritakan kebutuhan bisnis Anda dan kami bantu tentukan solusi yang paling tepat untuk tim sales Anda.</p>
+            <div class="cta-btns">
+                <a href="https://wa.me/6285779853512?text=Halo+Jeff,+saya+ingin+konsultasi+gratis+Website+Bisnis+Sales" target="_blank" class="btn-wa-cta"><i class="fab fa-whatsapp"></i> Chat WhatsApp Sekarang</a>
+                <a href="../index.html#kontak" class="btn-secondary" style="padding:14px 32px; font-size:1rem;"><i class="fas fa-envelope"></i> Kirim Pesan</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-slim">
+        <div class="footer-slim-logo">
+            <div style="width:36px; height:36px; border-radius:8px; overflow:hidden; background:var(--card-bg2); border:1px solid var(--border2); flex-shrink:0; display:flex; align-items:center; justify-content:center;">
+                <img src="../images/logo.jpg" alt="Jeff" onerror="this.parentElement.style.background='#1A6BFF'; this.style.display='none';">
+            </div>
+            <div><strong>Jeff</strong><div style="font-size:10px; color:var(--text-muted);">Jasa Pembuatan Website</div></div>
+        </div>
+        <div class="footer-slim-links">
+            <a href="../index.html">Beranda</a>
+            <a href="../index.html#promo">Layanan Lain</a>
+            <a href="landing-page.html">Web Landing Page</a>
+            <a href="katalog.html">Web Katalog</a>
+            <a href="../index.html#kontak">Kontak</a>
+        </div>
+        <div class="footer-copy">© 2026 Jeff. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById('mobileNav'), hb = document.querySelector('.hamburger');
+    nav.classList.toggle('open'); hb.classList.toggle('is-open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+    const nav = document.getElementById('mobileNav'), hb = document.querySelector('.hamburger');
+    nav.classList.remove('open'); hb.classList.remove('is-open');
+    document.body.style.overflow = '';
+}
+document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobileNav'), hb = document.querySelector('.hamburger');
+    if (nav?.classList.contains('open') && !nav.contains(e.target) && !hb?.contains(e.target)) closeMenu();
+});
+function toggleFaq(btn) {
+    const item = btn.parentElement, isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+}
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+});
+</script>
+</body>
+</html>

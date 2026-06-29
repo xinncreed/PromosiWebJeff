@@ -384,7 +384,6 @@
             transform: translateY(-7px) rotate(-45deg);
         }
 
-        /* Mobile nav: smooth slide + fade open/close instead of an abrupt toggle */
         .mobile-nav {
             display: flex;
             flex-direction: column;
@@ -443,14 +442,8 @@
         .mobile-nav.open a:nth-child(4) { animation-delay: 0.19s; }
 
         @keyframes mobileNavItemIn {
-            from {
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         .mobile-nav a:active {
@@ -657,10 +650,7 @@
         .promo-slide::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.3);
             z-index: 1;
         }
@@ -732,19 +722,13 @@
             transform: translateY(-50%) scale(1.05);
         }
 
-        .slider-arrow.prev {
-            left: 20px;
-        }
-
-        .slider-arrow.next {
-            right: 20px;
-        }
+        .slider-arrow.prev { left: 20px; }
+        .slider-arrow.next { right: 20px; }
 
         .slider-nav {
             position: absolute;
             bottom: 20px;
-            left: 0;
-            right: 0;
+            left: 0; right: 0;
             display: flex;
             justify-content: center;
             gap: 12px;
@@ -765,6 +749,192 @@
             background: var(--primary);
             width: 30px;
             border-radius: 5px;
+        }
+
+        /* ===== LAYANAN GRID (NEW) ===== */
+        .layanan-grid-section {
+            padding: 48px 0 72px;
+            background: var(--card-bg);
+        }
+
+        .layanan-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .layanan-card {
+            background: var(--card-bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-base);
+            position: relative;
+        }
+
+        .layanan-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .layanan-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(26,107,255,0.45);
+            box-shadow: var(--shadow-md);
+        }
+
+        .layanan-card:hover::after {
+            opacity: 1;
+        }
+
+        .layanan-thumb {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .layanan-thumb-emoji {
+            font-size: 3rem;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .layanan-card:hover .layanan-thumb-emoji {
+            transform: scale(1.12);
+        }
+
+        .layanan-thumb-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Thumbnail tint per card */
+        .lt-landing  { background: linear-gradient(135deg, #0d1b3e 0%, rgba(26,107,255,0.30) 100%); }
+        .lt-booking  { background: linear-gradient(135deg, #0a1a0a 0%, rgba(16,185,129,0.28) 100%); }
+        .lt-sales    { background: linear-gradient(135deg, #10100a 0%, rgba(245,158,11,0.28) 100%); }
+        .lt-coffee   { background: linear-gradient(135deg, #1a0f00 0%, rgba(120,60,10,0.50) 100%); }
+        .lt-katalog  { background: linear-gradient(135deg, #100a1a 0%, rgba(139,92,246,0.30) 100%); }
+        .lt-custom   { background: linear-gradient(135deg, #0a0f1a 0%, rgba(26,107,255,0.20) 100%); }
+
+        .layanan-card::after { background: var(--card-accent, var(--primary)); }
+
+        /* accent colors per card */
+        .layanan-card.lc-landing  { --card-accent: #1A6BFF; }
+        .layanan-card.lc-booking  { --card-accent: #10B981; }
+        .layanan-card.lc-sales    { --card-accent: #F59E0B; }
+        .layanan-card.lc-coffee   { --card-accent: #d97706; }
+        .layanan-card.lc-katalog  { --card-accent: #8B5CF6; }
+        .layanan-card.lc-custom   { --card-accent: #1A6BFF; }
+
+        .layanan-body {
+            padding: 20px 22px 24px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .layanan-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 3px 10px;
+            border-radius: 100px;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+
+        .lt-tag-blue   { color: var(--primary); background: var(--primary-light); }
+        .lt-tag-green  { color: var(--green);   background: rgba(16,185,129,0.12); }
+        .lt-tag-orange { color: var(--orange);  background: rgba(245,158,11,0.12); }
+        .lt-tag-brown  { color: #d97706;        background: rgba(217,119,6,0.12); }
+        .lt-tag-purple { color: var(--purple);  background: rgba(139,92,246,0.12); }
+
+        .layanan-body h3 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            color: var(--white);
+        }
+
+        .layanan-body p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            flex: 1;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .layanan-features {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 18px;
+        }
+
+        .layanan-feature {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .layanan-feature i {
+            font-size: 0.62rem;
+            flex-shrink: 0;
+            width: 13px;
+        }
+
+        .layanan-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.82rem;
+            text-decoration: none;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            transition: var(--transition-fast);
+            margin-top: auto;
+        }
+
+        .layanan-cta:hover {
+            border-color: var(--card-accent, var(--primary));
+            color: var(--card-accent, var(--primary));
+            background: rgba(26,107,255,0.05);
+        }
+
+        .layanan-cta i {
+            transition: transform 0.2s ease;
+        }
+
+        .layanan-cta:hover i {
+            transform: translateX(4px);
         }
 
         /* ===== TESTIMONI SECTION ===== */
@@ -1139,27 +1309,15 @@
             transform: translateY(0);
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
 
-        ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 3px;
-        }
-
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .testimoni-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .footer-inner {
-                grid-template-columns: 1fr 1fr;
-                gap: 32px;
-            }
+            .testimoni-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .layanan-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
@@ -1177,31 +1335,17 @@
             .testimoni-grid { grid-template-columns: 1fr; }
             .kontak-inner { grid-template-columns: 1fr; gap: 32px; }
             .form-row { grid-template-columns: 1fr; }
+            .layanan-grid { grid-template-columns: 1fr; }
 
-            /* ===== FOOTER MOBILE - DIRAPIKAN, TERPUSAT, JARAK KONSISTEN ===== */
             footer { padding: 40px 0 20px; }
-            .footer-inner {
-                grid-template-columns: 1fr;
-                gap: 36px;
-                text-align: center;
-            }
-            .footer-brand {
-                align-items: center;
-                padding-bottom: 28px;
-                border-bottom: 1px solid var(--border3);
-            }
+            .footer-inner { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+            .footer-brand { align-items: center; padding-bottom: 28px; border-bottom: 1px solid var(--border3); }
             .footer-logo { justify-content: center; }
-            .footer-brand p {
-                max-width: 320px;
-                margin: 0 auto;
-            }
+            .footer-brand p { max-width: 320px; margin: 0 auto; }
             .social-buttons { justify-content: center; }
             .footer-col { display: flex; flex-direction: column; align-items: center; }
             .footer-col h4 { margin-bottom: 14px; }
-            .footer-col a {
-                margin-bottom: 10px;
-                text-align: center;
-            }
+            .footer-col a { margin-bottom: 10px; text-align: center; }
             .payment-logos { justify-content: center; }
             .footer-copy { text-align: center; }
 
@@ -1222,7 +1366,6 @@
             .slider-arrow { display: none; }
             .section-heading { margin-bottom: 32px; }
             .testimoni, .kontak { padding: 50px 0; }
-
             .footer-inner { gap: 28px; padding: 0 16px; }
             .footer-brand { padding-bottom: 22px; }
         }
@@ -1337,6 +1480,12 @@
                         <a href="web/booking-lapangan.html" class="btn-promo">Learn More →</a>
                     </div>
                 </div>
+                <div class="promo-slide" style="background-image: url('images/gambar-promosi-sales.jpeg'); background-size: cover; background-position: center;">
+                    <div class="promo-slide-content">
+                        <h2>Web Sales</h2>
+                        <a href="web/sales.html" class="btn-promo">Learn More →</a>
+                    </div>
+                </div>
                 <div class="promo-slide" style="background-image: url('images/gambar-promosi-pesan-coffe.jpg'); background-size: cover; background-position: center;">
                     <div class="promo-slide-content">
                         <h2>Web Coffee</h2>
@@ -1353,6 +1502,135 @@
             <button class="slider-arrow prev" onclick="changePromoSlide(-1)">❮</button>
             <button class="slider-arrow next" onclick="changePromoSlide(1)">❯</button>
             <div class="slider-nav" id="promoDots"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== LAYANAN GRID (NEW) ========== -->
+<section class="layanan-grid-section">
+    <div class="container">
+        <div class="section-heading fade-up">
+            <span class="badge">Semua Layanan</span>
+            <h2>Website Apa yang Anda Butuhkan?</h2>
+            <p>Kami menyediakan berbagai jenis website yang dirancang khusus sesuai kebutuhan bisnis Anda.</p>
+        </div>
+
+        <div class="layanan-grid fade-up">
+
+            <!-- Landing Page -->
+            <a href="web/landing-page.html" class="layanan-card lc-landing">
+                <div class="layanan-thumb lt-landing">
+                    <div class="layanan-thumb-overlay"></div>
+                    <span class="layanan-thumb-emoji">🚀</span>
+                </div>
+                <div class="layanan-body">
+                    <span class="layanan-tag lt-tag-blue">Konversi Tinggi</span>
+                    <h3>Web Landing Page</h3>
+                    <p>Halaman tunggal yang difokuskan untuk mengubah pengunjung menjadi pelanggan. Ideal untuk iklan Google & Meta Ads.</p>
+                    <div class="layanan-features">
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--primary);"></i> Desain high-converting</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--primary);"></i> Tombol CTA & form kontak</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--primary);"></i> Selesai dalam 3–7 hari</div>
+                    </div>
+                    <span class="layanan-cta">Lihat Detail <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <!-- Booking Lapangan -->
+            <a href="web/booking-lapangan.html" class="layanan-card lc-booking">
+                <div class="layanan-thumb lt-booking">
+                    <div class="layanan-thumb-overlay"></div>
+                    <span class="layanan-thumb-emoji">🏟️</span>
+                </div>
+                <div class="layanan-body">
+                    <span class="layanan-tag lt-tag-green">Sistem Otomatis</span>
+                    <h3>Web Booking Lapangan</h3>
+                    <p>Sistem reservasi lapangan olahraga secara online. Jadwal real-time, cegah double booking, dan notifikasi otomatis.</p>
+                    <div class="layanan-features">
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--green);"></i> Kalender booking real-time</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--green);"></i> Notifikasi WhatsApp</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--green);"></i> Dashboard manajemen</div>
+                    </div>
+                    <span class="layanan-cta">Lihat Detail <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <!-- Sales -->
+            <a href="web/sales.html" class="layanan-card lc-sales">
+                <div class="layanan-thumb lt-sales">
+                    <div class="layanan-thumb-overlay"></div>
+                    <span class="layanan-thumb-emoji">📈</span>
+                </div>
+                <div class="layanan-body">
+                    <span class="layanan-tag lt-tag-orange">Bantu Tim Sales</span>
+                    <h3>Web Bisnis Sales</h3>
+                    <p>Website yang menjadi senjata tim sales Anda — company profile, katalog produk, dan halaman penawaran digital.</p>
+                    <div class="layanan-features">
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--orange);"></i> Company profile profesional</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--orange);"></i> Katalog produk & layanan</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--orange);"></i> Integrasi WA multi-sales</div>
+                    </div>
+                    <span class="layanan-cta">Lihat Detail <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <!-- Coffee -->
+            <a href="web/coffee.html" class="layanan-card lc-coffee">
+                <div class="layanan-thumb lt-coffee">
+                    <div class="layanan-thumb-overlay"></div>
+                    <span class="layanan-thumb-emoji">☕</span>
+                </div>
+                <div class="layanan-body">
+                    <span class="layanan-tag lt-tag-brown">F&B & Kafe</span>
+                    <h3>Web Coffee / Kafe</h3>
+                    <p>Website kafe & kedai kopi dengan menu digital, cerita brand, dan formulir pemesanan yang bikin pelanggan langsung order.</p>
+                    <div class="layanan-features">
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:#d97706;"></i> Menu digital dengan foto</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:#d97706;"></i> Profil & cerita brand</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:#d97706;"></i> Form pesan & reservasi meja</div>
+                    </div>
+                    <span class="layanan-cta">Lihat Detail <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <!-- Katalog -->
+            <a href="web/katalog.html" class="layanan-card lc-katalog">
+                <div class="layanan-thumb lt-katalog">
+                    <div class="layanan-thumb-overlay"></div>
+                    <span class="layanan-thumb-emoji">🛍️</span>
+                </div>
+                <div class="layanan-body">
+                    <span class="layanan-tag lt-tag-purple">Produk & Toko</span>
+                    <h3>Web Katalog Produk</h3>
+                    <p>Tampilkan seluruh produk Anda secara rapi dan profesional. Cocok untuk toko, distributor, dan brand produk.</p>
+                    <div class="layanan-features">
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--purple);"></i> Grid produk dengan filter</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--purple);"></i> Halaman detail per produk</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--purple);"></i> Tombol order via WhatsApp</div>
+                    </div>
+                    <span class="layanan-cta">Lihat Detail <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <!-- Custom -->
+            <a href="#kontak" class="layanan-card lc-custom">
+                <div class="layanan-thumb lt-custom">
+                    <div class="layanan-thumb-overlay"></div>
+                    <span class="layanan-thumb-emoji">✨</span>
+                </div>
+                <div class="layanan-body">
+                    <span class="layanan-tag lt-tag-blue">Pesanan Khusus</span>
+                    <h3>Website Custom</h3>
+                    <p>Punya kebutuhan unik yang tidak ada di daftar? Kami siap bangun website apapun dari nol sesuai permintaan Anda.</p>
+                    <div class="layanan-features">
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--primary);"></i> Konsultasi kebutuhan gratis</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--primary);"></i> Desain & fitur sesuai request</div>
+                        <div class="layanan-feature"><i class="fas fa-check" style="color:var(--primary);"></i> Harga sesuai scope proyek</div>
+                    </div>
+                    <span class="layanan-cta">Diskusi Dulu <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
         </div>
     </div>
 </section>
@@ -1409,7 +1687,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="testimoni-card">
                 <div class="testimoni-img">
                     <img src="images/shakimoy.png" alt="Client 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -1424,7 +1701,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -1502,7 +1778,6 @@
                     </svg>
                     <span>WhatsApp</span>
                 </a>
-                
             </div>
 
             <div class="footer-copy">© 2026 Jeff. All Rights Reserved.</div>
@@ -1677,6 +1952,27 @@ cards.forEach(card => {
     cardObserver.observe(card);
 });
 
+// ===== LAYANAN CARDS STAGGER =====
+const layananCards = document.querySelectorAll('.layanan-card');
+const layananObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, i * 80);
+            layananObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.08 });
+
+layananCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(24px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    layananObserver.observe(card);
+});
+
 // ===== PROMOTION SLIDER (CONTINUOUS AUTO-SLIDE) =====
 let currentPromoSlide = 0;
 const promoTrack = document.getElementById('promoTrack');
@@ -1701,13 +1997,8 @@ function goToPromoSlide(index) {
     updatePromoDots();
 }
 
-function nextPromoSlide() {
-    goToPromoSlide(currentPromoSlide + 1);
-}
-
-function prevPromoSlide() {
-    goToPromoSlide(currentPromoSlide - 1);
-}
+function nextPromoSlide() { goToPromoSlide(currentPromoSlide + 1); }
+function prevPromoSlide() { goToPromoSlide(currentPromoSlide - 1); }
 
 function updatePromoDots() {
     const dots = document.querySelectorAll('.slider-dot');
@@ -1724,18 +2015,13 @@ function buildPromoDots() {
         const dot = document.createElement('button');
         dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
         dot.setAttribute('aria-label', `Slide ${i + 1}`);
-        dot.addEventListener('click', () => {
-            goToPromoSlide(i);
-            resetPromoAuto();
-        });
+        dot.addEventListener('click', () => { goToPromoSlide(i); resetPromoAuto(); });
         dotsContainer.appendChild(dot);
     }
 }
 
 function startPromoAuto() {
-    promoAutoTimer = setInterval(() => {
-        nextPromoSlide();
-    }, 5000);
+    promoAutoTimer = setInterval(() => { nextPromoSlide(); }, 5000);
 }
 
 function resetPromoAuto() {
@@ -1744,11 +2030,8 @@ function resetPromoAuto() {
 }
 
 window.changePromoSlide = function(direction) {
-    if (direction === 1) {
-        nextPromoSlide();
-    } else {
-        prevPromoSlide();
-    }
+    if (direction === 1) nextPromoSlide();
+    else prevPromoSlide();
     resetPromoAuto();
 };
 
@@ -1768,12 +2051,8 @@ window.addEventListener('resize', () => {
 
 const promoContainer = document.querySelector('.promo-slider-container');
 if (promoContainer) {
-    promoContainer.addEventListener('mouseenter', () => {
-        clearInterval(promoAutoTimer);
-    });
-    promoContainer.addEventListener('mouseleave', () => {
-        startPromoAuto();
-    });
+    promoContainer.addEventListener('mouseenter', () => { clearInterval(promoAutoTimer); });
+    promoContainer.addEventListener('mouseleave', () => { startPromoAuto(); });
 }
 
 let touchStartX = 0;
@@ -1785,11 +2064,8 @@ if (promoTrack && promoTrack.parentElement) {
     promoTrack.parentElement.addEventListener('touchend', (e) => {
         const diff = touchStartX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                nextPromoSlide();
-            } else {
-                prevPromoSlide();
-            }
+            if (diff > 0) nextPromoSlide();
+            else prevPromoSlide();
             resetPromoAuto();
         }
     }, { passive: true });
